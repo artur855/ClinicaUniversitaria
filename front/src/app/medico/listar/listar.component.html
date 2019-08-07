@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Médicos</h2>
+        </div>
+        <div class="card-body">
+                <table class="table text-center">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CRM</th>
+                            <th>AÇÃO</th>
+                          
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let medico of medicos"class="text-center">           
+                            <td>{{medico.id}}</td>
+                            <td>{{medico.titulo}}</td>
+                            <td>{{medico.texto}}</td>
+                            
+                            <td>
+                                <button class="btn btn-warning">Editar</button>
+                                <button class="btn btn-danger">Remover</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+        </div>
+    </div>
+</div>
