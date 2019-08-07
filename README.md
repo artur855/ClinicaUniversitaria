@@ -1,4 +1,5 @@
-# VamoTrabalhar
+# VamoTrabalhar [![Build Status](https://api.travis-ci.com/artur855/VamoTrabalhar.svg)](https://travis-ci.com/artur855/VamoTrabalhar)
+
 É hora do trabalho
 
 # Estrutura do repositório
