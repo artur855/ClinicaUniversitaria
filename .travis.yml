@@ -1,9 +1,7 @@
 matrix:
   include:
     - language: node_js
-      before_script:
-        - cd front
-      
+
       addons:
         apt:
           sources:
@@ -13,10 +11,7 @@ matrix:
       
       cache:
         directories:
-        - ./node_modules  
-      
-      install:
-        - npm install
-      
-      script:
-        - npm test
+          - ./node_modules  
+
+        script:
+          - bash ./travis/test_node.sh
