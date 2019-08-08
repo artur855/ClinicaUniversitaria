@@ -1,6 +1,11 @@
 matrix:
   include:
     - language: node_js
+      node_js:
+        - "10"
+
+      dist: trusty
+      sudo: false
 
       addons:
         apt:
@@ -11,7 +16,7 @@ matrix:
       
       cache:
         directories:
-          - ./node_modules  
+          - ./front/node_modules  
 
-        script:
-          - bash ./travis/test_node.sh
+      script:
+        - bash ./travis/test_node.sh
