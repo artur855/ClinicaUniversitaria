@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="nunit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hospital.Application\Hospital.Application.csproj" />
+    <ProjectReference Include="..\Hospital.Domain\Hospital.Domain.csproj" />
+    <ProjectReference Include="..\Hospital.Infra.CrossCutting\Hospital.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\Hospital.Infra.Data\Hospital.Infra.Data.csproj" />
+    <ProjectReference Include="..\Hospital.Service\Hospital.Service.csproj" />
+  </ItemGroup>
+
+</Project>
