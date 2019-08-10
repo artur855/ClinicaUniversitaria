@@ -15,12 +15,24 @@ namespace Hospital.Application
 {
     public class Startup
     {
+        #region Variables
+        private readonly IConfiguration m_configuration;
+        #endregion
+
+        #region Properties
+        public IConfiguration Configuration
+        {
+            get
+            {
+                return m_configuration;
+            }
+        }
+        #endregion
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            m_configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

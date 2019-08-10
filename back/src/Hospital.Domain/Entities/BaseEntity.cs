@@ -2,6 +2,22 @@
 {
     public abstract class BaseEntity
     {
-        public int Id { get; set; }
+        #region Variables
+        private int m_id;
+        #endregion
+
+        #region Properties
+        public int Id
+        {
+            get
+            {
+                return m_id;
+            }
+            set
+            {
+                m_id = value;
+            }
+        }
+        #endregion
     }
 }
