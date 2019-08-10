@@ -7,7 +7,8 @@ import { AddComponent } from './medico/add/add.component';
 import { ListarComponent } from './medico/listar/listar.component';
 import { EditComponent } from './medico/edit/edit.component';
 import { RemoveComponent } from './medico/remove/remove.component';
-import {FormsModule} from '@angular/forms'
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { Medico } from 'src/app/Models/Medico';
 import {ServiceService} from '../app/Service/service.service'
 import {HttpClientModule} from '@angular/common/http'
 
@@ -23,10 +24,12 @@ import {HttpClientModule} from '@angular/common/http'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
-  providers: [ServiceService],
+  providers: [ServiceService,Medico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
