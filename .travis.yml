@@ -20,3 +20,13 @@ matrix:
 
       script:
         - bash ./travis/test_node.sh
+
+      deploy:
+        provider: elasticbeanstalk
+        acess_key_id: $ACESSKEYID
+        secret_key_id: $SECRETKEYID
+        region: us-east-1
+        app: "ClinicaUniversitaria"
+        env: "ClinicaUniversitaria-dev"
+        bucket-name: $AWSBUCKET
+        
