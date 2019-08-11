@@ -19,14 +19,23 @@ matrix:
           - ./front/node_modules  
 
       script:
-        - bash ./travis/test_node.sh
+        - bash ./travis/test_front.sh
+      
+      before_deploy:
+        - cd front
+        
+      deploy:
+        provider: s3
+        access_key_id: $ACESSKEYID
+        secret_access_key: $SECRETKEYID
+        bucket: "clinicauniversitaria-front"
 
       deploy:
-        provider: elasticbeanstalk
-        acess_key_id: $ACESSKEYID
-        secret_key_id: $SECRETKEYID
-        region: us-east-1
-        app: "ClinicaUniversitaria"
-        env: "ClinicaUniversitaria-dev"
-        bucket-name: $AWSBUCKET
-        
+        provider: codedeploy
+        access_key_id: $ACESSKEYID
+        secret_access_key: $SECRETKEYID
+        provider: codedeploy
+        bucket: "clinicauniversitaria-front"
+        key: front.zip
+        application: ClinicaUniversitaria-front
+        deployment_group: ClinicaUniversitariaDeploymentGroup
