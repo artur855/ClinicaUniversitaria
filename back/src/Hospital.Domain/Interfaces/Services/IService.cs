@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Hospital.Domain.Interfaces
 {
-    public interface IService<T> where T : BaseEntity
+    public interface IService<T> where T : class
     {
         T Post<V>(T obj) where V : AbstractValidator<T>;
         T Put<V>(T obj) where V : AbstractValidator<T>;
-        void Delete(Guid id);
-        T Get(Guid id);
-        IList<T> Get();
+        void Delete(int id);
+        T Get(int id);
+        IEnumerable<T> Get();
     }
 }
