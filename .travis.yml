@@ -23,19 +23,19 @@ matrix:
       
       before_deploy:
         - cd front
-        
+
       deploy:
         provider: s3
         access_key_id: $ACESSKEYID
         secret_access_key: $SECRETKEYID
-        bucket: "clinicauniversitaria-front"
+        bucket: $AWSBUCKETFRONT
 
       deploy:
         provider: codedeploy
         access_key_id: $ACESSKEYID
         secret_access_key: $SECRETKEYID
         provider: codedeploy
-        bucket: "clinicauniversitaria-front"
+        bucket: $AWSBUCKETFRONT
         key: front.zip
-        application: ClinicaUniversitaria-front
-        deployment_group: ClinicaUniversitariaDeploymentGroup
+        application: $AWSCDAPPLICATIONFRONT
+        deployment_group: $AWSCDDEPLOYGROUPFRONT
