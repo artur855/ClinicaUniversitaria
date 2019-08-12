@@ -29,9 +29,9 @@ import { Medico } from 'src/app/Models/Medico';
   }
   Atualizar(medico:Medico){
     var nome = (<HTMLInputElement> document.getElementById("name")).value;
-    var crm = (<HTMLInputElement> document.getElementById("crm")).value;
+    var CRM = (<HTMLInputElement> document.getElementById("CRM")).value;
     medico.name=nome;
-    medico.crm=crm;
+    medico.CRM=CRM;
     console.log(medico)
     this.service.updateMedico(medico)
     .subscribe(data=>{

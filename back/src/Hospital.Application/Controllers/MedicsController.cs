@@ -9,9 +9,10 @@ using Hospital.Service.Services;
 using Hospital.Service.Validators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Cors;
 namespace Hospital.Application.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class MedicsController : ControllerBase
@@ -22,13 +23,13 @@ namespace Hospital.Application.Controllers
         {
             _medicService = medicService;
         }
-
+        [EnableCors] 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Medic>>> Get()
         {
             return Ok(await _medicService.ListAsync());
         }
-
+          [EnableCors] 
         [HttpGet("{crm}")]
         public async Task<ActionResult<Medic>> Get(string crm)
         {
@@ -37,7 +38,7 @@ namespace Hospital.Application.Controllers
 
             return await _medicService.FindByCrm(crm);
         }
-
+      [EnableCors] 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Medic medic)
         {
@@ -48,7 +49,7 @@ namespace Hospital.Application.Controllers
 
             return CreatedAtAction(nameof(Post), new { CRM = _medic.CRM }, medic);
         }
-        
+          [EnableCors] 
         [HttpPut("{crm}")]
         public async Task<IActionResult> Put(string crm, [FromBody] Medic medic)
         {
@@ -60,7 +61,7 @@ namespace Hospital.Application.Controllers
             return NoContent();
             
         }
-
+      [EnableCors] 
         [HttpDelete("{crm}")]
         public async Task<IActionResult> Delete(string crm)
         {

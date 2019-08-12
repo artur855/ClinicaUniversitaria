@@ -26,11 +26,11 @@ export class AddComponent implements OnInit {
 
   onSubmit() {
     var nome = (<HTMLInputElement>document.getElementById("name")).value;
-    var crm = (<HTMLInputElement>document.getElementById("crm")).value;
+    var CRM = (<HTMLInputElement>document.getElementById("CRM")).value;
 
     this.medico.name = nome;
 
-    this.medico.crm = crm;
+    this.medico.CRM = CRM;
 
     this.service.createMedico(this.medico).subscribe(data => {
       this.medico = data;

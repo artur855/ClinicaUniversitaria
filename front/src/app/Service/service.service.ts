@@ -13,7 +13,7 @@ export class ServiceService {
 
   constructor(private http:HttpClient) { }
 
-  Url = 'http://localhost:5000/medicos/'
+  Url = 'http://localhost:5000/api/medics/'
 
 
 
