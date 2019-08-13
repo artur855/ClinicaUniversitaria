@@ -23,13 +23,15 @@ namespace Hospital.Application.Controllers
         {
             _medicService = medicService;
         }
-        [EnableCors] 
+
+        [EnableCors("MyPolicy")] 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Medic>>> Get()
         {
             return Ok(await _medicService.ListAsync());
         }
-          [EnableCors] 
+
+        [EnableCors("MyPolicy")] 
         [HttpGet("{crm}")]
         public async Task<ActionResult<Medic>> Get(string crm)
         {
@@ -38,7 +40,8 @@ namespace Hospital.Application.Controllers
 
             return await _medicService.FindByCrm(crm);
         }
-      [EnableCors] 
+
+        [EnableCors("MyPolicy")] 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Medic medic)
         {
@@ -49,7 +52,8 @@ namespace Hospital.Application.Controllers
 
             return CreatedAtAction(nameof(Post), new { CRM = _medic.CRM }, medic);
         }
-          [EnableCors] 
+
+        [EnableCors("MyPolicy")]
         [HttpPut("{crm}")]
         public async Task<IActionResult> Put(string crm, [FromBody] Medic medic)
         {
@@ -61,7 +65,8 @@ namespace Hospital.Application.Controllers
             return NoContent();
             
         }
-      [EnableCors] 
+
+        [EnableCors("MyPolicy")] 
         [HttpDelete("{crm}")]
         public async Task<IActionResult> Delete(string crm)
         {
