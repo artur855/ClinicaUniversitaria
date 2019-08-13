@@ -22,20 +22,12 @@ matrix:
         - bash ./travis/test_front.sh
       
       before_deploy:
-        - cd front
+        - bash ./travis/before_deploy_front.sh
+
 
       deploy:
         provider: s3
-        access_key_id: $ACESSKEYID
-        secret_access_key: $SECRETKEYID
-        bucket: $AWSBUCKETFRONT
-
-      deploy:
-        provider: codedeploy
-        access_key_id: $ACESSKEYID
-        secret_access_key: $SECRETKEYID
-        provider: codedeploy
-        bucket: $AWSBUCKETFRONT
-        key: front.zip
-        application: $AWSCDAPPLICATIONFRONT
-        deployment_group: $AWSCDDEPLOYGROUPFRONT
+        access_key_id: $ACCESSKEYID
+        secret_access_key: $SECRETACCESSKEY
+        bucket: $AWSBUCKET
+ 
