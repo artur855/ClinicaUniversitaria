@@ -31,4 +31,4 @@ matrix:
         secret_access_key: $SECRETACCESSKEY
         bucket: $AWSBUCKET
         local_dir: $TRAVIS_BUILD_DIR/front/dist/front
- 
+        skip_cleanup: true
