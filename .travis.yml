@@ -30,5 +30,5 @@ matrix:
         access_key_id: $ACCESSKEYID
         secret_access_key: $SECRETACCESSKEY
         bucket: $AWSBUCKET
-        local_dir: .front/dist/front
+        local_dir: ./front/dist/front
  
