@@ -1,23 +1,22 @@
 <div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h2>Editar Médicos</h2>
-        </div>
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input type="text" class="form-control" id="name" placeholder="{{medico.name}}">
-
-                </div>
-                <div class="form-group">
-                    <label for="CRM">CRM</label>
-                    <input type="text" class="form-control" id="CRM" placeholder="{{medico.CRM}}">
-
-                </div>
-                <button (click)="Atualizar(medico)" type="submit" class="btn btn-primary">Salvar</button>
-            </form>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Editar Médicos</h2>
     </div>
-</div>
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" placeholder="{{medico.name}}">
 
+        </div>
+        <div class="form-group">
+          <label for="CRM">CRM</label>
+          <input type="text" class="form-control" id="CRM" placeholder="{{medico.crm}}">
+
+        </div>
+        <button (click)="Atualizar(medico)" type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
