@@ -20,7 +20,7 @@ export class ListarComponent implements OnInit {
   }
 
   Editar(medico:Medico):void{
-    localStorage.setItem("id",medico.id.toString());
+    localStorage.setItem("crm",medico.crm.toString());
     this.router.navigate(["edit"]);
   }
 

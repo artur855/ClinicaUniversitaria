@@ -13,7 +13,7 @@ export class ServiceService {
 
   constructor(private http:HttpClient) { }
 
-  Url = 'http://localhost:5000/api/medics/'
+  Url = 'https://localhost:5001/api/medics/'
 
 
 
@@ -21,8 +21,8 @@ export class ServiceService {
     return this.http.get<Medico[]>(this.Url);
   }
 
-  getMedicoId(id:number){
-    return this.http.get<Medico>(this.Url+id);
+  getMedicoCrm(crm:number){
+    return this.http.get<Medico>(this.Url+crm);
   }
 
   createMedico (med: Medico){
@@ -30,10 +30,10 @@ export class ServiceService {
   }
 
   updateMedico(med:Medico){
-    return this.http.put<Medico>(this.Url+med.id,med)
+    return this.http.put<Medico>(this.Url+med.crm,med)
   }
 
   deleteMedico(med:Medico){
-    return this.http.delete(this.Url+med.id)
+    return this.http.delete(this.Url+med.crm)
   }
 }

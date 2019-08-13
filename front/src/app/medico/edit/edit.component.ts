@@ -18,8 +18,8 @@ import { Medico } from 'src/app/Models/Medico';
   }
 
   Editar(){
-    let id=localStorage.getItem("id");
-    this.service.getMedicoId(+id)
+    let crm=localStorage.getItem("crm");
+    this.service.getMedicoCrm(+crm)
     .subscribe(data=>{
       
       this.medico=data;
@@ -31,7 +31,7 @@ import { Medico } from 'src/app/Models/Medico';
     var nome = (<HTMLInputElement> document.getElementById("name")).value;
     var CRM = (<HTMLInputElement> document.getElementById("CRM")).value;
     medico.name=nome;
-    medico.CRM=CRM;
+    medico.crm=CRM;
     console.log(medico)
     this.service.updateMedico(medico)
     .subscribe(data=>{

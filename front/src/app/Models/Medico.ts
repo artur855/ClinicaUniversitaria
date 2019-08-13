@@ -1,5 +1,5 @@
 export class Medico{
-    id:number;
+    // id:number;
     name:String;
-    CRM:String;
+    crm:String;
 }

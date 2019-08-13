@@ -30,7 +30,7 @@ export class AddComponent implements OnInit {
 
     this.medico.name = nome;
 
-    this.medico.CRM = CRM;
+    this.medico.crm = CRM;
 
     this.service.createMedico(this.medico).subscribe(data => {
       this.medico = data;
