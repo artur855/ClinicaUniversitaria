@@ -17,12 +17,12 @@
                         <tbody>
                           <tr *ngFor="let medico of medicos"class="text-center">           
                             <td>{{medico.id}}</td>
-                            <td>{{medico.titulo}}</td>
-                            <td>{{medico.texto}}</td>
+                            <td>{{medico.name}}</td>
+                            <td>{{medico.crm}}</td>
                             
                             <td>
-                                <button class="btn btn-warning">Editar</button>
-                                <button class="btn btn-danger">Remover</button>
+                                <button (click)="Editar(medico)" class="btn btn-warning">Editar</button>
+                                <button data-toggle="modal" data-target="#createModal" (click)="Delete(medico)"class="btn btn-danger">Remover</button>
                             </td>
                           </tr>
                         </tbody>
@@ -31,3 +31,4 @@
         </div>
     </div>
 </div>
+

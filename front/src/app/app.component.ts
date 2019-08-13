@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'front';
 
-  constructor(private router:Router){}
+  constructor(private router:Router){
+    
+  }
+
+  
 
   Listar(){
     this.router.navigate(["listar"]);

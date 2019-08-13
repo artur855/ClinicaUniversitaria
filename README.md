@@ -1,4 +1,4 @@
-# VamoTrabalhar [![Build Status](https://api.travis-ci.com/artur855/VamoTrabalhar.svg)](https://travis-ci.com/artur855/VamoTrabalhar)
+# VamoTrabalhar [![Build Status](https://api.travis-ci.com/artur855/ClinicaUniversitaria.svg)](https://travis-ci.com/artur855/ClinicaUniversitaria)
 
 É hora do trabalho
 

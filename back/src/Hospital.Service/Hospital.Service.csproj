@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hospital.Domain\Hospital.Domain.csproj" />
+    <ProjectReference Include="..\Hospital.Infra.CrossCutting\Hospital.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\Hospital.Infra.Data\Hospital.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>

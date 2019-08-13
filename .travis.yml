@@ -1,0 +1,33 @@
+matrix:
+  include:
+    - language: node_js
+      node_js:
+        - "10"
+
+      dist: trusty
+      sudo: false
+
+      addons:
+        apt:
+          sources:
+            - google-chrome
+          packages:
+            - google-chrome-stable
+      
+      cache:
+        directories:
+          - ./front/node_modules  
+
+      script:
+        - bash ./travis/test_front.sh
+      
+      before_deploy:
+        - bash ./travis/before_deploy_front.sh
+
+
+      deploy:
+        provider: s3
+        access_key_id: $ACCESSKEYID
+        secret_access_key: $SECRETACCESSKEY
+        bucket: $AWSBUCKET
+ 

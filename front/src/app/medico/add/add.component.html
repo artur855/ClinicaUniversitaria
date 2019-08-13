@@ -1,1 +1,23 @@
-<p>add works!</p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Adicionar Médicos</h2>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control" id="name" placeholder="Digite o nome">
+
+                </div>
+                <div class="form-group">
+                    <label for="CRM">CRM</label>
+                    <input type="text" class="form-control" id="CRM" placeholder="Digite o crm">
+
+                </div>
+                <button (click)="onSubmit()" type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -19,4 +19,17 @@ export class ListarComponent implements OnInit {
     })
   }
 
-}
+  Editar(medico:Medico):void{
+    localStorage.setItem("crm",medico.crm.toString());
+    this.router.navigate(["edit"]);
+  }
+
+  Delete(medico:Medico){
+  
+    this.service.deleteMedico(medico)
+    .subscribe(data => {
+      this.medicos=this.medicos.filter(m=>m!==medico);
+    });
+    }
+  }
+
