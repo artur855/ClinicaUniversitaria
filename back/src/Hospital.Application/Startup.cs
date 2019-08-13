@@ -35,11 +35,12 @@ namespace Hospital.Application
             services.AddCors(opt => opt.AddPolicy("MyPolicy", builder =>
             {
                 builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                builder.WithOrigins("http://clinicauniversitaria-front.s3-website-us-east-1.amazonaws.com").AllowAnyMethod().AllowAnyHeader();
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<HospitalContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("PostgresqlString")));
+            services.AddDbContext<HospitalContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("AzureSqlServer")));
 
             services.AddScoped<IMedicService, MedicService>();
             services.AddScoped<IMedicRepository, MedicRepository>();
