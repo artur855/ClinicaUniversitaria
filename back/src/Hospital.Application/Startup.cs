@@ -34,8 +34,8 @@ namespace Hospital.Application
         {
             services.AddCors(opt => opt.AddPolicy("MyPolicy", builder =>
             {
-                builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
-                builder.WithOrigins("http://clinicauniversitaria-front.s3-website-us-east-1.amazonaws.com").AllowAnyMethod().AllowAnyHeader();
+                builder.WithOrigins("http://localhost:4200", "http://clinicauniversitaria-front.s3-website-us-east-1.amazonaws.com")
+                        .AllowAnyMethod().AllowAnyHeader();
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
