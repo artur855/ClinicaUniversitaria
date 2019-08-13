@@ -60,9 +60,12 @@ namespace Hospital.Application.Controllers
             if (string.IsNullOrWhiteSpace(crm))
                 return BadRequest();
 
-            await _medicService.UpdateAsync(crm, medic);
+            Medic updatedMedic = await _medicService.UpdateAsync(crm, medic);
 
-            return NoContent();
+            if (updatedMedic == null)
+                return NoContent();
+
+            return Ok();
             
         }
 
