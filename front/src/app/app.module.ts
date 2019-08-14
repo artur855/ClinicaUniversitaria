@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AddMedicComponent } from './Pages/medico/add/addMedic.component';
 import { ListMedicComponent } from './Pages/medico/list/listMedic.component';
 import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Medico } from 'src/app/Models/Medico';
 import { ServiceService } from './Services/medico.service'
@@ -13,7 +14,10 @@ import { ServiceService } from './Services/medico.service'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './ComponentCommons/nav-bar/nav-bar.component';
-import { LstComponent } from './Pages/paciente/list/lst.component';
+
+import { AddPacientComponent } from './pages/paciente/add-pacient/add-pacient.component';
+import { EditPacientComponent } from './pages/paciente/edit-pacient/edit-pacient.component';
+import { ListPacientComponent } from './pages/paciente/list-pacient/list-pacient.component';
 
 
 @NgModule({
@@ -23,7 +27,9 @@ import { LstComponent } from './Pages/paciente/list/lst.component';
     ListMedicComponent,
     EditMedicComponent,
     NavBarComponent,
-    LstComponent,
+    AddPacientComponent,
+    EditPacientComponent,
+    ListPacientComponent,
   ],
   imports: [
     BrowserModule,
