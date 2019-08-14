@@ -1,12 +1,12 @@
 ﻿using Hospital.Domain.Entities;
-using Hospital.Domain.Interfaces;
-using Hospital.Domain.Interfaces.Repositories;
-using Hospital.Infra.Data.Context;
+using Hospital.Domain.Interfaces.Services;
+using Hospital.Infra.Data.Repository;
 using Hospital.Service.Validators;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Hospital.Domain.Interfaces.Repositories;
 
 namespace Hospital.Service.Services
 {

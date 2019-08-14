@@ -1,5 +1,5 @@
 ﻿using Hospital.Domain.Entities;
-using Hospital.Domain.Interfaces;
+using Hospital.Domain.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ namespace Hospital.Infra.Data.Context
     public class HospitalContext : DbContext
     {
         public DbSet<Medic> Medics { get; set; }
+        public DbSet<Patient> Patients { get; set; }
 
         public HospitalContext(DbContextOptions<HospitalContext> options) : base(options)
         {
@@ -24,6 +25,7 @@ namespace Hospital.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new MedicEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PatientEntityConfiguration());
         }
     }
 }
