@@ -10,6 +10,7 @@ import { Medico } from 'src/app/Models/Medico';
 import { ServiceService } from '../app/Service/service.service'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
+import { NavBarComponent } from './ComponentCommons/nav-bar/nav-bar.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     AddComponent,
     ListarComponent,
     EditComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
