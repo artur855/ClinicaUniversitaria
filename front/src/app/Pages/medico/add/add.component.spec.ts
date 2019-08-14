@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AddComponent } from './add.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ServiceService } from 'src/app/Service/service.service';
+import { ServiceService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
 
 

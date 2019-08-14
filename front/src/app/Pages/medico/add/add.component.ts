@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServiceService } from 'src/app/Service/service.service';
+import { ServiceService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
 import { FormGroup } from '@angular/forms';
 

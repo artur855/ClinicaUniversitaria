@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddComponent } from './medico/add/add.component';
-import { ListarComponent } from './medico/listar/listar.component';
-import { EditComponent } from './medico/edit/edit.component';
+import { AddComponent } from './Pages/medico/add/add.component';
+import { ListarComponent } from './Pages/medico/listar/listar.component';
+import { EditComponent } from './Pages/medico/edit/edit.component';
 
 const routes: Routes = [
   { path: 'listar', component: ListarComponent },
