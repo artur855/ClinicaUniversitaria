@@ -15,9 +15,11 @@ import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './ComponentCommons/nav-bar/nav-bar.component';
 
-import { AddPacientComponent } from './pages/paciente/add-pacient/add-pacient.component';
-import { EditPacientComponent } from './pages/paciente/edit-pacient/edit-pacient.component';
-import { ListPacientComponent } from './pages/paciente/list-pacient/list-pacient.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
+import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
+import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
 
 
 @NgModule({
@@ -27,9 +29,10 @@ import { ListPacientComponent } from './pages/paciente/list-pacient/list-pacient
     ListMedicComponent,
     EditMedicComponent,
     NavBarComponent,
-    AddPacientComponent,
-    EditPacientComponent,
-    ListPacientComponent,
+    AddpatComponent,
+    EditpatComponent,
+    ListpatComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { ListPacientComponent } from './pages/paciente/list-pacient/list-pacient
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule
   ],
   providers: [ServiceService, Medico],
   bootstrap: [AppComponent]

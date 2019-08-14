@@ -1,5 +1,8 @@
-export class Pacient{
-    // id:number;
+export class Patient{
+    id:number;
     name:String;
-    cpf:String;
+    sex:String;
+    color:String;
+    birthdate: String;
+
 }

@@ -18,10 +18,13 @@ export class ListMedicComponent implements OnInit {
       this.medicos = data;
     })
   }
+  Adicionar(){
+    this.router.navigate(["add-medico"]);
+  }
 
   Editar(medico:Medico):void{
     localStorage.setItem("crm",medico.crm.toString());
-    this.router.navigate(["edit"]);
+    this.router.navigate(["edit-medico"]);
   }
 
   Delete(medico:Medico){

@@ -3,11 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddMedicComponent } from './Pages/medico/add/addMedic.component';
 import { ListMedicComponent } from './Pages/medico/list/listMedic.component';
 import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
+import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
+import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
+import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
+
+
 
 const routes: Routes = [
-  { path: 'listar', component: ListMedicComponent },
-  { path: 'add', component: AddMedicComponent },
-  { path: 'edit', component: EditMedicComponent },
+  { path: 'listar-medico', component: ListMedicComponent },
+  { path: 'add-medico', component: AddMedicComponent },
+  { path: 'edit-medico', component: EditMedicComponent },
+  { path: 'list-patient', component: ListpatComponent},
+  { path: 'add-patient', component: AddpatComponent},
+  { path: 'edit-patient', component: EditpatComponent},
+ 
 ];
 
 @NgModule({

@@ -37,7 +37,7 @@ import { Medico } from 'src/app/Models/Medico';
       .subscribe(data => {
         this.medico = data;
         alert("Atualizado");
-        this.router.navigate(["listar"]);
+        this.router.navigate(["listar-medico"]);
       })
   }
 

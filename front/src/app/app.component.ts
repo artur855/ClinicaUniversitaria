@@ -13,21 +13,11 @@ export class AppComponent {
     
   }
 
-  
-
-  Listar(){
-    this.router.navigate(["listar"]);
+  Medico(){
+    this.router.navigate(["listar-medico"]);
   }
 
-  Adicionar(){
-    this.router.navigate(["add"]);
-  }
-
-  Editar(){
-    this.router.navigate(["edit"]);
-  }
-
-  Remover(){
-    this.router.navigate(["remove"])
+  Paciente(){
+    this.router.navigate(["list-patient"]);
   }
 }

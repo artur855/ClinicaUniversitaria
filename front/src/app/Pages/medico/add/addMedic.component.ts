@@ -35,7 +35,7 @@ export class AddMedicComponent implements OnInit {
     this.service.createMedico(this.medico).subscribe(data => {
       this.medico = data;
 
-      this.router.navigate(["listar"]);
+      this.router.navigate(["listar-medico"]);
     })
 
   }
