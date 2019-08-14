@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Hospital.Domain.Entities;
-using Hospital.Domain.Interfaces;
 using Hospital.Domain.Interfaces.Repositories;
+using Hospital.Domain.Interfaces.Services;
 using Hospital.Infra.Data.Context;
 using Hospital.Infra.Data.Repository;
 using Hospital.Service.Services;
@@ -44,7 +44,8 @@ namespace Hospital.Application
 
             services.AddScoped<IMedicService, MedicService>();
             services.AddScoped<IMedicRepository, MedicRepository>();
-
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             
