@@ -1,46 +1,58 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 
 namespace Hospital.Service.Services
 {
     public class PatientService : IPatientService
     {
 
-        private readonly IPatientRepository PatientRepository;
-        private readonly IUnitOfWork UnitOfWork;
-
+        private readonly IPatientRepository _patientRepository;
+        private readonly IUnitOfWork _unitOfWork;
         public PatientService(IPatientRepository patientRepository, IUnitOfWork unitOfWork)
         {
-            this.PatientRepository = patientRepository;
-            this.UnitOfWork = unitOfWork;
+            _patientRepository = patientRepository;
+            _unitOfWork = unitOfWork;
         }
         
-        public Task<Medic> FindById(int id)
+        public async  Task<Patient> FindById(int id)
         {
-            throw new System.NotImplementedException();
+            return await _patientRepository.FindById(id);
         }
 
-        public Task<IEnumerable<Medic>> ListAsync()
+        public async Task<IEnumerable<Patient>> List()
         {
-            throw new System.NotImplementedException();
+            return await _patientRepository.List();
         }
 
-        public Task<Medic> SaveAsync(Patient patient)
+        public async Task<Patient> Save(Patient patient)
         {
-            throw new System.NotImplementedException();
+            Activator.CreateInstance<PatientValidator>().Validate(patient);
+            Patient newPatient = await _patientRepository.Create(patient);
+            await _unitOfWork.CompleteAsync();
+            return newPatient;
         }
 
-        public Task<Medic> UpdateAsync(int id, Patient patient)
+        public async Task<Patient> Update(Patient patient)
         {
-            throw new System.NotImplementedException();
+            var existPatient = await _patientRepository.FindById(patient.Id);
+            Activator.CreateInstance<PatientValidator>().Validate(patient);
+            existPatient.Update(patient);
+            _patientRepository.Update(existPatient);
+            await _unitOfWork.CompleteAsync();
+            return existPatient;
         }
 
-        public Task<Medic> DeleteAsync(int id)
+        public async Task Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var patient = await _patientRepository.FindById(id);
+            if (patient == null) return;
+            _patientRepository.Remove(patient);
+            await _unitOfWork.CompleteAsync();
         }
     }
 }

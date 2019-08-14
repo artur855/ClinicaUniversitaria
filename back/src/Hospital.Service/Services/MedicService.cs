@@ -74,7 +74,6 @@ namespace Hospital.Service.Services
             existingMedic.CRM = medic.CRM;
             existingMedic.Name = medic.Name;
 
-
             try
             {
                 _medicRepository.Update(existingMedic);

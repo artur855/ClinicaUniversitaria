@@ -6,10 +6,10 @@ namespace Hospital.Domain.Interfaces.Services
 {
     public interface IPatientService
     {
-        Task<Medic> FindById(int id);
-        Task<IEnumerable<Medic>> ListAsync();
-        Task<Medic> SaveAsync(Patient patient);
-        Task<Medic> UpdateAsync(int id, Patient patient);
-        Task<Medic> DeleteAsync(int id);
+        Task<Patient> FindById(int id);
+        Task<IEnumerable<Patient>> List();
+        Task<Patient> Save(Patient patient);
+        Task<Patient> Update(Patient patient);
+        Task Delete(int id);
     }
 }

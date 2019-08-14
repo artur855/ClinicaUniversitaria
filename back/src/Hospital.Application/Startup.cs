@@ -40,12 +40,12 @@ namespace Hospital.Application
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<HospitalContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("AzureSqlServer")));
+            services.AddDbContext<HospitalContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("PostgresqlString")));
 
             services.AddScoped<IMedicService, MedicService>();
             services.AddScoped<IMedicRepository, MedicRepository>();
             services.AddScoped<IPatientRepository, PatientRepository>();
-            
+            services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             

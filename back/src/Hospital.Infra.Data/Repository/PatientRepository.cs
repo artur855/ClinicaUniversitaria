@@ -4,6 +4,7 @@ using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Hospital.Infra.Data.Repository
 {
@@ -13,29 +14,31 @@ namespace Hospital.Infra.Data.Repository
         {
         }
 
-        public async Task<IEnumerable<Patient>> ListAsync()
+        public async Task<IEnumerable<Patient>> List()
         {
             return await _context.Patients.AsNoTracking().ToListAsync();
         }
 
-        public Task AddAsync(Patient patient)
+        public async Task<Patient> Create(Patient patient)
         {
-            throw new System.NotImplementedException();
+            var entityEntry = await _context.Patients.AddAsync(patient);
+            return entityEntry.Entity;
         }
 
-        public Task<Patient> FindByCrmAsync(int id)
+        public async Task<Patient> FindById(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Patients.SingleAsync(patient => patient.Id == id);
         }
 
+        
         public void Update(Patient patient)
         {
-            throw new System.NotImplementedException();
+            _context.Patients.Update(patient);
         }
 
         public void Remove(Patient patient)
         {
-            throw new System.NotImplementedException();
+            _context.Patients.Remove(patient);
         }
     }
 }
