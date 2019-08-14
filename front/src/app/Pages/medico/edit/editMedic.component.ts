@@ -6,9 +6,9 @@ import { Medico } from 'src/app/Models/Medico';
 
 @Component({
   selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
-}) export class EditComponent implements OnInit {
+  templateUrl: './editMedic.component.html',
+  styleUrls: ['./editMedic.component.css']
+}) export class EditMedicComponent implements OnInit {
 
   medico: Medico = new Medico();
   constructor(private router: Router, private service: ServiceService) { }

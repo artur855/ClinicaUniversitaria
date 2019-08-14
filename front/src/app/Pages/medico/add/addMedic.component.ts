@@ -6,10 +6,10 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  templateUrl: './addMedic.component.html',
+  styleUrls: ['./addMedic.component.css']
 })
-export class AddComponent implements OnInit {
+export class AddMedicComponent implements OnInit {
   addForm: FormGroup;
 
 

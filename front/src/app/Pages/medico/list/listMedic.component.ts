@@ -5,10 +5,10 @@ import { Medico } from 'src/app/Models/Medico';
 
 @Component({
   selector: 'app-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  templateUrl: './listMedic.component.html',
+  styleUrls: ['./listMedic.component.css']
 })
-export class ListarComponent implements OnInit {
+export class ListMedicComponent implements OnInit {
 
   medicos:Medico[];
   constructor(private service:ServiceService, private router:Router) { }
