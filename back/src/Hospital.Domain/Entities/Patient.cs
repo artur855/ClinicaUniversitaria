@@ -19,6 +19,23 @@ namespace Hospital.Domain.Entities
         public char Sex { get; set; }
         public PatientColors Color { get; set; }
         public DateTime Birthdate { get; set; }
+
+        public int Age
+        {
+            get
+            {
+                DateTime now = DateTime.Now;
+                int years = now.Year - Birthdate.Year;
+                if (now.Month < Birthdate.Month ||  (now.Month == Birthdate.Month && now.Day < Birthdate.Day))
+                {
+                    years--;
+                }
+                if (years < 0)
+                    throw new ArithmeticException($"Idade do paciente {Id} é negativa");
+                return years;
+            }
+        }
+        
     }
 
     public enum PatientColors
