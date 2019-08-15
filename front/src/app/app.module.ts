@@ -13,13 +13,12 @@ import { ServiceService } from './Services/medico.service'
 
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
-import { NavBarComponent } from './ComponentCommons/nav-bar/nav-bar.component';
-
+import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
 import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
 import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
+
 
 
 @NgModule({
@@ -28,13 +27,12 @@ import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
     AddMedicComponent,
     ListMedicComponent,
     EditMedicComponent,
-    NavBarComponent,
-    AddpatComponent,
     EditpatComponent,
     ListpatComponent,
 
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
