@@ -62,11 +62,11 @@ namespace Hospital.Service.Services
             return medic;
         }
 
-        public async Task<Medic> UpdateAsync(string crm, Medic medic)
+        public async Task<Medic> UpdateAsync(Medic medic)
         {
             Activator.CreateInstance<MedicValidator>().Validate(medic);
 
-            Medic existingMedic = await _medicRepository.FindByCrmAsync(crm);
+            Medic existingMedic = await _medicRepository.FindByCrmAsync(medic.CRM);
 
             if (existingMedic == null)
                 return null;

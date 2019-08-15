@@ -54,18 +54,18 @@ namespace Hospital.Application.Controllers
         }
 
         [EnableCors("MyPolicy")]
-        [HttpPut("{crm}")]
-        public async Task<IActionResult> Put(string crm, [FromBody] Medic medic)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Medic medic)
         {
-            if (string.IsNullOrWhiteSpace(crm))
+            if (medic == null)
                 return BadRequest();
 
-            Medic updatedMedic = await _medicService.UpdateAsync(crm, medic);
+            Medic updatedMedic = await _medicService.UpdateAsync(medic);
 
             if (updatedMedic == null)
                 return NoContent();
 
-            return Ok();
+            return Ok(medic);
             
         }
 

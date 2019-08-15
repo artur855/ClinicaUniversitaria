@@ -11,7 +11,7 @@ namespace Hospital.Domain.Interfaces.Services
         Task<Medic> FindByCrm(string crm);
         Task<IEnumerable<Medic>> ListAsync();
         Task<Medic> SaveAsync(Medic medic);
-        Task<Medic> UpdateAsync(string crm, Medic medic);
+        Task<Medic> UpdateAsync(Medic medic);
         Task<Medic> DeleteAsync(string crm);
     }
 }
