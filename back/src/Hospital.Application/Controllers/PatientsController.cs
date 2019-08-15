@@ -27,6 +27,15 @@ namespace Hospital.Application.Controllers
             return Ok(await _patientService.List());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Medic>> Get(int id)
+        {
+            if(id==null)
+                return NotFound();
+
+            return Ok(await _patientService.FindById(id));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Patient patient)
         {

@@ -14,7 +14,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  Url = environment.url;
+  Url = environment.url+"medics/";
 
 
 

@@ -12,7 +12,7 @@ export class PatientService {
 
   constructor(private http : HttpClient) { }
 
-  Url = environment.url;
+  Url = environment.url+"patients/";
 
   getPatients() {
     return this.http.get<Patient[]>(this.Url);
