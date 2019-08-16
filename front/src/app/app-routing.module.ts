@@ -5,6 +5,7 @@ import { ListMedicComponent } from './Pages/medico/list/listMedic.component';
 import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
 import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
 import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
+import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'edit-medico', component: EditMedicComponent },
   { path: 'list-patient', component: ListpatComponent},
   { path: 'edit-patient', component: EditpatComponent},
+  { path: 'add-patient', component: AddpatComponent},
 
 ];
 

@@ -15,9 +15,12 @@ import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { MaterialModule } from './modules/material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
 import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
+import { Patient } from './Models/Pacient';
+import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
 
 
 
@@ -29,10 +32,11 @@ import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
     EditMedicComponent,
     EditpatComponent,
     ListpatComponent,
-
+    AddpatComponent,
   ],
   imports: [
     NgbModule,
+    MaterialModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -41,7 +45,7 @@ import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
     RouterModule,
     BrowserAnimationsModule
   ],
-  providers: [ServiceService, Medico],
+  providers: [ServiceService, Medico,Patient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -10,7 +9,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./addMedic.component.css']
 })
 export class AddMedicComponent implements OnInit {
-  addForm: FormGroup;
+  
 
 
   constructor(
