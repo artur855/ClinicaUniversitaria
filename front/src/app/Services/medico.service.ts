@@ -31,7 +31,7 @@ export class ServiceService {
   }
 
   updateMedico(med: Medico) {
-    return this.http.put<Medico>(this.Url + med.crm, med)
+    return this.http.put<Medico>(this.Url , med)
   }
 
   deleteMedico(med: Medico) {

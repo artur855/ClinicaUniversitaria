@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit',
@@ -11,7 +11,7 @@ import { Medico } from 'src/app/Models/Medico';
 }) export class EditMedicComponent implements OnInit {
 
   medico: Medico = new Medico();
-  constructor(private router: Router, private service: ServiceService) { }
+  constructor(private router: Router, private service: ServiceService,private _snackBar:MatSnackBar) { }
 
   ngOnInit() {
     this.Editar();
@@ -19,26 +19,34 @@ import { Medico } from 'src/app/Models/Medico';
 
   Editar() {
     let crm = localStorage.getItem("crm");
+    this.medico.crm = crm
     this.service.getMedicoCrm(+crm)
       .subscribe(data => {
 
         this.medico = data;
-        console.log(this.medico)
       })
 
   }
+  
   Atualizar(medico: Medico) {
     var nome = (<HTMLInputElement>document.getElementById("name")).value;
-    var crm = (<HTMLInputElement>document.getElementById("CRM")).value;
+    
     medico.name = nome;
-    medico.crm = crm;
-    console.log(medico)
+    medico.crm = this.medico.crm;
+   
     this.service.updateMedico(medico)
       .subscribe(data => {
         this.medico = data;
-        alert("Atualizado");
         this.router.navigate(["listar-medico"]);
       })
+  }
+
+  openSnackBarPat() {
+    var message = "Medico atualizado!"
+    var action = "Fechar"
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

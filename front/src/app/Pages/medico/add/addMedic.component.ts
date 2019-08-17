@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add',
@@ -9,13 +10,14 @@ import { Medico } from 'src/app/Models/Medico';
   styleUrls: ['./addMedic.component.css']
 })
 export class AddMedicComponent implements OnInit {
-  
+
 
 
   constructor(
     private router: Router,
     private service: ServiceService,
-    private medico: Medico
+    private medico: Medico,
+    private _snackBar: MatSnackBar
   ) {
   }
 
@@ -39,4 +41,11 @@ export class AddMedicComponent implements OnInit {
 
   }
 
+  openSnackBarPat() {
+    var message = "Médico adicionado!"
+    var action = "Fechar"
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

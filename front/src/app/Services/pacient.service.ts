@@ -18,8 +18,8 @@ export class PatientService {
     return this.http.get<Patient[]>(this.Url);
   }
 
-  getPatientCpf(cpf: number) {
-    return this.http.get<Patient>(this.Url + cpf);
+  getPatientId(id: number) {
+    return this.http.get<Patient>(this.Url + id);
   }
 
   createPatient(pat: Patient) {
@@ -27,7 +27,7 @@ export class PatientService {
   }
 
   updatePatient(pat: Patient) {
-    return this.http.put<Patient>(this.Url + pat.id, pat)
+    return this.http.put<Patient>(this.Url , pat)
   }
 
   deletePatient(pat: Patient) {

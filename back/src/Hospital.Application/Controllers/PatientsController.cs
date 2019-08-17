@@ -28,7 +28,7 @@ namespace Hospital.Application.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Medic>> Get(int id)
+        public async Task<ActionResult<Patient>> Get(int id)
         {
             if(id==null)
                 return NotFound();

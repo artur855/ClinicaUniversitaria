@@ -51,13 +51,13 @@ export class AddpatComponent implements OnInit {
 
     this.service.createPatient(this.patient).subscribe(data => {
       this.patient = data;
-
       this.router.navigate(["list-patient"]);
     });
   }
 
-openSnackBarPat(message:string ,action: string) {
+openSnackBarPat() {
   var message = "Paciente adicionado!"
+  var action = "Fechar"
   this._snackBar.open(message, action, {
     duration: 2000,
   });

@@ -18,8 +18,7 @@
                                     <mat-form-field>
                                             <mat-label>Selecione uma color</mat-label>
                                             <mat-select [(value)]="selectedCor">
-                                                <mat-option *ngFor="let c of colorsPat" value="{{c.value}}">{{c.name}} </mat-option>
-                                                
+                                                <mat-option *ngFor="let c of colorsPat" value="{{c.value}}">{{c.name}} </mat-option>         
                                             </mat-select>
                                         </mat-form-field>
                                 </div>
@@ -51,7 +50,7 @@
                 </form>
             </div>
             <div class="card-footer text-right">
-                <button (click)="onSubmitPat()" (click)="openSnackBarPat(message, ok)" type="submit"
+                <button (click)="onSubmitPat()" (click)="openSnackBarPat()" type="submit"
                     class="btn btn-outline-dark">Salvar</button>
             </div>
         </div>

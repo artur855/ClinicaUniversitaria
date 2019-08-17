@@ -8,14 +8,8 @@
         <div class="form-group">
           <label for="name">Nome</label>
           <input type="text" class="form-control" id="name" placeholder="{{medico.name}}">
-
         </div>
-        <div class="form-group">
-          <label for="CRM">CRM</label>
-          <input type="text" class="form-control" id="CRM" placeholder="{{medico.crm}}">
-
-        </div>
-        <button (click)="Atualizar(medico)" type="submit" class="btn btn-primary">Salvar</button>
+        <button (click)="Atualizar(medico)" (click)="openSnackBarPat()" type="submit" class="btn btn-primary">Salvar</button>
       </form>
     </div>
   </div>

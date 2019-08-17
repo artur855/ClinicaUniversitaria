@@ -18,7 +18,7 @@ export class ListpatComponent implements OnInit {
     ){ }
 
   ngOnInit() {
-    this.service.getPatients().subscribe(data => {
+    this.service.getPatients().subscribe(data => {  
       this.patients = data;
     })
   }
@@ -27,13 +27,13 @@ export class ListpatComponent implements OnInit {
     this.router.navigate(["add-patient"]);
   }
 
-  EditarPat(patient: Patient): void {
-    localStorage.setItem("id", patient.id.toString());
+  EditarPat(id): void {
+    localStorage.setItem("id",id)
+    console.log(localStorage.getItem("id"))
     this.router.navigate(["edit-patient"]);
   }
 
   DeletePat(patient: Patient) {
-
     this.service.deletePatient(patient)
       .subscribe(data => {
         this.patients = this.patients.filter(m => m !== patient);
