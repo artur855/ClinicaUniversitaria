@@ -1,5 +1,5 @@
-Feature: InsertPacient
-  Como um médico eu quero poder cadastrar pacientes no sistema
+Feature: InsertPatient
+  Como um usuario eu quero cadastrar pacientes no sistema
 
 
   Scenario: Cadastrar paciente

@@ -24,7 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Histories\InsertPacient.feature" />
+    <Content Include="Histories\DeletePatient.feature" />
+    <Content Include="Histories\InsertPatient.feature" />
+    <Content Include="Histories\UpdatePatient.feature" />
   </ItemGroup>
 
   <ItemGroup>
