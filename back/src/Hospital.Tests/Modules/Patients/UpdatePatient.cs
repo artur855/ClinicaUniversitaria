@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Infra.Data.Repository;
@@ -17,7 +18,7 @@ namespace Hospital.Tests.Modules.Patients
 
         public UpdatePatient()
         {
-            _patientService = new PatientService(new PatientRepository(Context), new UnitOfWork(Context));
+            _patientService = this.GetService<IPatientService>();
         }
 
         [Given("Eu abra a tela de atualizar pacientes")]

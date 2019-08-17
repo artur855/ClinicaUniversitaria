@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hospital.Application.Extensions;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
@@ -40,15 +41,10 @@ namespace Hospital.Application
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<HospitalContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("PostgresqlString")));
-
-            services.AddScoped<IMedicService, MedicService>();
-            services.AddScoped<IMedicRepository, MedicRepository>();
-            services.AddScoped<IPatientRepository, PatientRepository>();
-            services.AddScoped<IPatientService, PatientService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            
+            services.AddDbContextService(Configuration);
+            services.AddMedicServices();
+            services.AddPatientServices();
+            services.AddUnitOfWorkService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

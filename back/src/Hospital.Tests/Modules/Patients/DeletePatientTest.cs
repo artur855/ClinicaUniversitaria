@@ -18,7 +18,7 @@ namespace Hospital.Tests.Modules.Patients
         private Patient _patient;
         public DeletePatientTest()
         {
-            _patientService = new PatientService(new PatientRepository(Context), new UnitOfWork(Context));
+            _patientService = this.GetService<IPatientService>();
         }
 
         [Given("Eu abra a tela de deletar paciente")]

@@ -1,6 +1,7 @@
 using System;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Hospital.Infra.Data.Repository;
 using Hospital.Service.Services;
 using NUnit.Framework;
@@ -15,10 +16,9 @@ namespace Hospital.Tests.Modules.Patients
         private Patient _patient;
         private IPatientService _patientService;
 
-        public InsertPatientTest() 
+        public InsertPatientTest()
         {
-
-            _patientService = new PatientService(new PatientRepository(Context), new UnitOfWork(Context));
+            _patientService = this.GetService<IPatientService>();
         }
 
         [Given("Eu abra a tela de cadastrar paciente")]
