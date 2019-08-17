@@ -5,25 +5,28 @@ using Hospital.Infra.Data.Repository;
 using Hospital.Service.Services;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using Tests.Modules;
 
 namespace Hospital.Tests.Modules.Patients
 {
     [Binding]
-    public class InsertPatientTest
+    public class InsertPatientTest : BaseTest
     {
         private Patient _patient;
         private IPatientService _patientService;
-        
-        public InsertPatientTest(IPatientService patientService)
+
+        public InsertPatientTest() 
         {
-            _patientService = patientService;
+
+            _patientService = new PatientService(new PatientRepository(Context), new UnitOfWork(Context));
         }
-        
+
         [Given("Eu abra a tela de cadastrar paciente")]
         public void TelaCadastrarPaciente()
         {
             _patient = new Patient();
         }
+
         [Given("Insira o nome (.*)")]
         public void InserirNome(string nome)
         {
@@ -48,7 +51,7 @@ namespace Hospital.Tests.Modules.Patients
         {
             _patient.Sex = sexo;
         }
-        
+
         [When("Eu clicar em cadastrar")]
         public async void Cadastrar()
         {
@@ -60,10 +63,7 @@ namespace Hospital.Tests.Modules.Patients
         {
             Assert.NotNull(_patient, "Objeto nulo");
             Assert.Greater(_patient.Id, 0, "Id menor do que zero");
-            Assert.Equals(_patient.Age, 19);
+            Assert.AreEqual(_patient.Age, 19);
         }
-        
-        
-
     }
 }
