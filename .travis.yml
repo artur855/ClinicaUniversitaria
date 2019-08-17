@@ -1,5 +1,19 @@
 matrix:
   include:
+    - language: csharp
+      solution: ./back/src/Hospital.sln
+      mono: none
+      
+      addons:
+        snaps:
+          - name: dotnet-sdk
+            classic: true
+
+      before_script:
+        - sudo snap alias dotnet-sdk.dotnet dotnet
+      script:
+        - bash ./travis/test_back.sh
+
     - language: node_js
       node_js:
         - "10"
