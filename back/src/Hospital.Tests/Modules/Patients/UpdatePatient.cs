@@ -48,7 +48,7 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Eu insira a data de nascimento para (.*)")]
         public void InserirDataNascimento(DateTime datNasc)
         {
-            _patient.Birthdate = datNasc;
+            _patient.Birthdate = DateTime.ParseExact(datNasc.ToString("MM-dd-yyyy"), "dd-MM-yyyy", CultureInfo.InvariantCulture);
         }
 
         [Given("Eu insira a cor (.*)")]
