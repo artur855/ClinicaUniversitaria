@@ -6,4 +6,4 @@ Feature: DeletePatient
     Given Eu abra a tela de deletar paciente
     And Escolha o cliente com Id 1
     When Eu clicar em deletar
-    Then O cliente deve ser deletado com sucesso
+    Then O paciente deve ser deletado com sucesso

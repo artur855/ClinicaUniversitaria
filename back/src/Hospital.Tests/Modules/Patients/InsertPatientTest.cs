@@ -58,7 +58,7 @@ namespace Hospital.Tests.Modules.Patients
             _patient = await _patientService.Save(_patient);
         }
 
-        [Then("Meu cliente deve ser listado com id maior que 0")]
+        [Then("Meu paciente deve ser listado com id maior que 0")]
         public void ValidarCadastro()
         {
             Assert.NotNull(_patient, "Objeto nulo");

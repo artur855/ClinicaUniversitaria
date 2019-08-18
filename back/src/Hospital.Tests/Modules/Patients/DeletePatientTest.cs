@@ -45,7 +45,7 @@ namespace Hospital.Tests.Modules.Patients
             await _patientService.Delete(_patient.Id);
         }
 
-        [Then("O cliente deve ser deletado com sucesso")]
+        [Then("O paciente deve ser deletado com sucesso")]
         public async void ValidarDelecao()
         {
             var patients = await _patientService.List();

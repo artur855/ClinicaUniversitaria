@@ -9,4 +9,4 @@ Feature: InsertPatient
     And Insira a cor branco
     And Insira o sexo M
     When Eu clicar em cadastrar
-    Then Meu cliente deve ser listado com id maior que 0
+    Then Meu paciente deve ser listado com id maior que 0

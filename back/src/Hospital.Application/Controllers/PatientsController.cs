@@ -30,7 +30,7 @@ namespace Hospital.Application.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> Get(int id)
         {
-            if(id==null)
+            if(id<=0)
                 return NotFound();
 
             return Ok(await _patientService.FindById(id));
