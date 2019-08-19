@@ -19,9 +19,13 @@ namespace Hospital.Infra.Data.Mapping
                 .IsRequired()
                 .HasColumnName("crm");
 
-            builder.Property(m => m.Name)
-                .IsRequired()
-                .HasColumnName("nome");
+            builder.Property(m => m.MedicType)
+                .HasColumnName("tipo_medico")
+                .HasColumnType("SMALLINT");
+
+            builder.HasOne<User>(m => m.User)
+                .WithOne(u => u.Medic)
+                .HasForeignKey<Medic>(m => m.UserId);
         }
     }
 }

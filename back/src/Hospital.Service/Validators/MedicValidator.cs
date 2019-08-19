@@ -13,12 +13,7 @@ namespace Hospital.Service.Validators
             RuleFor(medico => medico)
                 .NotNull().WithMessage("adicionando null, tá sabendo legal...");
 
-            RuleFor(m => m.Name)
-                .NotEmpty().WithMessage("Adicione o nome porra");
-
-            //RuleFor(m => m.Id)
-            //    .NotEmpty().WithMessage("Id necessário");
-
+            
             RuleFor(m => m.CRM)
                 .NotEmpty().WithMessage("CRM obrigatório");
 

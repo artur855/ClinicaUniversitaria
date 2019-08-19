@@ -13,11 +13,13 @@ namespace Hospital.Infra.Data.Mapping
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Id).IsRequired().HasColumnName("id");
-            builder.Property(p => p.Name).IsRequired().HasColumnName("nome");
             builder.Property(p => p.Sex).IsRequired().HasColumnName("sexo");
             builder.Property(p => p.Birthdate).IsRequired().HasColumnName("dt_nasc");
             builder.Property(p => p.Color).IsRequired().HasColumnName("cor");
 
+            builder.HasOne<User>(p => p.User)
+                .WithOne(u => u.Patient)
+                .HasForeignKey<Patient>(p => p.UserId);
         }
     }
 }

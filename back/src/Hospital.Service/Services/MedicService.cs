@@ -72,7 +72,8 @@ namespace Hospital.Service.Services
                 return null;
 
             existingMedic.CRM = medic.CRM;
-            existingMedic.Name = medic.Name;
+            //existingMedic.Titulation = medic.Titulation;
+            //existingMedic.InitialDate = medic.InitialDate;
 
             try
             {
