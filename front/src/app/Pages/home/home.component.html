@@ -1,0 +1,33 @@
+<body class="inventory-body">
+        
+</body>
+    <mat-card>
+        <mat-card-title class="p-5" >  <fa-icon [icon]="faHospital" class="mr-3 "></fa-icon> Clínica Universitária</mat-card-title>
+      
+       
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <p>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="E-mail" formControlName="email">
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="Senha" formControlName="password">
+                    </mat-form-field>
+                </p>
+
+                <p *ngIf="error" class="error">
+                    {{ error }}
+                </p>
+
+                <div class="button text-center pt-3 pb-3">
+                        <button (click)="Logar()" color="primary"  mat-raised-button>Entrar</button>
+                    
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -15,13 +15,15 @@ import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 import { MaterialModule } from './modules/material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
 import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
 import { Patient } from './Models/Pacient';
 import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
-
+import { HomeComponent } from './Pages/home/home.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
     EditpatComponent,
     ListpatComponent,
     AddpatComponent,
+    HomeComponent,
   ],
   imports: [
     NgbModule,
@@ -43,7 +46,8 @@ import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
     FormsModule,
     HttpClientModule,
     RouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule
   ],
   providers: [ServiceService, Medico,Patient],
   bootstrap: [AppComponent]
