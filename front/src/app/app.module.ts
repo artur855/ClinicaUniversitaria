@@ -24,7 +24,15 @@ import { Patient } from './Models/Pacient';
 import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 
+import { LayoutModule } from '@angular/cdk/layout';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -36,6 +44,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ListpatComponent,
     AddpatComponent,
     HomeComponent,
+    DashboardComponent,
   ],
   imports: [
     NgbModule,
@@ -47,7 +56,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     RouterModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NoopAnimationsModule,
+    LayoutModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
   providers: [ServiceService, Medico,Patient],
   bootstrap: [AppComponent]

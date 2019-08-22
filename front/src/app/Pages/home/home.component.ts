@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
 
   Logar(){
-    this.router.navigate(["listar-medico"])
+    this.router.navigate(["dashboard"])
   }
 
 }

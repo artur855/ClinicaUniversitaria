@@ -8,6 +8,7 @@ import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
 import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
 
 import { HomeComponent } from './Pages/home/home.component';
+import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 
 
 
@@ -20,8 +21,9 @@ const routes: Routes = [
   { path: 'list-patient', component: ListpatComponent },
   { path: 'edit-patient', component: EditpatComponent },
   { path: 'add-patient', component: AddpatComponent },
-  { path: '', component:HomeComponent }
-  
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '', component: HomeComponent }
+
 ];
 
 @NgModule({
