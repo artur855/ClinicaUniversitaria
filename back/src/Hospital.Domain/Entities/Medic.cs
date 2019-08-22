@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-namespace Hospital.Domain.Entities
+﻿namespace Hospital.Domain.Entities
 {
     public class Medic
     {
