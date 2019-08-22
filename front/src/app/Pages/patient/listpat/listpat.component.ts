@@ -11,15 +11,50 @@ import { PatientService } from 'src/app/Services/pacient.service';
 export class ListpatComponent implements OnInit {
   closeResult: string;
   patients: Patient[];
-
+  sexPat = [
+    { name: "Masculino", value: "M" },
+    { name: "Feminino", value: "F" },
+  ]
+  colorsPat = [
+    { name: "Branco", value: "0" },
+    { name: "Negro", value: "1" },
+    { name: "Pardo", value: "2" },
+    { name: "Indigena", value: "3" },
+    { name: "Nao Especificado", value: "4" },
+  ]
   constructor(
     private service: PatientService,
     private router: Router
-    ){ }
+  ) { }
 
   ngOnInit() {
-    this.service.getPatients().subscribe(data => {  
+    var year,month,day;
+    this.service.getPatients().subscribe(data => {
+      for (let i = 0; i < data.length; i++){
+        if (data[i].sex == "F") {
+          data[i].sex = "Feminino"
+        }
+        if (data[i].sex == "M") {
+          data[i].sex = "Masculino"
+        }
+        var x=data[i].birthdate.substr(0, data[i].birthdate.length - 9);
+        var date = [] = x.split("-")
+        year = date[0] 
+        day= date[1]
+        month = date[2]
+        var dateCorrect = day+"/"+month+"/"+year
+        data[i].birthdate = dateCorrect;
+        
+      }
+      for (let i=0; i < data.length; i++) {
+        for (let j=0; j < this.colorsPat.length; j++)
+          if (data[i].color == this.colorsPat[j].value) {
+            data[i].color = this.colorsPat[j].name
+          }
+      }
+      
       this.patients = data;
+
     })
   }
 
@@ -28,8 +63,7 @@ export class ListpatComponent implements OnInit {
   }
 
   EditarPat(id): void {
-    localStorage.setItem("id",id)
-    console.log(localStorage.getItem("id"))
+    localStorage.setItem("id", id)
     this.router.navigate(["edit-patient"]);
   }
 

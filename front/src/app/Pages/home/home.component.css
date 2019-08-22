@@ -1,0 +1,46 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.html {
+    background-color: black;
+}
+
+.mat-form-field {
+    width: 100%;
+    min-width: 300px;
+}
+
+.mat-card {
+    margin-top: 200px;
+    filter: drop-shadow( -6px 0px 12px #000000)
+}
+
+mat-card-title, mat-card-content {
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inventory-body {
+    position: fixed;
+    min-width: 100%;
+    background-image: url("http://expansaors.com.br/wp-content/uploads/2019/03/saude-digital.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    background-size: cover;
+    filter: blur(3px);
+}
