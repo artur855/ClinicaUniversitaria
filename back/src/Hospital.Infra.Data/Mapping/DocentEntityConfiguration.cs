@@ -13,20 +13,11 @@ namespace Hospital.Infra.Data.Mapping
         {
             builder.ToTable("tb_medicos");
 
-            builder
-                .HasKey(d => d.CRM);
-
-            builder.Property(d => d.CRM)
-                .HasColumnName("crm")
-                .HasColumnType("VARCHAR(13)");
-
             builder.Property(d => d.Titulation)
                 .HasColumnName("titulacao")
                 .HasColumnType("VARCHAR(45)");
 
-            builder.Property(d => d.MedicType)
-                .HasColumnName("tipo_medico")
-                .HasColumnType("CHAR(1)");
+
         }
     }
 }

@@ -55,7 +55,8 @@ namespace Hospital.Service.Services
         public async Task<Medic> SaveAsync(Medic medic)
         {
             Activator.CreateInstance<MedicValidator>().Validate(medic);
-
+            Console.WriteLine(medic is Resident);
+            Console.WriteLine(medic is Docent);
             await _medicRepository.AddAsync(medic);
             await _unitOfWork.CompleteAsync();
 

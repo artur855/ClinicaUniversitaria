@@ -19,13 +19,18 @@ namespace Hospital.Infra.Data.Mapping
                 .IsRequired()
                 .HasColumnName("crm");
 
-            builder.Property(m => m.MedicType)
-                .HasColumnName("tipo_medico")
-                .HasColumnType("SMALLINT");
+            builder.Property(m => m.UserId).HasColumnName("id_usuario");
 
+            builder.HasDiscriminator<EMedicType>("tipo_medico")
+                .HasValue<Medic>(EMedicType.General)
+                .HasValue<Docent>(EMedicType.Docent)
+                .HasValue<Resident>(EMedicType.Resident);
+
+            
             builder.HasOne<User>(m => m.User)
                 .WithOne(u => u.Medic)
                 .HasForeignKey<Medic>(m => m.UserId);
+            
         }
     }
 }

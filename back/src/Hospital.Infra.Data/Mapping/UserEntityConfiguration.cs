@@ -17,7 +17,7 @@ namespace Hospital.Infra.Data.Mapping
 
             builder.Property(u => u.Id)
                 .HasColumnName("id")
-                .HasColumnType("BIGINT");
+                .HasColumnType("integer");
 
             builder.Property(u => u.Email)
                 .HasColumnName("email")

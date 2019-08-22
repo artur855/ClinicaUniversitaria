@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Hospital.Application.Extensions;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
@@ -18,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace Hospital.Application
 {
@@ -28,6 +30,7 @@ namespace Hospital.Application
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
+            
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -61,7 +64,7 @@ namespace Hospital.Application
             }
 
             app.UseCors("MyPolicy");
-
+            
             app.UseHttpsRedirection();
             app.UseMvc();
 

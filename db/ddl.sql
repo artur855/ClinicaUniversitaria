@@ -1,6 +1,6 @@
 create table tb_usuarios (
   id serial,
-  senhar varchar(45),
+  senha varchar(45),
   email varchar(60),
   nome varchar(150)
 );
@@ -9,7 +9,7 @@ create table tb_medicos(
   crm  varchar(13),
   titulacao varchar(45) null,
   ano_inicio date null,
-  tipo_medico char(1) null,
+  tipo_medico smallint not null,
   id_usuario serial not null
 );
 
@@ -111,7 +111,7 @@ alter table tb_pacientes add constraint tb_pacientes_cor check (cor between 0 an
 alter table tb_pacientes add constraint tb_pacientes_sexo check (sexo in ('M', 'F'));
 
 
-alter table tb_medicos add constraint tb_medicos_tipo check (tipo_medico in ('G', 'R', 'D'));
+alter table tb_medicos add constraint tb_medicos_tipo check (tipo_medico in (0, 1, 2));
 
 
 

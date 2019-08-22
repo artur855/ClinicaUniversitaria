@@ -41,7 +41,7 @@ namespace Hospital.Service.Services
             Activator.CreateInstance<UserValidator>().Validate(user);
 
             User newUser = await _userRepository.Create(user);
-
+                
             await _unitOfWork.CompleteAsync();
 
             return newUser;

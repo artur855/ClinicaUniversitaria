@@ -14,21 +14,10 @@ namespace Hospital.Infra.Data.Mapping
             builder
                 .ToTable("tb_medicos");
 
-            builder
-                .HasKey(r => r.CRM);
-
             builder.Property(r => r.InitialDate)
                 .HasColumnName("ano_inicio")
                 .HasColumnType("DATE");
 
-
-            builder.Property(r => r.CRM)
-                .HasColumnName("crm")
-                .HasColumnType("VARCHAR(13)");
-
-            builder.Property(r => r.MedicType)
-                .HasColumnName("tipo_medico")
-                .HasColumnType("CHAR(1)");
         }
     }
 }
