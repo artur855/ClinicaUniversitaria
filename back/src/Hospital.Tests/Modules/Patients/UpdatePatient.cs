@@ -26,7 +26,10 @@ namespace Hospital.Tests.Modules.Patients
         {
             _patientService.Save(new Patient()
             {
-                Name = "Bebe",
+                User = new User()
+                {
+                    Name = "Bebe"
+                },
                 Color = PatientColors.Naoespecificado,
                 Sex = 'M',
                 Birthdate = DateTime.Now
@@ -42,7 +45,7 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Eu insira o nome (.*)")]
         public void InserirNome(string nome)
         {
-            _patient.Name = nome;
+            _patient.User.Name = nome;
         }
 
         [Given("Eu insira a data de nascimento para (.*)")]
@@ -70,7 +73,7 @@ namespace Hospital.Tests.Modules.Patients
             Assert.AreEqual(patient.Birthdate.Year, 1999);
             Assert.AreEqual(patient.Birthdate.Month, 10);
             Assert.AreEqual(patient.Birthdate.Day, 9);
-            Assert.AreEqual(patient.Name, "Arthur");
+            Assert.AreEqual(patient.User.Name, "Arthur");
             Assert.AreEqual(patient.Color, PatientColors.Branco);
             
         }

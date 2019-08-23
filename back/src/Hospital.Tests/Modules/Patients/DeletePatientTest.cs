@@ -27,7 +27,10 @@ namespace Hospital.Tests.Modules.Patients
             await _patientService.Save(new Patient()
             {
                 Birthdate = DateTime.ParseExact("09-10-1999", "dd-MM-yyyy",  System.Globalization.CultureInfo.InvariantCulture),
-                Name = "Arthur",
+                User = new User()
+                {
+                    Name = "Arthur"
+                },
                 Sex = 'M',
                 Color = PatientColors.Branco
             });

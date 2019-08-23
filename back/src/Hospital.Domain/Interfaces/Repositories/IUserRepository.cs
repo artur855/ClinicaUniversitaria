@@ -13,5 +13,6 @@ namespace Hospital.Domain.Interfaces.Repositories
         Task<User> FindById(int id);
         void Update(User user);
         void Remove(User user);
+        Task<User> Authenticate(string email, string password);
     }
 }

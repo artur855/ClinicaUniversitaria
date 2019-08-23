@@ -16,7 +16,8 @@ namespace Hospital.Infra.Data.Mapping
             builder.Property(p => p.Sex).IsRequired().HasColumnName("sexo");
             builder.Property(p => p.Birthdate).IsRequired().HasColumnName("dt_nasc");
             builder.Property(p => p.Color).IsRequired().HasColumnName("cor");
-
+            builder.Property(p => p.UserId).HasColumnName("id_usuario");
+            
             builder.HasOne<User>(p => p.User)
                 .WithOne(u => u.Patient)
                 .HasForeignKey<Patient>(p => p.UserId);

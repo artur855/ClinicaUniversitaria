@@ -35,6 +35,24 @@ namespace Hospital.Application.Extensions
             return services;
         }
 
+        public static IServiceCollection AddUserService(this IServiceCollection services)
+        {
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            return services;
+        }
+
+        public static IServiceCollection AddAuthenticationServices(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            return services;
+        }
+
+        public static IServiceCollection AddJwtService(this IServiceCollection services)
+        {
+            services.AddScoped<IJwtService, JwtService>();
+            return services;
+        }
         public static IServiceCollection AddDbContextService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<HospitalContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PostgresqlString")));

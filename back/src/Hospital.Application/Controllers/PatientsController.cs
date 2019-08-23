@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace Hospital.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     [EnableCors("MyPolicy")]
     public class PatientsController : ControllerBase
     {

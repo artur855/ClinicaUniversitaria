@@ -30,7 +30,8 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Insira o nome (.*)")]
         public void InserirNome(string nome)
         {
-            _patient.Name = nome;
+            _patient.User = new User();
+            _patient.User.Name = nome;
         }
 
         [Given("Insira a data de nascimento (.*)")]

@@ -22,7 +22,10 @@ namespace Hospital.Tests.Modules.Patients
         public async void TelaListarPaciente(){
             await _patientService.Save(new Patient()
             {
-                Name = "Arthur",
+                User = new User()
+                {
+                    Name = "Arthur"
+                },
                 Birthdate = new DateTime(1999, 10, 09),
                 Color = PatientColors.Branco,
                 Sex = 'M'
@@ -40,7 +43,7 @@ namespace Hospital.Tests.Modules.Patients
             var patient = patients.First();
 
             Assert.NotNull(patient, "Paciente nulo");
-            Assert.AreEqual(patient.Name, "Arthur", "Nome diferente do inserido");
+            Assert.AreEqual(patient.User.Name, "Arthur", "Nome diferente do inserido");
             Assert.AreEqual(patient.Sex, 'M', "Sexodiferente do inserido");
             Assert.AreEqual(patient.Birthdate, new DateTime(1999, 10, 09), "Data de nascimento diferente da inserida");
             Assert.AreEqual(patient.Color, PatientColors.Branco, "Cor diferente da inserida");

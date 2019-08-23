@@ -11,7 +11,6 @@ namespace Hospital.Service.Validators
         public PatientValidator()
         {
             RuleFor(patient => patient).NotEmpty().WithMessage("Objeto nulo");
-            RuleFor(patient => patient.Name).NotEmpty().WithMessage("Paciente sem nome");
             RuleFor(patient => patient.Birthdate).NotEmpty().WithMessage("Paciente sem data de nascimento");
             RuleFor(patient => patient.Birthdate).GreaterThan(DateTime.Now).WithMessage("Não é possivel cadastrar pacientes ainda não nascidos");
             RuleFor(patient => patient.Color).NotEmpty().WithMessage("Paciente sem cor"); 

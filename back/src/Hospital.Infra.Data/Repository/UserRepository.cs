@@ -36,6 +36,11 @@ namespace Hospital.Infra.Data.Repository
             _context.Users.Remove(user);
         }
 
+        public async Task<User> Authenticate(string email, string password)
+        {
+           return await _context.Users.SingleOrDefaultAsync(x => x.Email == email && x.Password == password);
+        }
+
         public void Update(User user)
         {
             _context.Users.Update(user);
