@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import{ServiceService} from '../../../Services/medico.service'
 import { Medico } from 'src/app/Models/Medico';
@@ -9,6 +9,7 @@ import { Medico } from 'src/app/Models/Medico';
   styleUrls: ['./listMedic.component.css']
 })
 export class ListMedicComponent implements OnInit {
+  @Input() toggle: Boolean;
 
   medicos:Medico[];
   constructor(private service:ServiceService, private router:Router) { }

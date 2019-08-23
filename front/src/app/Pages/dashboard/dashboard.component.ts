@@ -18,4 +18,11 @@ export class DashboardComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  visible: boolean;
+
+  toogleMedic(){
+    if(this.visible==true){
+      this.visible = false;
+    }else{this.visible = true;}
+  }
 }
