@@ -7,3 +7,11 @@
 * Pardo - 2
 * Indigena - 3
 * Naoespecificado - 4
+
+# Regras médicos
+
+## Tipos de médico
+
+* Médico comum - 0
+* Docente - 1
+* Residente - 2
