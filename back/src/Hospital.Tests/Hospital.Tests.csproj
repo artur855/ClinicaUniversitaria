@@ -24,10 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Histories\DeletePatient.feature" />
-    <Content Include="Histories\InsertPatient.feature" />
-    <Content Include="Histories\ListPatient.feature" />
-    <Content Include="Histories\UpdatePatient.feature" />
+    <Content Include="Histories\Authentication\Login.feature" />
+    <Content Include="Histories\Patient\DeletePatient.feature" />
+    <Content Include="Histories\Patient\InsertPatient.feature" />
+    <Content Include="Histories\Patient\ListPatient.feature" />
+    <Content Include="Histories\Patient\UpdatePatient.feature" />
   </ItemGroup>
 
   <ItemGroup>

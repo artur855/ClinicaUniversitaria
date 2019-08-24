@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using Hospital.Service.Config;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +29,7 @@ namespace Hospital.Application.Extensions
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtTokenConfiguration:Key"]))
                       };
                     });
-
+            
             services.AddScoped<JwtTokenConfiguration>();
             return services;
         }
@@ -36,6 +39,10 @@ namespace Hospital.Application.Extensions
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("ClinicaUniversitaria", new OpenApiInfo{Title="Clinica Universitaria", Version = "V1"});
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+                
             });
             return services;
         }

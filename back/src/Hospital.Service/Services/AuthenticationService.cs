@@ -1,12 +1,7 @@
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using System.Threading.Tasks;
 using Hospital.Domain.DTO;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
-using Hospital.Service.Config;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Hospital.Service.Services
 {

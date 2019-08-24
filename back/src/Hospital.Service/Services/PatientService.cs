@@ -32,9 +32,9 @@ namespace Hospital.Service.Services
         public async Task<Patient> Save(Patient patient)
         {
             Activator.CreateInstance<PatientValidator>().Validate(patient);
-            Patient newPatient = await _patientRepository.Create(patient);
+            await _patientRepository.Create(patient);
             await _unitOfWork.CompleteAsync();
-            return newPatient;
+            return patient;
         }
 
         public async Task<Patient> Update(Patient patient)

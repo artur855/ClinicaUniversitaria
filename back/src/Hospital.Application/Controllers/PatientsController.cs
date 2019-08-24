@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
-using Hospital.Service.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +35,6 @@ namespace Hospital.Application.Controllers
 
             return Ok(await _patientService.FindById(id));
         }
-
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Patient patient)
         {

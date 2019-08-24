@@ -4,13 +4,7 @@ using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Validators;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using Hospital.Domain.DTO;
-using Hospital.Service.Config;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Hospital.Service.Services
 {

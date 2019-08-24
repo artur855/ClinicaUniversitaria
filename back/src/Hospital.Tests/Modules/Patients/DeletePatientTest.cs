@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
-using Hospital.Infra.Data.Repository;
-using Hospital.Service.Services;
 using TechTalk.SpecFlow;
-using Tests.Modules;
 using System.Linq;
 using NUnit.Framework;
 

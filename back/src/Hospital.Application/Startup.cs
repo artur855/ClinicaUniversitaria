@@ -1,28 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Http;
+﻿
 using Hospital.Application.Extensions;
-using Hospital.Domain.Entities;
-using Hospital.Domain.Interfaces.Repositories;
-using Hospital.Domain.Interfaces.Services;
-using Hospital.Infra.Data.Context;
-using Hospital.Infra.Data.Repository;
-using Hospital.Service.Config;
-using Hospital.Service.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 
 namespace Hospital.Application
 {
@@ -55,9 +37,9 @@ namespace Hospital.Application
 
             services.AddSwaggerConfiguration();
 
-            services.AddAuthenticationServices();
+            services.AddAuthenticationService();
             services.AddMedicServices();
-            services.AddPatientServices();
+            services.AddPatientService();
             services.AddUnitOfWorkService();
             services.AddUserService();
 

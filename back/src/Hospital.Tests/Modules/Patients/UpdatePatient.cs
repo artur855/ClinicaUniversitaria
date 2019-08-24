@@ -2,11 +2,8 @@ using System;
 using System.Globalization;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
-using Hospital.Infra.Data.Repository;
-using Hospital.Service.Services;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using Tests.Modules;
 
 namespace Hospital.Tests.Modules.Patients
 {

@@ -22,7 +22,7 @@ namespace Hospital.Application.Extensions
             return services;
         }
 
-        public static IServiceCollection AddPatientServices(this IServiceCollection services)
+        public static IServiceCollection AddPatientService(this IServiceCollection services)
         {
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IPatientService, PatientService>();
@@ -42,7 +42,7 @@ namespace Hospital.Application.Extensions
             return services;
         }
 
-        public static IServiceCollection AddAuthenticationServices(this IServiceCollection services)
+        public static IServiceCollection AddAuthenticationService(this IServiceCollection services)
         {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             return services;

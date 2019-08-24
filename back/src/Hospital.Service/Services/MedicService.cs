@@ -1,10 +1,8 @@
 ﻿using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
-using Hospital.Infra.Data.Repository;
 using Hospital.Service.Validators;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Hospital.Domain.Interfaces.Repositories;
 
@@ -55,8 +53,6 @@ namespace Hospital.Service.Services
         public async Task<Medic> SaveAsync(Medic medic)
         {
             Activator.CreateInstance<MedicValidator>().Validate(medic);
-            Console.WriteLine(medic is Resident);
-            Console.WriteLine(medic is Docent);
             await _medicRepository.AddAsync(medic);
             await _unitOfWork.CompleteAsync();
 
