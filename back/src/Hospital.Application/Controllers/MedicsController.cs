@@ -7,6 +7,7 @@ using Hospital.Domain.Interfaces.Services;
 using Hospital.Infra.Data.Repository;
 using Hospital.Service.Services;
 using Hospital.Service.Validators;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
@@ -15,6 +16,7 @@ namespace Hospital.Application.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MedicsController : ControllerBase
     {
         private readonly IMedicService _medicService;
