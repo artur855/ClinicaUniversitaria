@@ -5,9 +5,8 @@
       [opened]="opened">
     <mat-toolbar >Menu</mat-toolbar>
     <mat-nav-list>
-      <a (click)="toogleMedic()" mat-list-item >Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a (click)="toogleMedic('med')" mat-list-item ><fa-icon [icon]="faUserMd" class="mr-2"></fa-icon>Médicos</a>
+      <a (click)="toogleMedic('pat')" mat-list-item ><fa-icon [icon]="faUserInjured" class="mr-2" ></fa-icon>Pacientes </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -17,10 +16,17 @@
       type="button"
       aria-label="Toggle sidenav"
       mat-icon-button
-      (click)="opened=!opened"><fa-icon [icon]="faBars"></fa-icon> </button>
+      (click)="opened=!opened"><fa-icon [icon]="faBars"></fa-icon></button>
       <span>Front</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <app-listpat *ngIf="visible"></app-listpat>
+    <app-listar *ngIf="visiMed"></app-listar>
+
+    <app-listpat *ngIf="visiPat">
+      <app-addpat *ngIf="visiPat">
+        
+      </app-addpat>
+    </app-listpat>
+
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/Models/Pacient';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/Services/pacient.service';
-
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-listpat',
   templateUrl: './listpat.component.html',
@@ -11,6 +11,7 @@ import { PatientService } from 'src/app/Services/pacient.service';
 export class ListpatComponent implements OnInit {
   closeResult: string;
   patients: Patient[];
+  faUserPlus=faUserPlus;
   sexPat = [
     { name: "Masculino", value: "M" },
     { name: "Feminino", value: "F" },

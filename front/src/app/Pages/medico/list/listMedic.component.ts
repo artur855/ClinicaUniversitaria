@@ -2,13 +2,15 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import{ServiceService} from '../../../Services/medico.service'
 import { Medico } from 'src/app/Models/Medico';
-
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-listar',
   templateUrl: './listMedic.component.html',
   styleUrls: ['./listMedic.component.css']
 })
 export class ListMedicComponent implements OnInit {
+  faUserPlus =faUserPlus;
+
   @Input() toggle: Boolean;
 
   medicos:Medico[];

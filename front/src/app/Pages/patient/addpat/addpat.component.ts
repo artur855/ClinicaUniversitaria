@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
+
 })
 export class AddpatComponent implements OnInit {
   sexPat = [
@@ -43,7 +44,7 @@ export class AddpatComponent implements OnInit {
     var birthdate = (<HTMLInputElement>document.getElementById("dateOfBirth")).value;
     var selectedOptionColor = this.selectedCor;
     var selectedOptionSex = this.selectedSex;
-  
+
     this.patient.name = name;
     this.patient.sex = selectedOptionSex;
     this.patient.color = selectedOptionColor;
@@ -55,11 +56,11 @@ export class AddpatComponent implements OnInit {
     });
   }
 
-openSnackBarPat() {
-  var message = "Paciente adicionado!"
-  var action = "Fechar"
-  this._snackBar.open(message, action, {
-    duration: 2000,
-  });
-}
+  openSnackBarPat() {
+    var message = "Paciente adicionado!"
+    var action = "Fechar"
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }
