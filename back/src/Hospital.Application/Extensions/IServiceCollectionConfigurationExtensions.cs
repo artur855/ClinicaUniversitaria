@@ -4,14 +4,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace Hospital.Application.Extensions
 {
     public static class IServiceCollectionConfigurationExtensions
     {
-        public static IServiceCollection AddJwtTokenConfiguration(this IServiceCollection serviceCollection, IConfiguration configuration)
+        public static IServiceCollection AddJwtTokenConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
                       options.TokenValidationParameters = new TokenValidationParameters
@@ -26,8 +27,17 @@ namespace Hospital.Application.Extensions
                       };
                     });
 
-            serviceCollection.AddScoped<JwtTokenConfiguration>();
-            return serviceCollection;
+            services.AddScoped<JwtTokenConfiguration>();
+            return services;
+        }
+
+        public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("ClinicaUniversitaria", new OpenApiInfo{Title="Clinica Universitaria", Version = "V1"});
+            });
+            return services;
         }
     }
 }

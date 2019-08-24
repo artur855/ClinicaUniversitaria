@@ -33,7 +33,6 @@ namespace Hospital.Application
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
-            
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -41,9 +40,10 @@ namespace Hospital.Application
         {
             services.AddCors(opt => opt.AddPolicy("MyPolicy", builder =>
             {
-                builder.WithOrigins("http://localhost:4200", "http://clinicauniversitaria-front.s3-website-us-east-1.amazonaws.com")
-                        .AllowAnyMethod().AllowAnyHeader();
-            })); 
+                builder.WithOrigins("http://localhost:4200",
+                        "http://clinicauniversitaria-front.s3-website-us-east-1.amazonaws.com")
+                    .AllowAnyMethod().AllowAnyHeader();
+            }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -53,12 +53,14 @@ namespace Hospital.Application
 
             services.AddJwtService();
 
+            services.AddSwaggerConfiguration();
+
             services.AddAuthenticationServices();
             services.AddMedicServices();
             services.AddPatientServices();
             services.AddUnitOfWorkService();
             services.AddUserService();
-            
+
             services.AddOptions();
         }
 
@@ -79,8 +81,12 @@ namespace Hospital.Application
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
-
-          
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/ClinicaUniversitaria/swagger.json", "Clinica Universitaria API V1");
+                c.RoutePrefix = string.Empty;
+            });
         }
     }
 }
