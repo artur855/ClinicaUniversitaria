@@ -1,30 +1,31 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="opened">
-    <mat-toolbar >Menu</mat-toolbar>
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="opened">
+    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a (click)="toogleMedic('med')" mat-list-item ><fa-icon [icon]="faUserMd" class="mr-2"></fa-icon>Médicos</a>
-      <a (click)="toogleMedic('pat')" mat-list-item ><fa-icon [icon]="faUserInjured" class="mr-2" ></fa-icon>Pacientes </a>
+      <a (click)="toogleMedic('med')" mat-list-item>
+        <fa-icon [icon]="faUserMd" class="mr-2"></fa-icon>Médicos
+      </a>
+      <a (click)="toogleMedic('pat')" mat-list-item>
+        <fa-icon [icon]="faUserInjured" class="mr-2"></fa-icon>Pacientes
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar class="mb-5" color="primary">
-      
-      <button
-      type="button"
-      aria-label="Toggle sidenav"
-      mat-icon-button
-      (click)="opened=!opened"><fa-icon [icon]="faBars"></fa-icon></button>
-      <span>Front</span>
+
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="opened=!opened"><i
+          class="material-icons">
+          menu
+        </i></button>
+      <span>Clínica Universitária</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <app-listar *ngIf="visiMed"></app-listar>
 
     <app-listpat *ngIf="visiPat">
       <app-addpat *ngIf="visiPat">
-        
+
       </app-addpat>
     </app-listpat>
 

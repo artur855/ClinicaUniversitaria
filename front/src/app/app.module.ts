@@ -33,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Usuario } from './Models/Usuario';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSidenavModule,
     MatToolbarModule,
   ],
-  providers: [ServiceService, Medico,Patient],
+  providers: [ServiceService, Medico,Patient,Usuario],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -47,6 +47,7 @@ export class AddpatComponent implements OnInit {
     var birthdate = (<HTMLInputElement>document.getElementById("dateOfBirth")).value;
     var selectedOptionColor = this.selectedCor;
     var selectedOptionSex = this.selectedSex;
+    
     this.patient.usuario = new Usuario();
     this.patient.usuario.email = email;
     this.patient.usuario.name = name;
