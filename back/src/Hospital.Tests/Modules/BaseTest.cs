@@ -19,8 +19,7 @@ namespace Hospital.Tests.Modules
             _services = new ServiceCollection();
             
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("/home/arthur/Documents/Unit/LaboratorioEngenhariaSoftware/VamoTrabalhar/back/src/Hospital.Tests/appsettings.json");
+                .AddJsonFile(GetJsonPath());
             var configuration = builder.Build();
 
             _services.AddDbContext<HospitalContext>(opt => opt.UseInMemoryDatabase("hospitalDb"));
@@ -46,6 +45,14 @@ namespace Hospital.Tests.Modules
         public T GetService<T>()
         {
             return ServiceProvider.GetService<T>();
+        }
+        
+        public string GetJsonPath()
+        {
+            var dir = Directory.GetCurrentDirectory();
+            var parent = Directory.GetParent(dir).Parent?.Parent;
+            var path = parent.FullName + "/appsettings.json";
+            return path;
         }
        
     }

@@ -7,7 +7,7 @@ matrix:
       addons:
         snaps:
           - name: dotnet-sdk
-            classic: true
+            confinement: classic
 
       before_script:
         - sudo snap alias dotnet-sdk.dotnet dotnet
