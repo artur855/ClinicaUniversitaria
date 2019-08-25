@@ -32,13 +32,11 @@ export class HomeComponent implements OnInit {
     var email = (<HTMLInputElement>document.getElementById("email")).value;
     var password = (<HTMLInputElement>document.getElementById("password")).value;
     this.user.email = email;
-    this.user.senha = password;
-    console.log(this.user.email);
-    console.log(this.user.senha);
+    this.user.password = password;
 
-    this.service.postAuthentication(email,password).subscribe(data => {
+    this.service.postAuthentication(email, password).subscribe(data => {
       this.token = data;
-      if(this.token != null){
+      if (this.token != null) {
         this.router.navigate(["dashboard"])
       }
     });

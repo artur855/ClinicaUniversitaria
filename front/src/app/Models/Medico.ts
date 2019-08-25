@@ -1,7 +1,7 @@
 import { Usuario } from './Usuario';
 
 export class Medico {
-    usuario: Usuario;
+    user: Usuario;
     name: String;
     crm: String;
 }

@@ -16,7 +16,7 @@ namespace Hospital.Infra.Data.Repository
 
         public async Task<IEnumerable<Patient>> List()
         {
-            return await _context.Patients.AsNoTracking().ToListAsync();
+            return await _context.Patients.AsNoTracking().Include(p => p.User).ToListAsync();
         }
 
         public async Task<Patient> Create(Patient patient)
@@ -27,7 +27,7 @@ namespace Hospital.Infra.Data.Repository
 
         public async Task<Patient> FindById(int id)
         {
-            return await _context.Patients.SingleAsync(patient => patient.Id == id);
+            return await _context.Patients.Include(p => p.User).SingleAsync(patient => patient.Id == id);
         }
 
         

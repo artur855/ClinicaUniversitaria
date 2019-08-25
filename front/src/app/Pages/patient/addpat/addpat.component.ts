@@ -47,14 +47,23 @@ export class AddpatComponent implements OnInit {
     var birthdate = (<HTMLInputElement>document.getElementById("dateOfBirth")).value;
     var selectedOptionColor = this.selectedCor;
     var selectedOptionSex = this.selectedSex;
-    
-    this.patient.usuario = new Usuario();
-    this.patient.usuario.email = email;
-    this.patient.usuario.name = name;
-    this.patient.usuario.senha = senha;
+    this.patient.user = new Usuario();
+    this.patient.user.email = email;
+    this.patient.user.name = name;
+    this.patient.user.password = senha;
     this.patient.sex = selectedOptionSex;
     this.patient.color = selectedOptionColor;
-    this.patient.birthdate = birthdate;
+
+    var dateParts = birthdate.split('/');
+    var day = parseInt(dateParts[0]);
+    var month = parseInt(dateParts[1]) - 1;
+    var year = parseInt(dateParts[2]);
+
+    var date = new Date(year, month, day);
+    this.patient.birthdate = date;
+
+    console.log(this.patient);
+    console.log(birthdate);
 
     this.service.createPatient(this.patient).subscribe(data => {
       this.patient = data;

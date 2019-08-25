@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/Models/Pacient';
+import { Usuario } from 'src/app/Models/Usuario';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/Services/pacient.service';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +12,7 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 export class ListpatComponent implements OnInit {
   closeResult: string;
   patients: Patient[];
-  faUserPlus=faUserPlus;
+  faUserPlus = faUserPlus;
   sexPat = [
     { name: "Masculino", value: "M" },
     { name: "Feminino", value: "F" },
@@ -29,31 +30,23 @@ export class ListpatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    var year,month,day;
     this.service.getPatients().subscribe(data => {
-      for (let i = 0; i < data.length; i++){
+      for (let i = 0; i < data.length; i++) {
         if (data[i].sex == "F") {
           data[i].sex = "Feminino"
         }
         if (data[i].sex == "M") {
           data[i].sex = "Masculino"
         }
-        var x=data[i].birthdate.substr(0, data[i].birthdate.length - 9);
-        var date = [] = x.split("-")
-        year = date[0] 
-        day= date[1]
-        month = date[2]
-        var dateCorrect = day+"/"+month+"/"+year
-        data[i].birthdate = dateCorrect;
-        
+        data[i].birthdate = data[i].birthdate;
       }
-      for (let i=0; i < data.length; i++) {
-        for (let j=0; j < this.colorsPat.length; j++)
+      for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < this.colorsPat.length; j++)
           if (data[i].color == this.colorsPat[j].value) {
             data[i].color = this.colorsPat[j].name
           }
       }
-      
+
       this.patients = data;
 
     })

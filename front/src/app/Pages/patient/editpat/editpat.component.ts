@@ -59,16 +59,24 @@ export class EditpatComponent implements OnInit {
   AtualizarPat(patient: Patient) {
 
     var name = (<HTMLInputElement>document.getElementById("nameP")).value;
+    var email = (<HTMLInputElement>document.getElementById("emailP")).value;
     var birthdate = (<HTMLInputElement>document.getElementById("dateOfBirth")).value;
     var selectedOptionColor = this.selectedCor;
     var selectedOptionSex = this.selectedSex;
-
     patient.id = this.patient.id;
-    patient.usuario = new Usuario();
-    patient.usuario.name = name;
+    patient.user = new Usuario();
+    patient.user.name = name;
+    patient.user.email = email;
     patient.sex = selectedOptionSex;
     patient.color = selectedOptionColor;
-    patient.birthdate = birthdate;
+
+    var dateParts = birthdate.split('/');
+    var day = parseInt(dateParts[0]);
+    var month = parseInt(dateParts[1]) - 1;
+    var year = parseInt(dateParts[2]);
+
+    var date = new Date(year, month, day);
+    this.patient.birthdate = date;
 
     this.service.updatePatient(patient).subscribe(data => {
       this.patient = data;

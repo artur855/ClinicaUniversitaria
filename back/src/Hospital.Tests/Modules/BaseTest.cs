@@ -1,4 +1,3 @@
-using System.Configuration;
 using System.IO;
 using Hospital.Application.Extensions;
 using Hospital.Infra.Data.Context;

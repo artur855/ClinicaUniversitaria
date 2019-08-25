@@ -2,10 +2,10 @@ import { Usuario } from './Usuario';
 
 export class Patient {
     id: number;
-    usuario: Usuario;
+    user: Usuario;
     sex: String;
     color: String;
-    birthdate: String;
+    birthdate: Date;
 }
 
 export enum PatientColor {

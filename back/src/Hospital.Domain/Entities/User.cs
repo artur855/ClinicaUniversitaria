@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Hospital.Domain.Entities
 {
@@ -10,8 +11,9 @@ namespace Hospital.Domain.Entities
         public string Name { get; set; } 
         public string Email { get; set; }
         public string Password { get; set; }
-
+        [JsonIgnore]
         public Medic Medic { get; set; }
+        [JsonIgnore]
         public Patient Patient { get; set; }
     }
 }

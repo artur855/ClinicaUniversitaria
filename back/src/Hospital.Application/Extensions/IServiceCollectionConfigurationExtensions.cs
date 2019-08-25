@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Hospital.Application.Extensions
 {
@@ -38,7 +38,11 @@ namespace Hospital.Application.Extensions
         {
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("ClinicaUniversitaria", new OpenApiInfo{Title="Clinica Universitaria", Version = "V1"});
+                options.SwaggerDoc("ClinicaUniversitaria", new Info
+                {
+                    Title = "Clinica Universitaria",
+                    Version = "V1"
+                });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
