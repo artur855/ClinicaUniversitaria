@@ -1,5 +1,7 @@
-export class Medico{
-    // id:number;
-    name:String;
-    crm:String;
+import { Usuario } from './Usuario';
+
+export class Medico {
+    usuario: Usuario;
+    name: String;
+    crm: String;
 }
