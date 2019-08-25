@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Patient} from '../Models/Pacient'
+import { Patient } from '../Models/Pacient'
 import { environment } from 'src/environments/environment';
 //import { Observable } from 'rxjs';
 
@@ -10,9 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class PatientService {
 
-  constructor(private http : HttpClient) { }
-
-  Url = environment.url+"patients/";
+  constructor(private http: HttpClient) {
+  }
+  Url = environment.url + "patients/";
 
   getPatients() {
     return this.http.get<Patient[]>(this.Url);
@@ -23,11 +23,11 @@ export class PatientService {
   }
 
   createPatient(pat: Patient) {
-    return this.http.post<Patient>(this.Url, pat)
+    return this.http.post<Patient>(this.Url, pat);
   }
 
   updatePatient(pat: Patient) {
-    return this.http.put<Patient>(this.Url , pat)
+    return this.http.put<Patient>(this.Url, pat)
   }
 
   deletePatient(pat: Patient) {

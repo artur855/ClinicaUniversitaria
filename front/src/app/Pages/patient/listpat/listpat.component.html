@@ -1,47 +1,47 @@
 <div class="container">
- 
-    
-    <div class="container">
-      <div class="card">
-        <div class="card-header">
-
-          <h2>Pacientes</h2>
-         
-        </div>
-        <div class="card-body">
-          <table class="table text-center">
-            <thead>
-              <tr>
 
 
-                <th>Nome</th>
-                <th>Sexo</th>
-                <th>Cor</th>
-                <th>Nascimento</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let patient of patients" class="text-center">
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
 
-                <td>{{patient.name}}</td>
-                <td>{{patient.sex}}</td>
-                <td>{{patient.color}}</td>
-                <td>{{patient.birthdate}}</td>
-                <td>
-                  <button (click)="EditarPat(patient.id)" class="btn btn-warning"><i
-                      class="material-icons">edit</i></button>
-                  <button data-toggle="modal" data-target="#createModal" (click)="DeletePat(patient)"
-                    class="btn btn-danger"><i class="material-icons">delete</i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-footer">
-            <button (click)="AdicionarPat()" type="button" class="btn btn-outline-primary float-right "><fa-icon [icon]="faUserPlus" class="mr-2" ></fa-icon>Adicionar</button>
-        </div>
+        <h2>Pacientes</h2>
+
+      </div>
+      <div class="card-body">
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sexo</th>
+              <th>Cor</th>
+              <th>Nascimento</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let patient of patients" class="text-center">
+
+              <td>{{patient.usuario.name}}</td>
+              <td>{{patient.sex}}</td>
+              <td>{{patient.color}}</td>
+              <td>{{patient.birthdate}}</td>
+              <td>
+                <button (click)="EditarPat(patient.id)" class="btn btn-warning"><i
+                    class="material-icons">edit</i></button>
+                <button data-toggle="modal" data-target="#createModal" (click)="DeletePat(patient)"
+                  class="btn btn-danger"><i class="material-icons">delete</i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <button (click)="AdicionarPat()" type="button" class="btn btn-outline-primary float-right ">
+          <fa-icon [icon]="faUserPlus" class="mr-2"></fa-icon>Adicionar
+        </button>
       </div>
     </div>
-  
+  </div>
+
 </div>

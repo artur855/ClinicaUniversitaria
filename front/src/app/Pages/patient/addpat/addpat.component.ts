@@ -5,6 +5,7 @@ import { Patient } from 'src/app/Models/Pacient';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Usuario } from 'src/app/Models/Usuario';
 
 @Component({
   selector: 'app-addpat',
@@ -41,11 +42,15 @@ export class AddpatComponent implements OnInit {
 
   onSubmitPat() {
     var name = (<HTMLInputElement>document.getElementById("nameP")).value;
+    var email = (<HTMLInputElement>document.getElementById("emailP")).value;
+    var senha = (<HTMLInputElement>document.getElementById("senhaP")).value;
     var birthdate = (<HTMLInputElement>document.getElementById("dateOfBirth")).value;
     var selectedOptionColor = this.selectedCor;
     var selectedOptionSex = this.selectedSex;
-
-    this.patient.name = name;
+    this.patient.usuario = new Usuario();
+    this.patient.usuario.email = email;
+    this.patient.usuario.name = name;
+    this.patient.usuario.senha = senha;
     this.patient.sex = selectedOptionSex;
     this.patient.color = selectedOptionColor;
     this.patient.birthdate = birthdate;

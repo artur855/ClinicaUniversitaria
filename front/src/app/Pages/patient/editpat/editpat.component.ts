@@ -5,6 +5,7 @@ import { PatientService } from 'src/app/Services/pacient.service';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Usuario } from 'src/app/Models/Usuario';
 
 
 @Component({
@@ -63,7 +64,8 @@ export class EditpatComponent implements OnInit {
     var selectedOptionSex = this.selectedSex;
 
     patient.id = this.patient.id;
-    patient.name = name;
+    patient.usuario = new Usuario();
+    patient.usuario.name = name;
     patient.sex = selectedOptionSex;
     patient.color = selectedOptionColor;
     patient.birthdate = birthdate;
