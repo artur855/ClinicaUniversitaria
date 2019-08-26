@@ -1,5 +1,9 @@
-﻿namespace Hospital.Domain.Entities
+﻿using Hospital.Domain.Converters;
+using Newtonsoft.Json;
+
+namespace Hospital.Domain.Entities
 {
+    [JsonConverter(typeof(PersonJsonConverter))]
     public class Medic
     {
         public string CRM { get; set; }

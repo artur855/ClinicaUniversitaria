@@ -3,6 +3,7 @@ using Hospital.Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hospital.Domain.Interfaces.Repositories;
@@ -20,15 +21,16 @@ namespace Hospital.Infra.Data.Repository
         {
             await _context.Medics.AddAsync(medic);
         }
-
+        
         public async Task<Medic> FindByCrmAsync(string crm)
         {
-            return await _context.Medics.SingleAsync(m => m.CRM.Equals(crm));
+            var x = await _context.Set<Medic>().FindAsync(crm);
+            return x;
         }
 
         public async Task<IEnumerable<Medic>> ListAsync()
         {
-            return await _context.Medics.AsNoTracking().ToListAsync();
+            return await _context.Set<Medic>().AsNoTracking().ToListAsync();
         }
 
         public void Remove(Medic medic)

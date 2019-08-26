@@ -44,7 +44,9 @@ namespace Hospital.Service.Services
             (
                 new GenericIdentity(user.Id.ToString()),
                 new[] {
-                    new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString())
+                    new Claim(
+                        JwtRegisteredClaimNames.NameId, user.Id.ToString()
+                    )
                 }
             );
         }

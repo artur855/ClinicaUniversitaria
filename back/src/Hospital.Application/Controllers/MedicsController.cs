@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
@@ -48,7 +49,7 @@ namespace Hospital.Application.Controllers
 
             return CreatedAtAction(nameof(Post), new { CRM = _medic.CRM }, medic);
         }
-
+        
         [EnableCors("MyPolicy")]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] Medic medic)

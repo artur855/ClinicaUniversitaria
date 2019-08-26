@@ -36,7 +36,6 @@ namespace Hospital.Service.Services
             {
                 return null;
             }
-
         
         }
 

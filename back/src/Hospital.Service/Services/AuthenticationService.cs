@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Hospital.Domain.DTO;
+using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
 
@@ -21,7 +22,7 @@ namespace Hospital.Service.Services
             var user = await _userRepository.Authenticate(loginDto.Email, loginDto.Password);
             if (user == null)
                 return null;
-            
+               
             var token = _jwtService.CreateJwtToken(user);
             
             return token;
