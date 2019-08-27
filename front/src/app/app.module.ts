@@ -11,10 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Medico } from 'src/app/Models/Medico';
 import { ServiceService } from './Services/medico.service'
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 
 import { MaterialModule } from './modules/material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,6 +33,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Usuario } from './Models/Usuario';
+import { AuthenticationInterceptor } from './Interceptors/authentication.interceptor';
+import { AuthenticationService } from './Services/authentication.service';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthGuard } from './Guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,16 @@ import { Usuario } from './Models/Usuario';
     MatSidenavModule,
     MatToolbarModule,
   ],
-  providers: [ServiceService, Medico,Patient,Usuario],
+  providers: [
+    AuthenticationService,
+    ServiceService,
+    AuthGuard,
+    CookieService,
+    Medico,
+    Patient,
+    Usuario,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

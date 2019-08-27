@@ -62,9 +62,6 @@ export class AddpatComponent implements OnInit {
     var date = new Date(year, month, day);
     this.patient.birthdate = date;
 
-    console.log(this.patient);
-    console.log(birthdate);
-
     this.service.createPatient(this.patient).subscribe(data => {
       this.patient = data;
       this.router.navigate(["list-patient"]);

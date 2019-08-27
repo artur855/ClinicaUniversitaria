@@ -9,19 +9,20 @@ import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
 
 import { HomeComponent } from './Pages/home/home.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 
 
 
 
 const routes: Routes = [
-  { path: 'listar-medico', component: ListMedicComponent },
-  { path: 'add-medico', component: AddMedicComponent },
-  { path: 'edit-medico', component: EditMedicComponent },
-  { path: 'list-patient', component: ListpatComponent },
-  { path: 'edit-patient', component: EditpatComponent },
-  { path: 'add-patient', component: AddpatComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'listar-medico', component: ListMedicComponent, canActivate: [AuthGuard] },
+  { path: 'add-medico', component: AddMedicComponent, canActivate: [AuthGuard] },
+  { path: 'edit-medico', component: EditMedicComponent, canActivate: [AuthGuard] },
+  { path: 'list-patient', component: ListpatComponent, canActivate: [AuthGuard] },
+  { path: 'edit-patient', component: EditpatComponent, canActivate: [AuthGuard] },
+  { path: 'add-patient', component: AddpatComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: '', component: HomeComponent }
 
 ];

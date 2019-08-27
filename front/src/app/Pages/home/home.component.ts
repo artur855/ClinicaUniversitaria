@@ -2,8 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@ang
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { faHospital } from '@fortawesome/free-solid-svg-icons';
-import { AuthorizationService } from 'src/app/Services/authorization.service';
 import { Usuario } from 'src/app/Models/Usuario';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 
 @Component({
@@ -14,9 +14,8 @@ import { Usuario } from 'src/app/Models/Usuario';
 })
 export class HomeComponent implements OnInit {
   faHospital = faHospital;
-  token: any;
   constructor(private router: Router
-    , private service: AuthorizationService
+    , private service: AuthenticationService
     , private user: Usuario
   ) { }
 
@@ -35,8 +34,7 @@ export class HomeComponent implements OnInit {
     this.user.password = password;
 
     this.service.postAuthentication(email, password).subscribe(data => {
-      this.token = data;
-      if (this.token != null) {
+      if (data) {
         this.router.navigate(["dashboard"])
       }
     });

@@ -47,11 +47,10 @@ export class EditpatComponent implements OnInit {
   EditPat() {
     let id = localStorage.getItem("id")
     let y: number;
-    y = +id;
+    y = parseInt(id);
     this.service.getPatientId(y)
       .subscribe(data => {
         this.patient = data;
-        console.log(this.patient)
       })
 
   }
@@ -64,7 +63,6 @@ export class EditpatComponent implements OnInit {
     var selectedOptionColor = this.selectedCor;
     var selectedOptionSex = this.selectedSex;
     patient.id = this.patient.id;
-    patient.user = new Usuario();
     patient.user.name = name;
     patient.user.email = email;
     patient.sex = selectedOptionSex;
