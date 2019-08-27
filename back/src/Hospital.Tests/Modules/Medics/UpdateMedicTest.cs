@@ -26,7 +26,6 @@ namespace Hospital.Tests.Modules.Medics
                     Name = "Faluno"
                 },
                 CRM = "123",
-                UserId = 123
             });
         }
 

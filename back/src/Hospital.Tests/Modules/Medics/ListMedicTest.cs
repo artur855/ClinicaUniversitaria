@@ -30,7 +30,6 @@ namespace Hospital.Tests.Modules.Medics
                     Name = "Fulano"
                 },
                 CRM = "123",
-                UserId = 1
             });
 
             await m_medicService.SaveAsync(new Medic()
@@ -40,7 +39,6 @@ namespace Hospital.Tests.Modules.Medics
                     Name = "Ciclano"
                 },
                 CRM = "456",
-                UserId = 2
             });
         }
 

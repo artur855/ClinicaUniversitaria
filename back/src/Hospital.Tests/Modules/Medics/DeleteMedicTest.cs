@@ -24,7 +24,6 @@ namespace Hospital.Tests.Modules.Medics
             await m_medicService.SaveAsync(new Medic()
             {
                 CRM = "123456",
-                UserId = 1,
                 User = new User()
                 {
                     Name = "Fulano"
