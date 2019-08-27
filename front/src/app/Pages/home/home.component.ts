@@ -14,6 +14,8 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class HomeComponent implements OnInit {
   faHospital = faHospital;
+  public error: String;
+
   constructor(private router: Router
     , private service: AuthenticationService
     , private user: Usuario
@@ -25,7 +27,6 @@ export class HomeComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl(''),
   });
-
 
   Logar() {
     var email = (<HTMLInputElement>document.getElementById("email")).value;
