@@ -23,7 +23,7 @@ namespace Hospital.Infra.Data.Repository
 
         public async Task<User> FindById(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await _context.Users.SingleOrDefaultAsync(user => user.Id == id);
         }
 
         public async Task<IEnumerable<User>> List()

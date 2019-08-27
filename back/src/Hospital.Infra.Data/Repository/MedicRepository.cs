@@ -30,7 +30,7 @@ namespace Hospital.Infra.Data.Repository
 
         public async Task<IEnumerable<Medic>> ListAsync()
         {
-            return await _context.Set<Medic>().AsNoTracking().ToListAsync();
+            return await _context.Set<Medic>().Include(m => m.User).AsNoTracking().ToListAsync();
         }
 
         public void Remove(Medic medic)

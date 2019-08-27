@@ -12,11 +12,13 @@ namespace Hospital.Service.Services
     {
         private readonly IMedicRepository _medicRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserService _userService;
 
-        public MedicService(IMedicRepository medicRepository, IUnitOfWork unitOfWork)
+        public MedicService(IMedicRepository medicRepository, IUnitOfWork unitOfWork, IUserService userService)
         {
             _medicRepository = medicRepository;
             _unitOfWork = unitOfWork;
+            _userService = userService;
         }
 
         public async Task<Medic> DeleteAsync(string crm)
