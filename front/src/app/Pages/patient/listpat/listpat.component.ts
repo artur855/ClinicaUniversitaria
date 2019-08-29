@@ -28,9 +28,16 @@ export class ListpatComponent implements OnInit {
     private service: PatientService,
     private router: Router
   ) { }
-
+  
+  
   ngOnInit() {
+    
+  
+    
+
     this.service.getPatients().subscribe(data => {
+
+      
       for (let i = 0; i < data.length; i++) {
         if (data[i].sex == "F") {
           data[i].sex = "Feminino"
@@ -57,7 +64,7 @@ export class ListpatComponent implements OnInit {
   }
 
   EditarPat(id): void {
-    localStorage.setItem("id", id)
+    localStorage.setItem("idpat", id)
     this.router.navigate(["edit-patient"]);
   }
 

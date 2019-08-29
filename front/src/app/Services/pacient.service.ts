@@ -10,12 +10,16 @@ import { environment } from 'src/environments/environment';
 })
 export class PatientService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private headers: HttpHeaders ) {
+    headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    headers.append('token', localStorage.getItem('token'));
   }
   Url = environment.url + "patients/";
 
+
   getPatients() {
-    return this.http.get<Patient[]>(this.Url);
+    return this.http.get<Patient[]>(this.Url,{'headers':this.headers});
   }
 
   getPatientId(id: number) {

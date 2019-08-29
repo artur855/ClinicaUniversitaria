@@ -45,7 +45,7 @@ export class EditpatComponent implements OnInit {
   }
 
   EditPat() {
-    let id = localStorage.getItem("id")
+    let id = localStorage.getItem("idpat")
     let y: number;
     y = +id;
     this.service.getPatientId(y)

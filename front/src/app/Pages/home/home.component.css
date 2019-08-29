@@ -34,7 +34,7 @@ mat-card-title, mat-card-content {
     justify-content: flex-end;
 }
 
-.inventory-body {
+.background-body {
     position: fixed;
     min-width: 100%;
     background-image: url("http://expansaors.com.br/wp-content/uploads/2019/03/saude-digital.jpg");
