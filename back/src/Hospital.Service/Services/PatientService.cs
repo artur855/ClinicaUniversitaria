@@ -13,10 +13,13 @@ namespace Hospital.Service.Services
 
         private readonly IPatientRepository _patientRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public PatientService(IPatientRepository patientRepository, IUnitOfWork unitOfWork)
+        private readonly IUserService _userService;
+
+        public PatientService(IPatientRepository patientRepository, IUnitOfWork unitOfWork, IUserService userService)
         {
             _patientRepository = patientRepository;
             _unitOfWork = unitOfWork;
+            _userService = userService;
         }
         
         public async  Task<Patient> FindById(int id)
@@ -33,6 +36,8 @@ namespace Hospital.Service.Services
         {
             Activator.CreateInstance<PatientValidator>().Validate(patient);
             await _patientRepository.Create(patient);
+            if (patient.User != null)
+                await _userService.SaveAsync(patient.User);
             await _unitOfWork.CompleteAsync();
             return patient;
         }
@@ -41,8 +46,16 @@ namespace Hospital.Service.Services
         {
             var existPatient = await _patientRepository.FindById(patient.Id);
             Activator.CreateInstance<PatientValidator>().Validate(patient);
+
             existPatient.Update(patient);
             _patientRepository.Update(existPatient);
+            if (patient.User != null)
+                Console.Write($"ID USUARIO {patient.User.Id}");
+                Console.Write($"ID USUARIO {patient.User.Id}");
+                Console.Write($"ID USUARIO 0000000");
+                Console.Write($"ID USUARIO {patient.UserId}");
+                Console.Write($"ID USUARIO {patient.UserId}");
+                await _userService.UpdateAsync(patient.User);
             await _unitOfWork.CompleteAsync();
             return existPatient;
         }

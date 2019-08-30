@@ -2,10 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@ang
 import { Router } from '@angular/router';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { faHospital } from '@fortawesome/free-solid-svg-icons';
-import { AuthorizationService } from 'src/app/Services/authorization.service';
 import { Usuario } from 'src/app/Models/Usuario';
-import { CookieService } from 'ngx-cookie-service';
-
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 
 @Component({
@@ -16,30 +14,15 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HomeComponent implements OnInit {
   faHospital = faHospital;
-  token: any;
-  cookieValue:string;
+  public error: String;
 
   constructor(private router: Router
-    , private service: AuthorizationService
+    , private service: AuthenticationService
     , private user: Usuario
   
   ) { }
 
   ngOnInit() {}
-
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
-  
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'O campo está vázio' :
-        this.email.hasError('email') ? 'Email não válido' :
-            '';
-  }
-  getErrorMessagePassword() {
-    return this.email.hasError('required') ? 'O campo está vázio' :
-        
-            '';
-  }
 
   Logar() {
     var email = (<HTMLInputElement>document.getElementById("email")).value;
@@ -48,11 +31,7 @@ export class HomeComponent implements OnInit {
     this.user.password = password;
 
     this.service.postAuthentication(email, password).subscribe(data => {
-      this.token = data;
-      localStorage.setItem('token',this.token);
-      console.log(localStorage.getItem('token'));
-    
-      if (this.token != null) {
+      if (data) {
         this.router.navigate(["dashboard"])
       }
     });

@@ -22,6 +22,7 @@ export class DashboardComponent {
 
   visiPat = false;
   visiMed = false;;
+  opened = false;
 
   toogleMedic(value: string) {
     if (value == "pat") {

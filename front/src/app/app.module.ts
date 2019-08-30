@@ -3,7 +3,6 @@ import { NgModule, Component } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AddMedicComponent } from './Pages/medico/add/addMedic.component';
 import { ListMedicComponent } from './Pages/medico/list/listMedic.component';
 import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
@@ -12,10 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Medico } from 'src/app/Models/Medico';
 import { ServiceService } from './Services/medico.service'
 
-import { HttpClientModule, HttpHeaders } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CookieService } from 'ngx-cookie-service';
 
 import { MaterialModule } from './modules/material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,8 +33,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Usuario } from './Models/Usuario';
-import { PatientService } from './Services/pacient.service';
-//import { CustomHttpInterceptorService } from './Interceptor/CustomHttpInterceptor.service';
+import { AuthenticationInterceptor } from './Interceptors/authentication.interceptor';
+import { AuthenticationService } from './Services/authentication.service';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthGuard } from './Guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -69,7 +69,16 @@ import { PatientService } from './Services/pacient.service';
     MatSidenavModule,
     MatToolbarModule,
   ],
-  providers: [/*{provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptorService, multi: true},*/ServiceService,CookieService ,PatientService, Medico,Patient,Usuario],
+  providers: [
+    AuthenticationService,
+    ServiceService,
+    AuthGuard,
+    CookieService,
+    Medico,
+    Patient,
+    Usuario,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

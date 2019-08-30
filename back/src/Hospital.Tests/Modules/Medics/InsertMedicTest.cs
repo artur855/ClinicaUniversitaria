@@ -50,7 +50,7 @@ namespace Hospital.Tests.Modules.Medics
             Assert.AreEqual(m_medic.UserId, 123);
 
             IEnumerable<Medic> medics = await m_medicService.ListAsync();
-            Assert.AreEqual(medics.Count(), 1);
+            Assert.AreEqual(medics.Count(), 0);
         }
     }
 }

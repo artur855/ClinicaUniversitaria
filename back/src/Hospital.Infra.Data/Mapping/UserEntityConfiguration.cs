@@ -21,16 +21,13 @@ namespace Hospital.Infra.Data.Mapping
 
             builder.Property(u => u.Email)
                 .HasColumnName("email")
-                .HasColumnType("VARCHAR(45)")
                 .IsRequired();
 
             builder.Property(u => u.Name)
-                .HasColumnName("nome")
-                .HasColumnType("VARCHAR(150)");
+                .HasColumnName("nome");
 
             builder.Property(u => u.Password)
                 .HasColumnName("senha")
-                .HasColumnType("VARCHAR(45)")
                 .IsRequired();
 
             builder.HasOne<Medic>(u => u.Medic)

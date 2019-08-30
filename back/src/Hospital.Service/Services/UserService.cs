@@ -47,8 +47,9 @@ namespace Hospital.Service.Services
         public async Task<User> UpdateAsync(User user)
         {
             Activator.CreateInstance<UserValidator>().Validate(user);
-
             User existingUser = await FindByIdAsync(user.Id);
+
+            existingUser.Name = user.Name;
             existingUser.Email = user.Email;
             existingUser.Password = user.Password;
 

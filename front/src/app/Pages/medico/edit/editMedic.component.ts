@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 }) export class EditMedicComponent implements OnInit {
 
   medico: Medico = new Medico();
-  constructor(private router: Router, private service: ServiceService,private _snackBar:MatSnackBar) { }
+  constructor(private router: Router, private service: ServiceService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.Editar();
@@ -20,20 +20,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   Editar() {
     let crm = localStorage.getItem("crm");
     this.medico.crm = crm
-    this.service.getMedicoCrm(+crm)
+    this.service.getMedicoCrm(parseInt(crm))
       .subscribe(data => {
 
         this.medico = data;
       })
 
   }
-  
+
   Atualizar(medico: Medico) {
     var nome = (<HTMLInputElement>document.getElementById("name")).value;
-    
+
     medico.name = nome;
     medico.crm = this.medico.crm;
-   
+
     this.service.updateMedico(medico)
       .subscribe(data => {
         this.medico = data;

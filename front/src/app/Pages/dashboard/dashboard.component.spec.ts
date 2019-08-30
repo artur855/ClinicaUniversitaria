@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { DashboardComponent } from './dashboard.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -24,6 +25,7 @@ describe('DashboardComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        FontAwesomeModule
       ]
     }).compileComponents();
   }));
