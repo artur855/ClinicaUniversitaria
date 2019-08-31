@@ -9,7 +9,8 @@ import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { AuthGuard } from './Guards/auth.guard';
-import { PedidoexameComponent } from './Pages/pedidoexame/pedidoexame.component';
+import { PedidoexameComponent } from './Pages/exame/addexame/pedidoexame.component';
+
 
 const routes: Routes = [
   { path: 'listar-medico', component: ListMedicComponent, canActivate: [AuthGuard] },

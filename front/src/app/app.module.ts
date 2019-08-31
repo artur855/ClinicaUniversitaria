@@ -37,9 +37,10 @@ import { AuthenticationInterceptor } from './Interceptors/authentication.interce
 import { AuthenticationService } from './Services/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './Guards/auth.guard';
-import { PedidoexameComponent } from './Pages/pedidoexame/pedidoexame.component';
+
 import { PatientService } from './Services/pacient.service';
 import { MedicService } from './Services/medico.service';
+import { PedidoexameComponent } from './Pages/exame/addexame/pedidoexame.component';
 
 @NgModule({
   declarations: [
