@@ -29,8 +29,8 @@ export class DashboardComponent {
   
   toogleMedic(value: string) {
     
-    if (value == "med") {
-      this.visiMed = !this.visiMed
+    if (value == "exam") {
+      this.visiExam = !this.visiExam
     }
   }
 }

@@ -9,8 +9,8 @@ import { ExamRequest, TypeExam } from 'src/app/Models/ExamRequest';
 })
 export class PedidoexameComponent implements OnInit {
   
-  exams:TypeExam;
-
+  exams : TypeExam[];
+  
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),

@@ -10,26 +10,69 @@
     </label>
 
     <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
+<div class="container">
+    <div class="col-lg-6">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-               <h2> Pedido de Exame</h2>
-            </div>
-            <div class="card-body">
-                <div class="container">
-                    <mat-form-field>
-                        <input matInput placeholder="Nome" formControlName="firstName">
-                    </mat-form-field>
+            <div class="card">
+                <div class="card-header">
+                    <h2> Pedido de Exame</h2>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Id do paciente</mat-label>
+                                        <input matInput placeholder="Digite o id do paciente"
+                                            formControlName="firstName">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Hipotese Cid</mat-label>
+                                        <input matInput placeholder="Digite a hipotese da CID">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Tipo de exame</mat-label>
+                                    <mat-select placeholder="selecionar" formControlName="lastName">
+                                        <mat-option *ngFor="let exam of exams">{{exam.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6">
+                                <mat-form-field>
+                                    <mat-label for="dateOfBirth">Data de agendamento</mat-label>
 
-                    <mat-form-field>
-                        <mat-select formControlName="lastName"  placeholder="Tipo de exame">
-                            <mat-option *ngFor="let exam of exams">{{exam.name}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                                    <input readonly id="dateOfBirth" matInput [matDatepicker]="picker"
+                                        placeholder="Clique no icone">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Recomendação</mat-label>
+                                <textarea matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=7 matInput
+                                    placeholder="Digite uma recomendação"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    
+                    <button class="btn btn-outline-dark" type="submit" [disabled]="!profileForm.valid">Salvar <i class="material-icons pt-1">save</i> </button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-</form>
+</div>

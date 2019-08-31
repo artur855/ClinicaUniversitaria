@@ -1,7 +1,7 @@
 export class ExamRequest {
-    id:number;
-    crm_medico : number;
-    type_exame: string;
+    id:number;  //n
+    crm_medico : number; //n
+    type_exame: string; 
     data_prevista : Date;
     recomendacao : string;
     hipotese_cid: string;
