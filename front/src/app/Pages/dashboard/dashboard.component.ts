@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
-import { faUserMd, faUserInjured, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faUserMd, faUserInjured, faBars, faClipboard} from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  faClipboard = faClipboard;
   faBars = faBars;
   faUserMd = faUserMd;
   faUserInjured = faUserInjured;
@@ -24,19 +25,12 @@ export class DashboardComponent {
 
   visiPat = false;
   visiMed = false;;
-
+  visiExam = false;;
+  
   toogleMedic(value: string) {
-    if (value == "pat") {
-      this.visiPat = !this.visiPat
-      if (this.visiMed == true) {
-        this.visiMed = false;
-      }
-    }
+    
     if (value == "med") {
       this.visiMed = !this.visiMed
-      if (this.visiPat == true) {
-        this.visiPat = false;
-      }
     }
   }
 }

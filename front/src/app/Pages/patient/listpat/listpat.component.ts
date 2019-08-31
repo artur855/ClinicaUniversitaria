@@ -13,8 +13,17 @@ export class ListpatComponent implements OnInit {
   closeResult: string;
   patients: Patient[];
   faUserPlus = faUserPlus;
-  colorsPat: PatientColor
-  sexPat: PatientSex;
+  sexPat = [
+    { name: "Masculino", value: "M" },
+    { name: "Feminino", value: "F" },
+  ]
+  colorsPat = [
+    { name: "Branco", value: "0" },
+    { name: "Negro", value: "1" },
+    { name: "Pardo", value: "2" },
+    { name: "Indigena", value: "3" },
+    { name: "Nao Especificado", value: "4" },
+  ]
 
   @Input() toggle: Boolean;
 
@@ -24,7 +33,26 @@ export class ListpatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+    this.service.getPatients().subscribe(data => {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].sex == "F") {
+          data[i].sex = "Feminino"
+        }
+        if (data[i].sex == "M") {
+          data[i].sex = "Masculino"
+        }
+        data[i].birthdate = data[i].birthdate;
+      }
+      for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < this.colorsPat.length; j++)
+          if (data[i].color == this.colorsPat[j].value) {
+            data[i].color = this.colorsPat[j].name
+          }
+      }
+
+      this.patients = data;
+
+    })
   }
 
   AdicionarPat() {

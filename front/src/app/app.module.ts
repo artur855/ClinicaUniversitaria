@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -10,7 +10,8 @@ import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Medico } from 'src/app/Models/Medico';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import {HttpModule} from '@angular/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -54,7 +55,6 @@ import { MedicService } from './Services/medico.service';
     PedidoexameComponent,
   ],
   imports: [
-    
     NgbModule,
     MaterialModule,
     BrowserModule,
@@ -62,6 +62,7 @@ import { MedicService } from './Services/medico.service';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     RouterModule,
     BrowserAnimationsModule,
     FontAwesomeModule,

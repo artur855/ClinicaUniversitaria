@@ -12,18 +12,23 @@
     <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
 
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div class="card">
-        <div class="card-header">
-            <div class="container">
-                <mat-form-field>
-                    <input matInput placeholder="Input">
-                </mat-form-field>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <h2> Pedido de Exame</h2>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <mat-form-field>
+                        <input matInput placeholder="Nome" formControlName="firstName">
+                    </mat-form-field>
 
-                <mat-form-field>
-                    <mat-select placeholder="Select">
-                        <mat-option value="option">Option</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                    <mat-form-field>
+                        <mat-select formControlName="lastName"  placeholder="Tipo de exame">
+                            <mat-option *ngFor="let exam of exams">{{exam.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
         </div>
     </div>
