@@ -17,6 +17,7 @@
           <thead>
             <tr>
               <th>Nome</th>
+              <th>Titualação</th>
               <th>CRM</th>
               <th>Ação</th>
 
@@ -25,7 +26,8 @@
           <tbody>
             <tr *ngFor="let medico of medicos" class="text-center">
 
-              <td>{{medico.name}}</td>
+              <td>{{medico.user.name}}</td>
+              <td>{{medico.titulation}}</td>
               <td>{{medico.crm}}</td>
               <td>
                 <button (click)="Editar(medico)" class="btn btn-warning m-2"><i class="material-icons">edit</i></button>

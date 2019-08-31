@@ -6,14 +6,10 @@ import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
 import { ListpatComponent } from './Pages/patient/listpat/listpat.component';
 import { EditpatComponent } from './Pages/patient/editpat/editpat.component';
 import { AddpatComponent } from './Pages/patient/addpat/addpat.component';
-
 import { HomeComponent } from './Pages/home/home.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { AuthGuard } from './Guards/auth.guard';
-
-
-
-
+import { PedidoexameComponent } from './Pages/pedidoexame/pedidoexame.component';
 
 const routes: Routes = [
   { path: 'listar-medico', component: ListMedicComponent, canActivate: [AuthGuard] },
@@ -23,6 +19,7 @@ const routes: Routes = [
   { path: 'edit-patient', component: EditpatComponent, canActivate: [AuthGuard] },
   { path: 'add-patient', component: AddpatComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'add-exam-request', component: PedidoexameComponent,/* canActivate: [AuthGuard]*/ },
   { path: '', component: HomeComponent }
 
 ];

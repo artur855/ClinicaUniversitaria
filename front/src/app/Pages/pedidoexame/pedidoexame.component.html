@@ -1,0 +1,30 @@
+<!-- 
+    <label>
+        First Name:
+        <input type="text" formControlName="firstName">
+    </label>
+
+    <label>
+        Last Name:
+        <input type="text" formControlName="lastName">
+    </label>
+
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="card">
+        <div class="card-header">
+            <div class="container">
+                <mat-form-field>
+                    <input matInput placeholder="Input">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Select">
+                        <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>

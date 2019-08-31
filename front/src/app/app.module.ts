@@ -9,7 +9,6 @@ import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Medico } from 'src/app/Models/Medico';
-import { ServiceService } from './Services/medico.service'
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
@@ -37,6 +36,9 @@ import { AuthenticationInterceptor } from './Interceptors/authentication.interce
 import { AuthenticationService } from './Services/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './Guards/auth.guard';
+import { PedidoexameComponent } from './Pages/pedidoexame/pedidoexame.component';
+import { PatientService } from './Services/pacient.service';
+import { MedicService } from './Services/medico.service';
 
 @NgModule({
   declarations: [
@@ -49,8 +51,10 @@ import { AuthGuard } from './Guards/auth.guard';
     AddpatComponent,
     HomeComponent,
     DashboardComponent,
+    PedidoexameComponent,
   ],
   imports: [
+    
     NgbModule,
     MaterialModule,
     BrowserModule,
@@ -71,13 +75,14 @@ import { AuthGuard } from './Guards/auth.guard';
   ],
   providers: [
     AuthenticationService,
-    ServiceService,
-    AuthGuard,
+    MedicService,
+    PatientService,
     CookieService,
+    AuthGuard,
     Medico,
     Patient,
     Usuario,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

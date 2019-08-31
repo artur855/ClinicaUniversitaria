@@ -7,24 +7,24 @@
     </mat-card-title>
 
     <mat-card-content>
-        <form [formGroup]="form">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
-                    <input matInput id="email" type="text" placeholder="Email" [formControl]="email" >
-                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                    <input matInput id="email" type="text" placeholder="Email" formControlName="email" >
+                   
                 </mat-form-field>
             </p>
             
             <p>
                 <mat-form-field>
-                    <input matInput id="password" type="password" placeholder="Senha" [formControl]="password" >
-                    <mat-error *ngIf="email.invalid">{{getErrorMessagePassword()}}</mat-error>
+                    <input matInput id="password" type="password" placeholder="Senha" formControlName="password" >
+              
                 </mat-form-field>
             </p>
 
 
             <div class="button text-center pt-3 pb-3">
-                <button (click)="Logar()" color="primary" mat-raised-button>Entrar</button>
+                <button type="submit" [disabled]="!profileForm.valid" color="primary" mat-raised-button>Entrar</button>
             </div>
         </form>
 

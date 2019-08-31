@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { faHospital } from '@fortawesome/free-solid-svg-icons';
 import { Usuario } from 'src/app/Models/Usuario';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
@@ -15,22 +15,25 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 export class HomeComponent implements OnInit {
   faHospital = faHospital;
   public error: String;
+  
+
+ private profileForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 
   constructor(private router: Router
     , private service: AuthenticationService
-    , private user: Usuario
-  
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  Logar() {
-    var email = (<HTMLInputElement>document.getElementById("email")).value;
-    var password = (<HTMLInputElement>document.getElementById("password")).value;
-    this.user.email = email;
-    this.user.password = password;
-
-    this.service.postAuthentication(email, password).subscribe(data => {
+  onSubmit() {
+    var user = new Usuario();
+    user.email = this.profileForm.controls.email.value;
+    user.password = this.profileForm.controls.password.value;
+    console.log(user)
+    this.service.postAuthentication(user.email,user.password).subscribe(data => {
       if (data) {
         this.router.navigate(["dashboard"])
       }

@@ -12,6 +12,8 @@ export class DashboardComponent {
   faBars = faBars;
   faUserMd = faUserMd;
   faUserInjured = faUserInjured;
+  opened = false;
+  
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -22,7 +24,6 @@ export class DashboardComponent {
 
   visiPat = false;
   visiMed = false;;
-  opened = false;
 
   toogleMedic(value: string) {
     if (value == "pat") {

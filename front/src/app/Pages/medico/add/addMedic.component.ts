@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServiceService } from 'src/app/Services/medico.service';
+import { MedicService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -15,7 +15,7 @@ export class AddMedicComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: ServiceService,
+    private service: MedicService,
     private medico: Medico,
     private _snackBar: MatSnackBar
   ) {

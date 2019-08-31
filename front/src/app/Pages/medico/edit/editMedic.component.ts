@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServiceService } from 'src/app/Services/medico.service';
+import { MedicService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 }) export class EditMedicComponent implements OnInit {
 
   medico: Medico = new Medico();
-  constructor(private router: Router, private service: ServiceService, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private service: MedicService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.Editar();
