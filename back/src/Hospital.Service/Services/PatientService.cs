@@ -27,12 +27,12 @@ namespace Hospital.Service.Services
             return await _patientRepository.FindById(id);
         }
 
-        public async Task<IEnumerable<Patient>> List()
+        public async Task<IEnumerable<Patient>> ListAsync()
         {
             return await _patientRepository.List();
         }
 
-        public async Task<Patient> Save(Patient patient)
+        public async Task<Patient> SaveAsync(Patient patient)
         {
             Activator.CreateInstance<PatientValidator>().Validate(patient);
             await _patientRepository.Create(patient);
@@ -50,11 +50,6 @@ namespace Hospital.Service.Services
             existPatient.Update(patient);
             _patientRepository.Update(existPatient);
             if (patient.User != null)
-                Console.Write($"ID USUARIO {patient.User.Id}");
-                Console.Write($"ID USUARIO {patient.User.Id}");
-                Console.Write($"ID USUARIO 0000000");
-                Console.Write($"ID USUARIO {patient.UserId}");
-                Console.Write($"ID USUARIO {patient.UserId}");
                 await _userService.UpdateAsync(patient.User);
             await _unitOfWork.CompleteAsync();
             return existPatient;

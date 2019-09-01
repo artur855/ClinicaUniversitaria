@@ -52,7 +52,7 @@ namespace Hospital.Tests.Modules.Patients
         [When("Eu clicar em cadastrar")]
         public async void Cadastrar()
         {
-            _patient = await _patientService.Save(_patient);
+            _patient = await _patientService.SaveAsync(_patient);
         }
 
         [Then("Meu paciente deve ser listado com id maior que 0")]

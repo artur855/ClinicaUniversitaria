@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Hospital.Domain.Entities
@@ -19,6 +20,7 @@ namespace Hospital.Domain.Entities
         public DateTime Birthdate { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
+        public ICollection<ExamRequest> ExamRequests { get; set; }
 
 
 

@@ -1,4 +1,5 @@
-﻿using Hospital.Domain.Converters;
+﻿using System.Collections.Generic;
+using Hospital.Domain.Converters;
 using Newtonsoft.Json;
 
 namespace Hospital.Domain.Entities
@@ -9,6 +10,7 @@ namespace Hospital.Domain.Entities
         public string CRM { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
+        public ICollection<ExamRequest> ExamRequests { get; set; }
     }
 
     public enum EMedicType {

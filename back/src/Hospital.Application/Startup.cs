@@ -42,7 +42,7 @@ namespace Hospital.Application
             services.AddPatientService();
             services.AddUnitOfWorkService();
             services.AddUserService();
-
+            services.AddExamRequestService();
             services.AddOptions();
         }
 

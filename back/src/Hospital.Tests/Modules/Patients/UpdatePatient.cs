@@ -21,7 +21,7 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Eu abra a tela de atualizar pacientes")]
         public void TelaAtualizarPaciente()
         {
-            _patientService.Save(new Patient()
+            _patientService.SaveAsync(new Patient()
             {
                 User = new User()
                 {

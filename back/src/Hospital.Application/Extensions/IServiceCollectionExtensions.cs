@@ -58,5 +58,12 @@ namespace Hospital.Application.Extensions
             services.AddDbContext<HospitalContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PostgresqlString")));
             return services;
         }
+
+        public static IServiceCollection AddExamRequestService(this IServiceCollection services)
+        {
+            services.AddScoped<IExamRequestRepository, ExamRequestRepository>();
+            services.AddScoped<IExamRequestService, ExamRequestService>();
+            return services;
+        }
     }
 }

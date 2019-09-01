@@ -20,7 +20,7 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Eu abra a tela de deletar paciente")]
         public async void TelaDeletarPaciente()
         {
-            await _patientService.Save(new Patient()
+            await _patientService.SaveAsync(new Patient()
             {
                 Birthdate = DateTime.ParseExact("09-10-1999", "dd-MM-yyyy",  System.Globalization.CultureInfo.InvariantCulture),
                 User = new User()
@@ -47,7 +47,7 @@ namespace Hospital.Tests.Modules.Patients
         [Then("O paciente deve ser deletado com sucesso")]
         public async void ValidarDelecao()
         {
-            var patients = await _patientService.List();
+            var patients = await _patientService.ListAsync();
             Assert.AreEqual(patients.Count(), 0);
         }
 

@@ -7,8 +7,8 @@ namespace Hospital.Domain.Interfaces.Services
     public interface IPatientService
     {
         Task<Patient> FindById(int id);
-        Task<IEnumerable<Patient>> List();
-        Task<Patient> Save(Patient patient);
+        Task<IEnumerable<Patient>> ListAsync();
+        Task<Patient> SaveAsync(Patient patient);
         Task<Patient> Update(Patient patient);
         Task Delete(int id);
     }

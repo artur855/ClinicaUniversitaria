@@ -1,3 +1,4 @@
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -28,6 +29,7 @@ namespace Hospital.Service.Services
                 Audience = _jwtTokenConfiguration.Audience,
                 IssuedAt = _jwtTokenConfiguration.IssuedAt,
                 NotBefore = _jwtTokenConfiguration.NotBefore,
+                Expires = DateTime.Now.AddDays(7),
                 SigningCredentials = new SigningCredentials(_jwtTokenConfiguration.SymmetricSecurityKey, SecurityAlgorithms.HmacSha256)
             });
 

@@ -50,5 +50,6 @@ namespace Hospital.Application.Extensions
             });
             return services;
         }
+         
     }
 }

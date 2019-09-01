@@ -24,7 +24,7 @@ namespace Hospital.Application.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Patient>>> Get()
         {
-            return Ok(await _patientService.List());
+            return Ok(await _patientService.ListAsync());
         }
 
         [HttpGet("{id}")]
@@ -40,7 +40,7 @@ namespace Hospital.Application.Controllers
         {
             if (patient == null)
                 return BadRequest();
-            var newPatient = await _patientService.Save(patient);
+            var newPatient = await _patientService.SaveAsync(patient);
             return CreatedAtAction(nameof(Post), new {id = newPatient.Id}, newPatient);
         }
 

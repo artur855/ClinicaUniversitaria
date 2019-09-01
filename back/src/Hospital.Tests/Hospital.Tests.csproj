@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Content Include="Histories\Authentication\Login.feature" />
+    <Content Include="Histories\ExamRequest\CreateExamRequest.feature" />
     <Content Include="Histories\Patient\DeletePatient.feature" />
     <Content Include="Histories\Patient\InsertPatient.feature" />
     <Content Include="Histories\Patient\ListPatient.feature" />
