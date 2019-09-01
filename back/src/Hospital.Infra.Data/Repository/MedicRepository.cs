@@ -24,7 +24,7 @@ namespace Hospital.Infra.Data.Repository
         
         public async Task<Medic> FindByCrmAsync(string crm)
         {
-            var x = await _context.Set<Medic>().FindAsync(crm);
+            var x = await _context.Set<Medic>().Include(m => m.User).SingleAsync(m => m.CRM == crm);
             return x;
         }
 
