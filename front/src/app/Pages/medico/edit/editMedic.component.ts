@@ -24,6 +24,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
       .subscribe(data => {
 
         this.medico = data;
+        console.log(this.medico)
       })
 
   }
@@ -31,7 +32,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   Atualizar(medico: Medico) {
     var nome = (<HTMLInputElement>document.getElementById("name")).value;
 
-    medico.name = nome;
+    medico.user.name = nome;
     medico.crm = this.medico.crm;
 
     this.service.updateMedico(medico)

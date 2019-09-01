@@ -4,6 +4,8 @@ import { ExamRequest, TypeExam } from 'src/app/Models/ExamRequest';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
+import { ExamrequestService } from 'src/app/Services/examrequest.service';
 
 // export const CUSTOM_DATE_FORMAT = {
 //   parse: {
@@ -33,8 +35,10 @@ export class PedidoexameComponent implements OnInit {
   tpExam = TypeExam;
   exams = []
   values= []
+  constructor(private router:Router,private service:ExamrequestService) { }
 
   private addExamForm = new FormGroup({
+    crm_medico:new FormControl(''),
     type_exame: new FormControl(''),
     data_prevista: new FormControl({value:'',  updateOn: 'submit'}),
     recomendacao: new FormControl(''),
@@ -52,13 +56,15 @@ export class PedidoexameComponent implements OnInit {
 
     var examRequest = new ExamRequest();
     examRequest = this.addExamForm.value;
-    
+    this.service.createExam(examRequest).subscribe(data =>{
+      this.router.navigate(['list-exam-request']);
+    });
+
     console.log(examRequest)
     this.addExamForm.reset('')
 
   }
 
-  constructor() { }
 
   ngOnInit() {
     this.exams = Object.keys(this.tpExam)

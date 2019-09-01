@@ -21,7 +21,7 @@ export class ListexameComponent implements OnInit {
 
   ngOnInit() {
     this.service.getExams().subscribe(data =>{
-      console.log(data)
+      //console.log(data)
       this.exams = data;
     })
   }
@@ -30,7 +30,7 @@ export class ListexameComponent implements OnInit {
   }
 
   Editar(exam:ExamRequest):void{
-    localStorage.setItem("id",exam.id.toString());
+    localStorage.setItem("idExam",exam.id.toString());
     this.router.navigate(["edit-exam-request"]);
   }
 

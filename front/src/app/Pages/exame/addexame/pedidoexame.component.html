@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="col-md-6">
+    <div class="col-lg-12">
         <form [formGroup]="addExamForm" (ngSubmit)="onSubmit()">
 
             <div class="card">
@@ -8,8 +8,18 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>CRM do médico</mat-label>
+                                        <input matInput placeholder="Digite CRM do médico" formControlName="crm_medico">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
                                         <mat-label>Id do paciente</mat-label>
@@ -18,7 +28,8 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
                                         <mat-label>Hipótese Cid</mat-label>
@@ -28,6 +39,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline">
@@ -41,7 +53,7 @@
 
 
                                 <mat-form-field>
-                                    <mat-label for="dateOfBirth">Data de Agendamento</mat-label>
+                                    <mat-label for="date">Data de Agendamento</mat-label>
                                     <input formControlName="data_prevista" readonly matInput [matDatepicker]="picker"
                                         placeholder="Clique no icone">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
