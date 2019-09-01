@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MedicService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
@@ -7,12 +7,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add',
   templateUrl: './addMedic.component.html',
-  styleUrls: ['./addMedic.component.css']
+  styleUrls: ['./addMedic.component.css'],
+  
 })
 export class AddMedicComponent implements OnInit {
-
-
-
+  
+  @Input() addMed= false;
   constructor(
     private router: Router,
     private service: MedicService,
@@ -22,7 +22,6 @@ export class AddMedicComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   onSubmit() {
@@ -30,15 +29,14 @@ export class AddMedicComponent implements OnInit {
     var CRM = (<HTMLInputElement>document.getElementById("CRM")).value;
 
     this.medico.name = nome;
-
     this.medico.crm = CRM;
 
     this.service.createMedico(this.medico).subscribe(data => {
       this.medico = data;
-
-      this.router.navigate(["listar-medico"]);
+      this.addMed = true;
+      this.router.navigate(["dashboard"]);
+      this.openSnackBarPat()
     })
-
   }
 
   openSnackBarPat() {

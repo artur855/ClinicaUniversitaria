@@ -1,0 +1,50 @@
+<div class="container">
+        <div class="container">
+          <div class="container ">
+            <div class="row">
+              <div class="col-lg-12">
+                
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="card">
+              <div class="card-header">
+                <h2>Lista de Exames</h2>
+              </div>
+              <div class="card-body">
+                <table class="table text-center">
+                  <thead>
+                    <tr>
+                      <th>Tipo de Exame</th>
+                      <th>Data de Exame</th>
+                      <th>Recomendação</th>
+                      <th>Hipótese CID</th>
+                      <th>Paciente</th>
+                      <th>Ação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let exam of exams" class="text-center">
+        
+                      <td>{{exam.type_exame}}</td>
+                      <td>{{exam.data_prevista}}</td>
+                      <td>{{exam.recomendacao}}</td>
+                      <td>{{exam.hipotese_cid}}</td>
+                      <td>{{exam.id_paciente}}</td>
+                      <td>
+                        <button (click)="Editar(exam)" class="btn btn-warning m-2"><i class="material-icons">edit</i></button>
+                        <button data-toggle="modal" data-target="#createModal" (click)="Delete(exam)"
+                          class="btn btn-danger"><i class="material-icons">delete</i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+        
+              </div>
+              <div class="card-footer">
+                  <button (click)="Adicionar()" type="button" id="btnadd"  class="btn btn-outline-primary float-right "><fa-icon [icon]="faUserPlus" class="mr-2" ></fa-icon>Adicionar</button>
+              </div>
+            </div>
+          </div>
+        </div>

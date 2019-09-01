@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
@@ -9,12 +9,14 @@ import { faUserMd, faUserInjured, faBars, faClipboard} from '@fortawesome/free-s
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  //icones
   faClipboard = faClipboard;
   faBars = faBars;
   faUserMd = faUserMd;
   faUserInjured = faUserInjured;
+  //abre dashboard
   opened = false;
-  
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -29,8 +31,9 @@ export class DashboardComponent {
   
   toogleMedic(value: string) {
     
-    if (value == "exam") {
-      this.visiExam = !this.visiExam
+    if (value == "med") {
+      this.visiMed = !this.visiMed
     }
+
   }
 }

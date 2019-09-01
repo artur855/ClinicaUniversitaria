@@ -24,9 +24,11 @@
       <span>Clínica Universitária</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <app-listar *ngIf="visiMed"></app-listar>
-    <app-listpat *ngIf="visiPat"></app-listpat>
-    <app-pedidoexame *ngIf="visiExam"></app-pedidoexame>
+    <app-listar *ngIf="visiMed">
+    </app-listar>
+    <app-add *ngIf="addMed"></app-add>
+    <app-edit *ngIf="ediMed"></app-edit>
+
 
   </mat-sidenav-content>
 </mat-sidenav-container>

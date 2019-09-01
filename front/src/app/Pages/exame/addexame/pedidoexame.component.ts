@@ -5,17 +5,17 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
 import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import * as moment from 'moment';
 
-export const CUSTOM_DATE_FORMAT = {
-  parse: {
-    dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'DD/MM/YYYY',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
+// export const CUSTOM_DATE_FORMAT = {
+//   parse: {
+//     dateInput: 'DD/MM/YYYY',
+//   },
+//   display: {
+//     dateInput: 'DD/MM/YYYY',
+//     monthYearLabel: 'MMMM YYYY',
+//     dateA11yLabel: 'DD/MM/YYYY',
+//     monthYearA11yLabel: 'MMMM YYYY',
+//   },
+// };
 
 @Component({
   selector: 'app-pedidoexame',
@@ -23,7 +23,7 @@ export const CUSTOM_DATE_FORMAT = {
   styleUrls: ['./pedidoexame.component.css'],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT},
+    // { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT},
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
@@ -45,7 +45,7 @@ export class PedidoexameComponent implements OnInit {
   onSubmit() {
     var date =this.addExamForm.controls.data_prevista 
     date.setValue(moment(date.value).format('L'));
-    
+
     //Caso não queira usar resetando o form deve-se extrair a data pois o control aceita apenas Moment
     //e quando retorna apenas a data ele mostra o control como invalid
     //var dateTrated = moment(date.value).format('L');
@@ -56,7 +56,6 @@ export class PedidoexameComponent implements OnInit {
     console.log(examRequest)
     this.addExamForm.reset('')
 
-   
   }
 
   constructor() { }
