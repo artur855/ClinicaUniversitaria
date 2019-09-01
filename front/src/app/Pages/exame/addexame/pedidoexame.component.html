@@ -38,8 +38,10 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-lg-6">
+
+
                                 <mat-form-field>
-                                    <mat-label for="data_prevista">Data de agendamento</mat-label>
+                                    <mat-label for="dateOfBirth">Data de Agendamento</mat-label>
                                     <input formControlName="data_prevista" readonly matInput [matDatepicker]="picker"
                                         placeholder="Clique no icone">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -50,16 +52,16 @@
                         <div class="form-group">
                             <mat-form-field appearance="outline">
                                 <mat-label>Recomendação</mat-label>
-                                <textarea formControlName="recomendacao" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=7 matInput
-                                    placeholder="Digite uma recomendação"></textarea>
+                                <textarea formControlName="recomendacao" matTextareaAutosize matAutosizeMinRows=1
+                                    matAutosizeMaxRows=7 matInput placeholder="Digite uma recomendação"></textarea>
                             </mat-form-field>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-right">
 
-                    <button class="btn btn-outline-dark" type="submit">Salvar <i
-                            class="material-icons pt-1">save</i> </button>
+                    <button class="btn btn-outline-dark" type="submit">Salvar <i class="material-icons pt-1">save</i>
+                    </button>
                 </div>
             </div>
         </form>

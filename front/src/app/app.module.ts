@@ -41,6 +41,7 @@ import { AuthGuard } from './Guards/auth.guard';
 import { PatientService } from './Services/pacient.service';
 import { MedicService } from './Services/medico.service';
 import { PedidoexameComponent } from './Pages/exame/addexame/pedidoexame.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { PedidoexameComponent } from './Pages/exame/addexame/pedidoexame.compone
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatNativeDateModule
   ],
   providers: [
     AuthenticationService,

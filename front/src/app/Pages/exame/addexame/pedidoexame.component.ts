@@ -33,12 +33,10 @@ export class PedidoexameComponent implements OnInit {
   tpExam = TypeExam;
   exams = []
   values= []
-  myDate=''
-  
 
   private addExamForm = new FormGroup({
     type_exame: new FormControl(''),
-    data_prevista: new FormControl(''),
+    data_prevista: new FormControl({value:'',  updateOn: 'submit'}),
     recomendacao: new FormControl(''),
     hipotese_cid: new FormControl(''),
     id_paciente: new FormControl(''),
@@ -47,7 +45,18 @@ export class PedidoexameComponent implements OnInit {
   onSubmit() {
     var date =this.addExamForm.controls.data_prevista 
     date.setValue(moment(date.value).format('L'));
-    console.log(this.addExamForm.value);
+    
+    //Caso não queira usar resetando o form deve-se extrair a data pois o control aceita apenas Moment
+    //e quando retorna apenas a data ele mostra o control como invalid
+    //var dateTrated = moment(date.value).format('L');
+
+    var examRequest = new ExamRequest();
+    examRequest = this.addExamForm.value;
+    
+    console.log(examRequest)
+    this.addExamForm.reset('')
+
+   
   }
 
   constructor() { }
