@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-lg-6">
-        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="addExamForm" (ngSubmit)="onSubmit()">
 
             <div class="card">
                 <div class="card-header">
@@ -14,15 +14,16 @@
                                     <mat-form-field appearance="outline">
                                         <mat-label>Id do paciente</mat-label>
                                         <input matInput placeholder="Digite o id do paciente"
-                                            formControlName="firstName">
+                                            formControlName="id_paciente">
                                     </mat-form-field>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
-                                        <mat-label>Hipotese Cid</mat-label>
-                                        <input matInput placeholder="Digite a hipotese da CID">
+                                        <mat-label>Hipótese Cid</mat-label>
+                                        <input matInput placeholder="Digite a hipotese da CID"
+                                            formControlName="hipotese_cid">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -31,16 +32,15 @@
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline">
                                     <mat-label>Tipo de exame</mat-label>
-                                    <mat-select placeholder="selecionar" formControlName="lastName">
-                                        <mat-option *ngFor="let exam of exams">{{exam.name}}</mat-option>
+                                    <mat-select placeholder="selecionar" formControlName="type_exame">
+                                        <mat-option *ngFor="let exam of values" value="{{exam}}">{{exam}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-lg-6">
                                 <mat-form-field>
-                                    <mat-label for="dateOfBirth">Data de agendamento</mat-label>
-
-                                    <input readonly id="dateOfBirth" matInput [matDatepicker]="picker"
+                                    <mat-label for="data_prevista">Data de agendamento</mat-label>
+                                    <input formControlName="data_prevista" readonly matInput [matDatepicker]="picker"
                                         placeholder="Clique no icone">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
@@ -50,15 +50,16 @@
                         <div class="form-group">
                             <mat-form-field appearance="outline">
                                 <mat-label>Recomendação</mat-label>
-                                <textarea matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=7 matInput
+                                <textarea formControlName="recomendacao" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=7 matInput
                                     placeholder="Digite uma recomendação"></textarea>
                             </mat-form-field>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    
-                    <button class="btn btn-outline-dark" type="submit" [disabled]="!profileForm.valid">Salvar <i class="material-icons pt-1">save</i> </button>
+
+                    <button class="btn btn-outline-dark" type="submit">Salvar <i
+                            class="material-icons pt-1">save</i> </button>
                 </div>
             </div>
         </form>

@@ -1,28 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ExamRequest, TypeExam } from 'src/app/Models/ExamRequest';
+import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+import * as moment from 'moment';
+
+export const CUSTOM_DATE_FORMAT = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-pedidoexame',
   templateUrl: './pedidoexame.component.html',
-  styleUrls: ['./pedidoexame.component.css']
+  styleUrls: ['./pedidoexame.component.css'],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT},
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
 })
 export class PedidoexameComponent implements OnInit {
+ 
+  tpExam = TypeExam;
+  exams = []
+  values= []
+  myDate=''
   
-  exams : TypeExam[];
-  
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+
+  private addExamForm = new FormGroup({
+    type_exame: new FormControl(''),
+    data_prevista: new FormControl(''),
+    recomendacao: new FormControl(''),
+    hipotese_cid: new FormControl(''),
+    id_paciente: new FormControl(''),
   });
 
   onSubmit() {
-    console.log(this.profileForm.get('firstName').value);
+    var date =this.addExamForm.controls.data_prevista 
+    date.setValue(moment(date.value).format('L'));
+    console.log(this.addExamForm.value);
   }
-  
+
   constructor() { }
 
   ngOnInit() {
+    this.exams = Object.keys(this.tpExam)
+    for(let i =0;i<4;i++){
+     this.values[i] = this.exams[i+4]
+    }
+    console.log(this.values)
   }
 
 }
