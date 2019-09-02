@@ -11,33 +11,35 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./listexame.component.css']
 })
 export class ListexameComponent implements OnInit {
-  faUserPlus =faUserPlus;
+  faUserPlus = faUserPlus;
 
   @Input() toggle: Boolean;
 
-  exams:ExamRequest[];
+  exams: ExamRequest[];
 
-  constructor(private service:ExamrequestService, private router:Router) { }
+  constructor(private service: ExamrequestService, private router: Router) { }
 
   ngOnInit() {
-    this.service.getExams().subscribe(data =>{
-      //console.log(data)
+    this.service.getExams().subscribe(data => {
+  
+      
+      console.log(data)
       this.exams = data;
     })
   }
-  Adicionar(){
+  Adicionar() {
     this.router.navigate(["add-exam-request"]);
   }
 
-  Editar(exam:ExamRequest):void{
-    localStorage.setItem("idExam",exam.id.toString());
+  Editar(exam: ExamRequest): void {
+    localStorage.setItem("idExam", exam.id.toString());
     this.router.navigate(["edit-exam-request"]);
   }
 
-  Delete(exam:ExamRequest){
+  Delete(exam: ExamRequest) {
     this.service.deleteExam(exam)
-    .subscribe(data => {
-      this.exams=this.exams.filter(m=>m!==exam);
-    });
-    }
+      .subscribe(data => {
+        this.exams = this.exams.filter(m => m !== exam);
+      });
   }
+}

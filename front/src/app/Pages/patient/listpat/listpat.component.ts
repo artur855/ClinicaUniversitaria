@@ -42,8 +42,6 @@ export class ListpatComponent implements OnInit {
           data[i].sex = "Masculino"
         }
         data[i].birthdate = data[i].birthdate;
-      }
-      for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < this.colorsPat.length; j++)
           if (data[i].color == this.colorsPat[j].value) {
             data[i].color = this.colorsPat[j].name

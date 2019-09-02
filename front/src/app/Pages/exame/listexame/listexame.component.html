@@ -16,6 +16,7 @@
                     <table class="table text-center">
                         <thead>
                             <tr>
+                                <th>Médico</th>
                                 <th>Tipo de Exame</th>
                                 <th>Data de Exame</th>
                                 <th>Recomendação</th>
@@ -27,11 +28,13 @@
                         <tbody>
                             <tr *ngFor="let exam of exams" class="text-center">
 
-                                <td>{{exam.type_exame}}</td>
-                                <td>{{exam.data_prevista}}</td>
-                                <td>{{exam.recomendacao}}</td>
-                                <td>{{exam.hipotese_cid}}</td>
-                                <td>{{exam.id_paciente}}</td>
+                                
+                                <td>{{exam.medicName}}</td>
+                                <td>{{exam.examName}}</td>
+                                <td>{{exam.expectedDate}}</td>
+                                <td>{{exam.recomendation}}</td>
+                                <td>{{exam.hypothesis}}</td>
+                                <td>{{exam.patientName}}</td>
                                 <td>
                                     <button (click)="Editar(exam)" class="btn btn-warning m-2"><i
                                             class="material-icons">edit</i></button>

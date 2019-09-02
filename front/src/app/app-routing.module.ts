@@ -23,9 +23,9 @@ const routes: Routes = [
   { path: 'edit-patient', component: EditpatComponent, canActivate: [AuthGuard] },
   { path: 'add-patient', component: AddpatComponent, canActivate: [AuthGuard] },
 
-  { path: 'list-exam-request', component: ListexameComponent,/* canActivate: [AuthGuard]*/ },
-  { path: 'add-exam-request', component: PedidoexameComponent,/* canActivate: [AuthGuard]*/ },
-  { path: 'edit-exam-request', component: EditexameComponent,/* canActivate: [AuthGuard]*/ },
+  { path: 'list-exam-request', component: ListexameComponent,canActivate: [AuthGuard] },
+  { path: 'add-exam-request', component: PedidoexameComponent,canActivate: [AuthGuard] },
+  { path: 'edit-exam-request', component: EditexameComponent,canActivate: [AuthGuard] },
   
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },

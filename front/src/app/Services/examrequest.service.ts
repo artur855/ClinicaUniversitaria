@@ -9,7 +9,7 @@ import { ExamRequest } from '../Models/ExamRequest';
 export class ExamrequestService {
   constructor(private http: HttpClient) { }
 
-  Url = environment.url+"exams/";
+  Url = environment.url+"ExamRequest/";
 
 
   getExams() {

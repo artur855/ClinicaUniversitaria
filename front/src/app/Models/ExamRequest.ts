@@ -1,11 +1,14 @@
 export class ExamRequest {
     id:number;  //n
-    crm_medico : number; //n
-    type_exame: string; 
-    data_prevista : Date;
-    recomendacao : string;
-    hipotese_cid: string;
-    id_paciente: number;
+    medicCrm : number; //n
+    medicName: string;
+    examName: string; 
+    expectedDate : Date;
+    hypothesis : string;
+    recomendation: string;
+    patientId: number;
+    patientName: number;
+
 }
 
 export enum TypeExam {
