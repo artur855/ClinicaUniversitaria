@@ -38,16 +38,16 @@ export class PedidoexameComponent implements OnInit {
   constructor(private router:Router,private service:ExamrequestService) { }
 
   private addExamForm = new FormGroup({
-    crm_medico:new FormControl(''),
-    type_exame: new FormControl(''),
-    data_prevista: new FormControl({value:'',  updateOn: 'submit'}),
-    recomendacao: new FormControl(''),
-    hipotese_cid: new FormControl(''),
-    id_paciente: new FormControl(''),
+    medicCrm:new FormControl(''),
+    examName: new FormControl(''),
+    expectedDate: new FormControl({value:'',  updateOn: 'submit'}),
+    recomendation: new FormControl(''),
+    hypothesis: new FormControl(''),
+    patientId: new FormControl(''),
   });
 
   onSubmit() {
-    var date =this.addExamForm.controls.data_prevista 
+    var date =this.addExamForm.controls.expectedDate 
     date.setValue(moment(date.value).format('L'));
 
     //Caso não queira usar resetando o form deve-se extrair a data pois o control aceita apenas Moment

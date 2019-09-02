@@ -14,7 +14,7 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
                                         <mat-label>CRM do médico</mat-label>
-                                        <input matInput placeholder="Digite CRM do médico" formControlName="crm_medico">
+                                        <input matInput placeholder="Digite CRM do médico" formControlName="medicCrm">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                                     <mat-form-field appearance="outline">
                                         <mat-label>Id do paciente</mat-label>
                                         <input matInput placeholder="Digite o id do paciente"
-                                            formControlName="id_paciente">
+                                            formControlName="patientId">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                     <mat-form-field appearance="outline">
                                         <mat-label>Hipótese Cid</mat-label>
                                         <input matInput placeholder="Digite a hipotese da CID"
-                                            formControlName="hipotese_cid">
+                                            formControlName="hypothesis">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline">
                                     <mat-label>Tipo de exame</mat-label>
-                                    <mat-select placeholder="selecionar" formControlName="type_exame">
+                                    <mat-select placeholder="selecionar" formControlName="examName">
                                         <mat-option *ngFor="let exam of values" value="{{exam}}">{{exam}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -54,7 +54,7 @@
 
                                 <mat-form-field>
                                     <mat-label for="date">Data de Agendamento</mat-label>
-                                    <input formControlName="data_prevista" readonly matInput [matDatepicker]="picker"
+                                    <input formControlName="expectedDate" readonly matInput [matDatepicker]="picker"
                                         placeholder="Clique no icone">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <mat-form-field appearance="outline">
                                 <mat-label>Recomendação</mat-label>
-                                <textarea formControlName="recomendacao" matTextareaAutosize matAutosizeMinRows=1
+                                <textarea formControlName="recomendation'" matTextareaAutosize matAutosizeMinRows=1
                                     matAutosizeMaxRows=7 matInput placeholder="Digite uma recomendação"></textarea>
                             </mat-form-field>
                         </div>
