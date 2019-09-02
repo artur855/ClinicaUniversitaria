@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Hospital.Domain.Command;
+using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -18,11 +22,12 @@ namespace Hospital.Application.Controllers
     {
 
         private IExamRequestService _examRequestService;
+        private readonly IMapper _mapper;
 
-
-        public ExamRequestController(IExamRequestService examRequestService)
+        public ExamRequestController(IExamRequestService examRequestService, IMapper mapper)
         {
             _examRequestService = examRequestService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -30,23 +35,26 @@ namespace Hospital.Application.Controllers
         {
             var userId = HttpContext.User.Claims.First()?.Value;
             var examRequests = await _examRequestService.ListAsync(int.Parse(userId));
-            return Ok(examRequests);
+
+            return Ok(_mapper.Map<IEnumerable<ExamRequest>, IEnumerable<ExamRequestDTO>>(examRequests));
         }
         
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ExamRequest examRequest)
+        public async Task<IActionResult> Post([FromBody] ExamRequestCommand examRequestCommand)
         {
+            var examRequest = _mapper.Map<ExamRequestCommand, ExamRequest>(examRequestCommand);
             var userId = HttpContext.User.Claims.First()?.Value;
             var newExamRequest =  await _examRequestService.SaveAsync(int.Parse(userId), examRequest);
             if (newExamRequest == null)
                 return Unauthorized();
-            return CreatedAtAction(nameof(Post), new {id = newExamRequest.Id}, newExamRequest);
+            return CreatedAtAction(nameof(Post), new {id = newExamRequest.Id}, _mapper.Map<ExamRequest, ExamRequestDTO>(newExamRequest));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] ExamRequest examRequest)
+        public async Task<IActionResult> Delete([FromBody] ExamRequestCommand examRequestCommand)
         {
             var userId = HttpContext.User.Claims.First()?.Value;
+            var examRequest = _mapper.Map<ExamRequestCommand, ExamRequest>(examRequestCommand);
             try
             {
                 await _examRequestService.DeleteAsync(int.Parse(userId), examRequest);
