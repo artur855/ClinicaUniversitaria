@@ -18,9 +18,15 @@ namespace Hospital.Infra.Data.Repository
         public IEnumerable<ExamRequest> ListAsync(User user)
         {
             if (user.Patient != null)
-                return _context.ExamRequests.AsNoTracking().Where(er => er.PatientId == user.Patient.Id);
+                return _context.ExamRequests.AsNoTracking()
+                    .Include(er => er.Medic).ThenInclude(m => m.User)
+                    .Include(er => er.Patient).ThenInclude(p => p.User)
+                    .Where(er => er.PatientId == user.Patient.Id);
             if (user.Medic != null)
-                return _context.ExamRequests.AsNoTracking().Where(er => er.MedicCrm == user.Medic.CRM);
+                return _context.ExamRequests.AsNoTracking()
+                    .Include(er => er.Medic).ThenInclude(m => m.User)
+                    .Include(er => er.Patient).ThenInclude(p => p.User)
+                    .Where(er => er.MedicCrm == user.Medic.CRM);
             return null;
         }
 
