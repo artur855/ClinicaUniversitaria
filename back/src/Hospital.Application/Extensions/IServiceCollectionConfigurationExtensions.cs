@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
+using Hospital.Domain.Mapping;
 
 namespace Hospital.Application.Extensions
 {
@@ -50,6 +52,21 @@ namespace Hospital.Application.Extensions
             });
             return services;
         }
-         
+
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+        {
+            var mappingConfiguration = new MapperConfiguration(mc => 
+            {
+                mc.AddProfile(new ModelToDTOProfile());
+                mc.AddProfile(new ModelToCommandProfile());
+            });
+
+            IMapper mapper = mappingConfiguration.CreateMapper();
+
+            services.AddSingleton(mapper);
+
+            return services;
+        }
+
     }
 }

@@ -1,10 +1,11 @@
-﻿
-using Hospital.Application.Extensions;
+﻿using Hospital.Application.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+
 
 namespace Hospital.Application
 {
@@ -36,6 +37,8 @@ namespace Hospital.Application
             services.AddJwtService();
 
             services.AddSwaggerConfiguration();
+
+            services.AddAutoMapper();
 
             services.AddAuthenticationService();
             services.AddMedicServices();
