@@ -12,7 +12,8 @@ namespace Hospital.Infra.Data.Mapping
             builder.HasKey(er => er.Id);
 
             builder.Property(er => er.Id).HasColumnName("id");
-            builder.Property(er => er.Hypothesis).HasColumnName("recomendacao");
+            builder.Property(er => er.Recomendation).HasColumnName("recomendacao");
+            builder.Property(er => er.Hypothesis).HasColumnName("hipotese_cid");
             builder.Property(er => er.ExamName).HasColumnName("exame");
             builder.Property(er => er.ExpectedDate).HasColumnName("data_prevista");
             builder.Property(er => er.MedicCrm).HasColumnName("crm_medico");

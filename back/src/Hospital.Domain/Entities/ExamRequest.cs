@@ -6,6 +6,7 @@ namespace Hospital.Domain.Entities
     {
         public int Id { get; set; }
         public string Hypothesis { get; set; }
+        public string Recomendation { get; set; }
         public DateTime ExpectedDate { get; set; }
         public ExamType ExamName { get; set; }
         
