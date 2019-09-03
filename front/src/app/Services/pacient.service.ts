@@ -4,22 +4,17 @@ import { Patient } from '../Models/Pacient'
 import { environment } from 'src/environments/environment';
 //import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
 
-  constructor(private http: HttpClient,private headers: HttpHeaders ) {
-    headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    headers.append('token', localStorage.getItem('token'));
-  }
+  constructor(private http: HttpClient) {};
+  
   Url = environment.url + "patients/";
 
-
   getPatients() {
-    return this.http.get<Patient[]>(this.Url,{'headers':this.headers});
+    return this.http.get<Patient[]>(this.Url);
   }
 
   getPatientId(id: number) {

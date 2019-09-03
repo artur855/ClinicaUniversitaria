@@ -7,8 +7,8 @@ import { ListMedicComponent } from './Pages/medico/list/listMedic.component';
 import { EditMedicComponent } from './Pages/medico/edit/editMedic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Medico } from 'src/app/Models/Medico';
-import {HttpModule} from '@angular/http';
-import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpModule} from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './modules/material-module';
