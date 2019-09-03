@@ -50,14 +50,16 @@ namespace Hospital.Application.Controllers
             return CreatedAtAction(nameof(Post), new {id = newExamRequest.Id}, _mapper.Map<ExamRequest, ExamRequestDTO>(newExamRequest));
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] ExamRequestCommand examRequestCommand)
+        [HttpDelete("{examRequestId}")]
+        public async Task<IActionResult> Delete(int examRequestId)
         {
             var userId = HttpContext.User.Claims.First()?.Value;
-            var examRequest = _mapper.Map<ExamRequestCommand, ExamRequest>(examRequestCommand);
             try
             {
-                await _examRequestService.DeleteAsync(int.Parse(userId), examRequest);
+                ExamRequest examRequest = await _examRequestService.DeleteAsync(int.Parse(userId), examRequestId);
+                if (examRequest == null)
+                    return NotFound();
+
                 return Ok();
             }
             catch (Exception e)

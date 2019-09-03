@@ -38,7 +38,11 @@ namespace Hospital.Infra.Data.Repository
         public void Remove(ExamRequest examRequest)
         {
             _context.ExamRequests.Remove(examRequest);
-            _context.SaveChanges();
+        }
+
+        public async Task<ExamRequest> FindByIdAsync(int id)
+        {
+            return await _context.ExamRequests.FindAsync(id);
         }
     }
 }

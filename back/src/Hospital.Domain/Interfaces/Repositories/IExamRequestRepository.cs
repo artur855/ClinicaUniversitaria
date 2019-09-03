@@ -6,6 +6,7 @@ namespace Hospital.Domain.Interfaces.Repositories
 {
     public interface IExamRequestRepository
     {
+        Task<ExamRequest> FindByIdAsync(int id);
         IEnumerable<ExamRequest> ListAsync(User user);
         Task SaveAsync(ExamRequest examRequest);
         void Remove(ExamRequest examRequest);

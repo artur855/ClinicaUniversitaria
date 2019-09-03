@@ -38,12 +38,26 @@ namespace Hospital.Service.Services
             return examRequest;
         }
 
-        public async Task DeleteAsync(int userId, ExamRequest examRequest)
+        public async Task<ExamRequest> DeleteAsync(int userId, int examRequestId)
         {
             var currentUser = await _userService.FindByIdAsync(userId);
             if (currentUser.Medic == null)
                 throw new UnauthorizedAccessException("Apenas médicos podem cancelar pedidos de exames");
+
+            ExamRequest examRequest = await FindByIdAsync(examRequestId);
+
+            if (examRequest == null) return null;
+
             _examRequestRepository.Remove(examRequest);
+
+            await _unitOfWork.CompleteAsync();
+
+            return examRequest;
+        }
+
+        public async Task<ExamRequest> FindByIdAsync(int id)
+        {
+            return await _examRequestRepository.FindByIdAsync(id);
         }
     }
 }
