@@ -21,6 +21,7 @@ namespace Hospital.Domain.Mapping
             CreateMap<ExamRequest, ExamRequestDTO>()
                 .ForMember(dest => dest.MedicName, opt => opt.MapFrom(src => src.Medic.User.Name))
                 .ForMember(dest => dest.PatientName, opt => opt.MapFrom(src => src.Patient.User.Name))
+                .ForMember(dest => dest.ExpectedDate, opt => opt.ConvertUsing(new DateConverter(), src => src.ExpectedDate))
                 .ReverseMap();
 
             CreateMap<Patient, PatientDTO>()
