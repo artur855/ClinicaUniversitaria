@@ -1,12 +1,12 @@
 export class ExamRequest {
     id:number;  //n
-    medicCrm : number; //n
-    medicName: string;
-    examName: string; 
-    expectedDate : string;
     hypothesis : string;
+    expectedDate : string;
+    examName: string; 
     recomendation: string;
+    medicCrm : number; //n
     patientId: number;
+    medicName: string;
     patientName: number;
 
 }

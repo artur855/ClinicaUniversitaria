@@ -13,8 +13,10 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
-                                        <mat-label>CRM do médico</mat-label>
-                                        <input matInput placeholder="Digite CRM do médico" formControlName="medicCrm">
+                                        <mat-label>CRM</mat-label>
+                                        <mat-select placeholder="selecionar" formControlName="medicCrm">
+                                            <mat-option *ngFor="let crm of crms" value="{{crm}}">{{crm}}</mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -70,10 +72,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-right">
-
-                    <button class="btn btn-outline-dark" type="submit">Salvar <i class="material-icons pt-1">save</i>
-                    </button>
+                <div class="card-footer">
+                    <div class="row justify-content-between">
+                        <div class="col-4">
+                            <button (click)="Voltar()" class="btn btn-outline-primary">Voltar<i class="material-icons pt-1"></i>
+                            </button>
+                        </div>
+                        <div class="col-4 text-right">
+                            <button class="btn btn-outline-dark" type="submit">Salvar<i class="material-icons pt-1">save</i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

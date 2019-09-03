@@ -33,24 +33,23 @@ export class ListpatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.service.getPatients().subscribe(data => {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].sex == "F") {
-          data[i].sex = "Feminino"
-        }
-        if (data[i].sex == "M") {
-          data[i].sex = "Masculino"
-        }
-        data[i].birthdate = data[i].birthdate;
-        for (let j = 0; j < this.colorsPat.length; j++)
-          if (data[i].color == this.colorsPat[j].value) {
-            data[i].color = this.colorsPat[j].name
-          }
-      }
-
-      this.patients = data;
-
-    })
+    //this.service.getPatients().subscribe(data => {
+      // for (let i = 0; i < data.length; i++) {
+      //   if (data[i].sex == "F") {
+      //     data[i].sex = "Feminino"
+      //   }
+      //   if (data[i].sex == "M") {
+      //     data[i].sex = "Masculino"
+      //   }
+      //   data[i].birthdate = data[i].birthdate;
+      //   for (let j = 0; j < this.colorsPat.length; j++)
+      //     if (data[i].color == this.colorsPat[j].value) {
+      //       data[i].color = this.colorsPat[j].name
+      //     }
+      // }
+      this.service.getPatients().subscribe(data => {
+        console.log(data);
+      });
   }
 
   AdicionarPat() {

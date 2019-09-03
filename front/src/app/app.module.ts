@@ -76,13 +76,12 @@ import { ListexameComponent } from './Pages/exame/listexame/listexame.component'
   providers: [
     AuthenticationService,
     MedicService,
-    PatientService,
     CookieService,
     AuthGuard,
     Medico,
     Patient,
     Usuario,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },PatientService
   ],
   bootstrap: [AppComponent]
 })

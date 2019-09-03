@@ -78,7 +78,7 @@ export class EditpatComponent implements OnInit {
 
     this.service.updatePatient(patient).subscribe(data => {
       this.patient = data;
-      this.router.navigate(["list-patient"]);
+      this.router.navigate(["dashboard"]);
     });
   }
 

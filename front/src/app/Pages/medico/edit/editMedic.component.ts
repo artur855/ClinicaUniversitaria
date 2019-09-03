@@ -38,7 +38,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     this.service.updateMedico(medico)
       .subscribe(data => {
         this.medico = data;
-        this.router.navigate(["listar-medico"]);
+        this.router.navigate(["dashboard"]);
       })
   }
 

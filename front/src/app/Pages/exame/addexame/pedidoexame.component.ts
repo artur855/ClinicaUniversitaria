@@ -6,6 +6,8 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-mo
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { ExamrequestService } from 'src/app/Services/examrequest.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MedicService } from 'src/app/Services/medico.service';
 
 // export const CUSTOM_DATE_FORMAT = {
 //   parse: {
@@ -31,12 +33,29 @@ import { ExamrequestService } from 'src/app/Services/examrequest.service';
   ],
 })
 export class PedidoexameComponent implements OnInit {
- 
+  
   tpExam = TypeExam;
   exams = []
   values= []
-
-  constructor(private router:Router,private service:ExamrequestService) { }
+  crms = []
+  
+  ngOnInit() {
+    this.exams = Object.keys(this.tpExam)
+    for(let i =0;i<4;i++){
+     this.values[i] = this.exams[i+4]
+    }
+    this.serviceMed.getMedicos().subscribe(data => {
+      for(let i = 0;i < data.length;i++){
+        this.crms[i] = data[i].crm
+      }
+    });
+    
+  }
+  constructor(
+    private router:Router,
+    private service:ExamrequestService, 
+    private _snackBar:MatSnackBar,
+    private serviceMed: MedicService) { }
 
   private addExamForm = new FormGroup({
     hypothesis: new FormControl(''),
@@ -50,31 +69,26 @@ export class PedidoexameComponent implements OnInit {
   onSubmit() {
     var date =this.addExamForm.controls.expectedDate 
     date.setValue(moment(date.value).format('L'));
-
     //Caso não queira usar resetando o form deve-se extrair a data pois o control aceita apenas Moment
     //e quando retorna apenas a data ele mostra o control como invalid
     //var dateTrated = moment(date.value).format('L');
-
     var examRequest = new ExamRequest();
     examRequest = this.addExamForm.value;
-    console.log(examRequest)
      this.service.createExam(examRequest).subscribe(data =>{
       this.router.navigate(['list-exam-request']);
+      this.openSnackBarPat
     });
-
-  
-    console.log(examRequest)
     this.addExamForm.reset('')
-
   }
-
-
-  ngOnInit() {
-    this.exams = Object.keys(this.tpExam)
-    for(let i =0;i<4;i++){
-     this.values[i] = this.exams[i+4]
-    }
-    console.log(this.values)
+  Voltar(){
+    this.router.navigate(["dashboard"]);
+  }
+  openSnackBarPat() {
+    var message = "Exame adicionado!"
+    var action = "Fechar"
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

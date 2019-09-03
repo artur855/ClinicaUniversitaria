@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Patient } from '../Models/Pacient'
 import { environment } from 'src/environments/environment';
 //import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ export class PatientService {
 
   constructor(private http: HttpClient) {};
   
-  Url = environment.url + "patients/";
+  Url = environment.url + "Patients/";
 
   getPatients() {
     return this.http.get<Patient[]>(this.Url);
