@@ -28,6 +28,6 @@ namespace Hospital.Infra.Data.Mapping
                 .HasForeignKey(er => er.MedicCrm);
             
             
-        }
+        } 
     }
 }
