@@ -3,7 +3,7 @@ export class ExamRequest {
     medicCrm : number; //n
     medicName: string;
     examName: string; 
-    expectedDate : Date;
+    expectedDate : string;
     hypothesis : string;
     recomendation: string;
     patientId: number;

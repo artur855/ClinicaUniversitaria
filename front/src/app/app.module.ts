@@ -37,7 +37,6 @@ import { MedicService } from './Services/medico.service';
 import { PedidoexameComponent } from './Pages/exame/addexame/pedidoexame.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ListexameComponent } from './Pages/exame/listexame/listexame.component';
-import { EditexameComponent } from './Pages/exame/editexame/editexame.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +51,6 @@ import { EditexameComponent } from './Pages/exame/editexame/editexame.component'
     DashboardComponent,
     PedidoexameComponent,
     ListexameComponent,
-    EditexameComponent,
   ],
   imports: [
     NgbModule,

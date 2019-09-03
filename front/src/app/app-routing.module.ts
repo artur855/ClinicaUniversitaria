@@ -10,7 +10,6 @@ import { HomeComponent } from './Pages/home/home.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { PedidoexameComponent } from './Pages/exame/addexame/pedidoexame.component';
-import { EditexameComponent } from './Pages/exame/editexame/editexame.component';
 import { ListexameComponent } from './Pages/exame/listexame/listexame.component';
 
 
@@ -25,7 +24,7 @@ const routes: Routes = [
 
   { path: 'list-exam-request', component: ListexameComponent,canActivate: [AuthGuard] },
   { path: 'add-exam-request', component: PedidoexameComponent,canActivate: [AuthGuard] },
-  { path: 'edit-exam-request', component: EditexameComponent,canActivate: [AuthGuard] },
+  
   
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },

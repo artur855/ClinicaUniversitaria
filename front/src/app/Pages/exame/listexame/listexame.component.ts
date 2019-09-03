@@ -21,19 +21,12 @@ export class ListexameComponent implements OnInit {
 
   ngOnInit() {
     this.service.getExams().subscribe(data => {
-  
-      
-      console.log(data)
       this.exams = data;
     })
   }
+  
   Adicionar() {
     this.router.navigate(["add-exam-request"]);
-  }
-
-  Editar(exam: ExamRequest): void {
-    localStorage.setItem("idExam", exam.id.toString());
-    this.router.navigate(["edit-exam-request"]);
   }
 
   Delete(exam: ExamRequest) {

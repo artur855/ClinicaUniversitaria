@@ -35,14 +35,15 @@ export class PedidoexameComponent implements OnInit {
   tpExam = TypeExam;
   exams = []
   values= []
+
   constructor(private router:Router,private service:ExamrequestService) { }
 
   private addExamForm = new FormGroup({
-    medicCrm:new FormControl(''),
-    examName: new FormControl(''),
-    expectedDate: new FormControl({value:'',  updateOn: 'submit'}),
-    recomendation: new FormControl(''),
     hypothesis: new FormControl(''),
+    expectedDate: new FormControl({value:'',  updateOn: 'submit'}),
+    examName: new FormControl(''),
+    recomendation: new FormControl(''),
+    medicCrm:new FormControl(''),
     patientId: new FormControl(''),
   });
 
@@ -56,10 +57,12 @@ export class PedidoexameComponent implements OnInit {
 
     var examRequest = new ExamRequest();
     examRequest = this.addExamForm.value;
-    this.service.createExam(examRequest).subscribe(data =>{
+    console.log(examRequest)
+     this.service.createExam(examRequest).subscribe(data =>{
       this.router.navigate(['list-exam-request']);
     });
 
+  
     console.log(examRequest)
     this.addExamForm.reset('')
 
