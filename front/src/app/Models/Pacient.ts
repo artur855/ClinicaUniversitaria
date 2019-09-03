@@ -8,6 +8,7 @@ export class Patient {
     birthdate: Date;
     user: Usuario;
     examRequests: ExamRequest[]
+    age: string;
 }
 
 export enum PatientColor {

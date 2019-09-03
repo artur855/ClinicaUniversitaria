@@ -56,7 +56,7 @@ export class EditpatComponent implements OnInit {
   }
 
   AtualizarPat(patient: Patient) {
-
+/*
     var name = (<HTMLInputElement>document.getElementById("nameP")).value;
     var email = (<HTMLInputElement>document.getElementById("emailP")).value;
     var birthdate = (<HTMLInputElement>document.getElementById("dateOfBirth")).value;
@@ -79,7 +79,7 @@ export class EditpatComponent implements OnInit {
     this.service.updatePatient(patient).subscribe(data => {
       this.patient = data;
       this.router.navigate(["dashboard"]);
-    });
+    });*/
   }
 
   openSnackBarPat() {

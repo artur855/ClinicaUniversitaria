@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ExamRequest, TypeExam } from 'src/app/Models/ExamRequest';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
@@ -69,6 +69,7 @@ export class PedidoexameComponent implements OnInit {
   onSubmit() {
     var date =this.addExamForm.controls.expectedDate 
     date.setValue(moment(date.value).format('L'));
+    console.log(date.value)
     //Caso não queira usar resetando o form deve-se extrair a data pois o control aceita apenas Moment
     //e quando retorna apenas a data ele mostra o control como invalid
     //var dateTrated = moment(date.value).format('L');
@@ -92,5 +93,4 @@ export class PedidoexameComponent implements OnInit {
       duration: 2000,
     });
   }
-
 }
