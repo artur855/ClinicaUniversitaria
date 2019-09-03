@@ -1,11 +1,13 @@
 import { Usuario } from './Usuario';
+import { ExamRequest } from './ExamRequest';
 
 export class Patient {
     id: number;
-    user: Usuario;
     sex: string;
     color: string;
     birthdate: Date;
+    user: Usuario;
+    examRequests: ExamRequest[]
 }
 
 export enum PatientColor {

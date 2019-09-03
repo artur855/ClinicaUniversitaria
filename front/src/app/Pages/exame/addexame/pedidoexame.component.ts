@@ -80,9 +80,11 @@ export class PedidoexameComponent implements OnInit {
     });
     this.addExamForm.reset('')
   }
+
   Voltar(){
     this.router.navigate(["dashboard"]);
   }
+  
   openSnackBarPat() {
     var message = "Exame adicionado!"
     var action = "Fechar"

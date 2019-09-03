@@ -6,6 +6,7 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/Models/Usuario';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-addpat',
@@ -32,6 +33,16 @@ export class AddpatComponent implements OnInit {
   ]
   selectedCor = null;
   selectedSex = '';
+
+  private addMedForm = new FormGroup({
+    name : new FormControl(''),
+    email : new FormControl(''),
+    password : new FormControl(''),
+    birthdate : new FormControl(''),
+    color : new FormControl(''),
+    sex: new FormControl('')
+  });
+
   constructor(private service: PatientService,
     private router: Router,
     private patient: Patient,
@@ -40,7 +51,11 @@ export class AddpatComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmitPat() {
+  Voltar(){
+    this.router.navigate(["dashboard"]);
+  }
+
+  onSubmit() {
     var name = (<HTMLInputElement>document.getElementById("nameP")).value;
     var email = (<HTMLInputElement>document.getElementById("emailP")).value;
     var senha = (<HTMLInputElement>document.getElementById("senhaP")).value;

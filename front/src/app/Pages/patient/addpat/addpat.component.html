@@ -5,34 +5,40 @@
         <h2>Pacientes</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addMedForm" (ngSubmit)="onSubmit()">
           <div class="container">
             <div class="row">
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label for="name">Nome</label>
-                  <input type="text" class="form-control" id="nameP" placeholder="Digite o nome">
+                  <mat-form-field appearance="outline">
+                    <mat-label for="name">Nome</mat-label>
+                    <input type="text" matInput formControlName="name" placeholder="Digite o nome">
+                  </mat-form-field>
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="text" class="form-control" id="emailP" placeholder="Digite o email">
+                  <mat-form-field appearance="outline">
+                    <mat-label for="email">Email</mat-label>
+                    <input type="text" matInput formControlName="email" placeholder="Digite o email">
+                  </mat-form-field>
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label for="senha">Senha</label>
-                  <input type="password" class="form-control" id="senhaP" placeholder="Digite o nome">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <input matInput placeholder="Digite a senha" formControlName="password">
+                  </mat-form-field>
                 </div>
               </div>
             </div>
-            <div class="row mt-5 mb-4">
+            <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <mat-form-field>
-                    <mat-label>Selecione uma color</mat-label>
-                    <mat-select [(value)]="selectedCor">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Selecione uma cor</mat-label>
+                    <mat-select formControlName="color">
                       <mat-option *ngFor="let c of colorsPat" value="{{c.value}}">{{c.name}} </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -40,9 +46,9 @@
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <mat-form-field>
+                  <mat-form-field appearance="outline">
                     <mat-label>Selecione um sexo</mat-label>
-                    <mat-select [(value)]="selectedSex">
+                    <mat-select formControlName="sex">
                       <mat-option *ngFor="let s of sexPat" value="{{s.value}}">{{s.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -50,21 +56,28 @@
               </div>
             </div>
 
-            <div class="form-group ">
-              <label for="dateOfBirth">Data de Nascimento</label>
-              <div class="input-group input-group-lg"></div>
-              <mat-form-field>
-                <input readonly id="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Clique no icone">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline">
+              <mat-label for="date">Data de Nascimento</mat-label>
+              <input formControlName="birthdate" readonly matInput [matDatepicker]="picker"
+                placeholder="Clique no icone">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
           </div>
         </form>
       </div>
       <div class="card-footer text-right">
-        <button (click)="onSubmitPat()" (click)="openSnackBarPat()" type="submit"
-          class="btn btn-outline-dark">Salvar</button>
+        <div class="row justify-content-between">
+          <div class="col-4 text-left">
+            <button (click)="Voltar()" class="btn btn-outline-primary">Voltar<i class="material-icons pt-1"></i>
+            </button>
+          </div>
+          <div class="col-4 text-right">
+            <button class="btn btn-outline-dark" type="submit">Salvar<i class="material-icons pt-1">save</i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
