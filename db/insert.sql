@@ -19,10 +19,10 @@ INSERT INTO tb_medicos (crm, titulacao, ano_inicio, tipo_medico, id_usuario) VAL
 -- Inserindo Pacientes 
 INSERT INTO tb_pacientes (id, sexo, cor, dt_nasc, id_usuario) VALUES(1, 'M', 0, '1094-05-02', 7);
 INSERT INTO tb_pacientes (id, sexo, cor, dt_nasc, id_usuario) VALUES(2, 'M', 1, '1827-08-10', 8);
-INSERT INTO tb_pacientes (id, sexo, cor, dt_nasc, id_usuario) VALUES(3, 'M', 2, '2030-06-28', 9);
+INSERT INTO tb_pacientes (id, sexo, cor, dt_nasc, id_usuario) VALUES(3, 'M', 2, '2000-06-28', 9);
 
 -- Inserindo Pedidos Exame
-INSERT INTO tb_pedidos_exames (id, crm_medico, exame, data_prevista, recomendacao, hipotese_cid, id_paciente) VALUES(1, '81273RJ', 1, '2021-05-09', 'tomar ch·', '2', 1);
+INSERT INTO tb_pedidos_exames (id, crm_medico, exame, data_prevista, recomendacao, hipotese_cid, id_paciente) VALUES(1, '81273RJ', 1, '2021-05-09', 'tomar ch√°', '2', 1);
 INSERT INTO tb_pedidos_exames (id, crm_medico, exame, data_prevista, recomendacao, hipotese_cid, id_paciente) VALUES(2, '129083DP', 2, '2019-08-07', 'relaxar', '3', 1);
 INSERT INTO tb_pedidos_exames (id, crm_medico, exame, data_prevista, recomendacao, hipotese_cid, id_paciente) VALUES(3, '129083DP', 2, '2019-09-01', 'qualquer coisa aqui', NULL, 1);
 INSERT INTO tb_pedidos_exames (id, crm_medico, exame, data_prevista, recomendacao, hipotese_cid, id_paciente) VALUES(4, '129083DP', 1, '2019-09-01', 'qualquer coisa aqui', NULL, 1);
