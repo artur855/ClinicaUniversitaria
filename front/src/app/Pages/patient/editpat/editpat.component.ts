@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Patient } from 'src/app/Models/Pacient';
+import { Patient, PatientSex, PatientColor } from 'src/app/Models/Pacient';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/Services/pacient.service';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/Models/Usuario';
+import { TypeExam } from 'src/app/Models/ExamRequest';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MedicService } from 'src/app/Services/medico.service';
+import { ExamrequestService } from 'src/app/Services/examrequest.service';
 
 
 @Component({
@@ -20,31 +24,35 @@ import { Usuario } from 'src/app/Models/Usuario';
 })
 
 export class EditpatComponent implements OnInit {
-  sexPat = [
-    { name: "Masculino", value: "M" },
-    { name: "Feminino", value: "F" },
-  ]
-  colorsPat = [
-    { name: "Branco", value: 0 },
-    { name: "Negro", value: 1 },
-    { name: "Pardo", value: 2 },
-    { name: "Indigena", value: 3 },
-    { name: "Nao Especificado", value: 4 },
-  ]
-  selectedCor = null;
-  selectedSex = '';
+  tSex = PatientSex;
+  sexPat = []
+  tColor = PatientColor;
+  colorsPat = []
+  private patient: Patient = new Patient();
+  
 
-  patient: Patient = new Patient();
-  constructor(private router: Router,
-    private service: PatientService,
+  private editMedForm = new FormGroup({
+    sex: new FormControl(this.patient.sex),
+    color : new FormControl(this.patient.color),
+    expectedDate: new FormControl(this.patient.birthdate),
+    name : new FormControl(this.patient.user.name),
+    email : new FormControl(this.patient.user.email),
+    password : new FormControl(''),
+  });
+
+  constructor(private service: PatientService,
+    private router: Router,
     private _snackBar: MatSnackBar) { }
 
-
   ngOnInit() {
-    this.EditPat();
+    this.sexPat = Object.keys(this.tSex)
+    this.colorsPat = Object.values(this.tColor)
+    this.colorsPat = this.colorsPat.splice(0,5);
   }
 
+  
   EditPat() {
+    this.patient.user = new Usuario();
     let id = localStorage.getItem("idpat")
     let y: number;
     y = parseInt(id);

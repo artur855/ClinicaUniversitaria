@@ -76,7 +76,7 @@ export class PedidoexameComponent implements OnInit {
     var examRequest = new ExamRequest();
     examRequest = this.addExamForm.value;
      this.service.createExam(examRequest).subscribe(data =>{
-      this.router.navigate(['list-exam-request']);
+      this.router.navigate(['dashboard']);
       this.openSnackBarPat
     });
     this.addExamForm.reset('')
