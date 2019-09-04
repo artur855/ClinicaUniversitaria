@@ -12,8 +12,8 @@ export class ExamRequest {
 }
 
 export enum TypeExam {
-    ecocardiograma = 0,
-    eletrocardiograma = 1,
-    mapa = 2,
-    holter =3
+    Ecocardiograma = 0,
+    Eletrocardiograma = 1,
+    Mapa = 2,
+    Holter =3
 }

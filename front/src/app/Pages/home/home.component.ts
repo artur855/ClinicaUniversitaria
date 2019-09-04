@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
     var user = new Usuario();
     user.email = this.profileForm.controls.email.value;
     user.password = this.profileForm.controls.password.value;
-    console.log(user)
     this.service.postAuthentication(user.email,user.password).subscribe(data => {
       if (data) {
         this.router.navigate(["dashboard"])

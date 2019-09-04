@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { PatientService } from 'src/app/Services/pacient.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/Models/Usuario';
-import { ExamRequest } from 'src/app/Models/ExamRequest';
+//import { ExamRequest } from 'src/app/Models/ExamRequest';
 import * as moment from 'moment';
 @Component({
   selector: 'app-addpat',
@@ -32,8 +32,8 @@ export class AddpatComponent implements OnInit {
     color : new FormControl(''),
     expectedDate: new FormControl(''),
     name : new FormControl(''),
-    email : new FormControl(''),
     password : new FormControl(''),
+    email : new FormControl(''),
   });
 
   constructor(private service: PatientService,
@@ -42,8 +42,8 @@ export class AddpatComponent implements OnInit {
 
   ngOnInit() {
     this.sexPat = Object.keys(this.tSex)
-    this.colorsPat = Object.values(this.tColor)
-    this.colorsPat = this.colorsPat.splice(0,5);
+    this.colorsPat = Object.keys(this.tColor)
+    this.colorsPat = this.colorsPat.splice(5,5);
   }
 
   Voltar(){
@@ -57,14 +57,13 @@ export class AddpatComponent implements OnInit {
     var patient = new Patient();
     patient.user = new Usuario();
 
-    patient.sex = this.addMedForm.controls.sex.value
-    patient.color = this.addMedForm.controls.color.value
+    patient.sex =this.tSex[this.addMedForm.controls.sex.value]
+    patient.color = this.tColor[this.addMedForm.controls.color.value]
     patient.birthdate = date.value
     patient.user.name= this.addMedForm.controls.name.value
+    patient.user.password = this.addMedForm.controls.password.value
     patient.user.email = this.addMedForm.controls.email.value
 
-    console.log(patient)
-    
     this.service.createPatient(patient).subscribe(data => {
       patient = data;
       this.router.navigate(["dashboard"]);

@@ -16,19 +16,21 @@
               <th>Sexo</th>
               <th>Cor</th>
               <th>Nascimento</th>
-              <th>Exames Marcados</th>
+              <th>E-mail</th>
               <th>Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let patient of patients" class="text-center">
 
-              <td>{{patient.user.name}}</td>
+              
+              <td>{{patient.name}}</td>
               <td>{{patient.sex}}</td>
               <td>{{patient.color}}</td>
               <td>{{patient.birthdate}}</td>
+              <td>{{patient.email}}</td>
               <td>
-                <button (click)="EditarPat(patient.id)" class="btn btn-warning"><i
+                <button (click)="EditarPat(patient.id)" class="btn btn-warning mr-2"><i
                     class="material-icons">edit</i></button>
                 <button data-toggle="modal" data-target="#createModal" (click)="DeletePat(patient)"
                   class="btn btn-danger"><i class="material-icons">delete</i></button>

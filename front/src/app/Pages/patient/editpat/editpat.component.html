@@ -3,7 +3,7 @@
         <form [formGroup]="editMedForm" (ngSubmit)="onSubmit()">
             <div class="card">
                 <div class="card-header">
-                    <h2>Pacientes</h2>
+                    <h2>Editar Paciente</h2>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -22,7 +22,7 @@
                                     <mat-form-field appearance="outline">
                                         <mat-label for="email">Email</mat-label>
                                         <input type="text" matInput formControlName="email"
-                                            placeholder="Digite o email">
+                                            placeholder="Digite o email" >
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
                                         <mat-label>Senha</mat-label>
-                                        <input matInput placeholder="Digite a senha" formControlName="password">
+                                        <input matInput placeholder="Digite a senha" formControlName="password" type="password">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -61,9 +61,9 @@
                         </div>
 
                         <mat-form-field>
-                            <mat-label>Data de Agendamento</mat-label>
+                            <mat-label>Data de Nascimento</mat-label>
                             <input formControlName="expectedDate" readonly matInput [matDatepicker]="picker"
-                                placeholder="Clique no icone">
+                                placeholder="Clique no icone" value="{{this.patient.birthdate}}">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
