@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -15,16 +17,19 @@ namespace Hospital.Application.Controllers
     public class PatientsController : ControllerBase
     {
         private readonly IPatientService _patientService;
+        private readonly IMapper _mapper;
 
-        public PatientsController(IPatientService patientService)
+        public PatientsController(IPatientService patientService, IMapper mapper)
         {
             _patientService = patientService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Patient>>> Get()
         {
-            return Ok(await _patientService.ListAsync());
+            var patients = await _patientService.ListAsync();
+            return Ok(_mapper.Map<IEnumerable<Patient>, IEnumerable<PatientDTO>>(patients));
         }
 
         [HttpGet("{id}")]
