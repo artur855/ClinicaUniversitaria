@@ -10,7 +10,7 @@ import { TypeExam } from 'src/app/Models/ExamRequest';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MedicService } from 'src/app/Services/medico.service';
 import { ExamrequestService } from 'src/app/Services/examrequest.service';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-editpat',
@@ -49,7 +49,6 @@ export class EditpatComponent implements OnInit {
     this.colorsPat = Object.values(this.tColor)
     this.colorsPat = this.colorsPat.splice(0,5);
   }
-
   
   EditPat() {
     this.patient.user = new Usuario();
@@ -64,30 +63,23 @@ export class EditpatComponent implements OnInit {
   }
 
   AtualizarPat(patient: Patient) {
-/*
-    var name = (<HTMLInputElement>document.getElementById("nameP")).value;
-    var email = (<HTMLInputElement>document.getElementById("emailP")).value;
-    var birthdate = (<HTMLInputElement>document.getElementById("dateOfBirth")).value;
-    var selectedOptionColor = this.selectedCor;
-    var selectedOptionSex = this.selectedSex;
-    patient.id = this.patient.id;
-    patient.user.name = name;
-    patient.user.email = email;
-    patient.sex = selectedOptionSex;
-    patient.color = selectedOptionColor;
+    var date =this.editMedForm.controls.expectedDate 
+    date.setValue(moment(date.value).format('L'));
 
-    var dateParts = birthdate.split('/');
-    var day = parseInt(dateParts[0]);
-    var month = parseInt(dateParts[1]) - 1;
-    var year = parseInt(dateParts[2]);
-
-    var date = new Date(year, month, day);
-    this.patient.birthdate = date;
-
+    patient.user = new Usuario();
+    //patient.examRequests = new ExamRequest()[''] ;
+    patient.sex = this.editMedForm.controls.sex.value
+    patient.color = this.editMedForm.controls.color.value
+    patient.birthdate = date.value
+    patient.user.name= this.editMedForm.controls.name.value
+    patient.user.email = this.editMedForm.controls.email.value
+    //patient.examRequests = [];
     this.service.updatePatient(patient).subscribe(data => {
       this.patient = data;
       this.router.navigate(["dashboard"]);
-    });*/
+    });
+  
+
   }
 
   openSnackBarPat() {

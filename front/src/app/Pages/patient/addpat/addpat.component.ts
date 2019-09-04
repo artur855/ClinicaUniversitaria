@@ -56,14 +56,12 @@ export class AddpatComponent implements OnInit {
     
     var patient = new Patient();
     patient.user = new Usuario();
-    patient.examRequests = new ExamRequest()[''] ;
 
     patient.sex = this.addMedForm.controls.sex.value
     patient.color = this.addMedForm.controls.color.value
     patient.birthdate = date.value
     patient.user.name= this.addMedForm.controls.name.value
     patient.user.email = this.addMedForm.controls.email.value
-    patient.examRequests = [];
 
     console.log(patient)
     
