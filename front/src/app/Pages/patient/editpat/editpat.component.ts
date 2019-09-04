@@ -28,8 +28,6 @@ export class EditpatComponent implements OnInit {
   sexPat = []
   tColor = PatientColor;
   colorsPat = []
-  selected2: string = "oi"
-  selectedSex = ""
   private patient: Patient = new Patient();
 
   private editMedForm = new FormGroup({
