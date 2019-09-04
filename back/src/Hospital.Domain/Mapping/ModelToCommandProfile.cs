@@ -13,6 +13,14 @@ namespace Hospital.Domain.Mapping
         {
             CreateMap<ExamRequest, ExamRequestCommand>()
                 .ReverseMap();
+
+            CreateMap<User, UserCommand>()
+                .ReverseMap();
+
+            CreateMap<Patient, PatientCommand>()
+                .ForMember(dest => dest.Birthdate, opt => opt.ConvertUsing(new DateConverter(), src => src.Birthdate))
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
+                .ReverseMap();
         }
     }
 }

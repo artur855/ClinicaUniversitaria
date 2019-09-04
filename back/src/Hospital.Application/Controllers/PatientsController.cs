@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Hospital.Domain.Command;
 using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
@@ -41,12 +42,14 @@ namespace Hospital.Application.Controllers
             return Ok(await _patientService.FindById(id));
         }
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Patient patient)
+        public async Task<IActionResult> Post([FromBody] PatientCommand patientCommand)
         {
+            Patient patient = _mapper.Map<PatientCommand, Patient>(patientCommand);
+
             if (patient == null)
                 return BadRequest();
             var newPatient = await _patientService.SaveAsync(patient);
-            return CreatedAtAction(nameof(Post), new {id = newPatient.Id}, newPatient);
+            return CreatedAtAction(nameof(Post), new {id = newPatient.Id}, _mapper.Map<Patient, PatientDTO>(newPatient));
         }
 
         [HttpPut]
