@@ -1,0 +1,27 @@
+FROM  mcr.microsoft.com/dotnet/core/sdk:2.2  AS base
+WORKDIR /app
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS http://*:5000
+EXPOSE 5000
+
+ARG Configuration=Release
+WORKDIR /src
+COPY *.sln ./
+COPY Hospital.Application/*.csproj Hospital.Application/
+COPY Hospital.Domain/*.csproj Hospital.Domain/
+COPY Hospital.Infra.CrossCutting/*.csproj Hospital.Infra.CrossCutting/
+COPY Hospital.Infra.Data/*.csproj Hospital.Infra.Data/
+COPY Hospital.Service/*.csproj Hospital.Service/
+COPY Hospital.Tests/*.csproj Hospital.Tests/
+
+RUN dotnet restore
+COPY . .
+WORKDIR /src/Hospital.Application
+RUN dotnet build -c $Configuration -o /app
+
+ARG Configuration=Release
+RUN dotnet publish -c $Configuration -o /app
+
+WORKDIR /app
+# COPY --from=publish /app .
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Hospital.Application.dll
