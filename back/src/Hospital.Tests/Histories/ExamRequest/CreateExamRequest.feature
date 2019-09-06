@@ -1,7 +1,7 @@
 Feature: CreateExamRequest
   Como médico eu quero solicitar um pedido de um exame para um paciente para poder realizar um diagnóstico
 
-  Scenario Criar pedido de exame: 
+  Scenario: Criar pedido de exame: 
     Given Eu abra a tela para fazer pedidos de exames
     And Eu adicionar o identificador do paciente 2
     And Escolha o exame ecocardiograma
