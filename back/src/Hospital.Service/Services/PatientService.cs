@@ -49,6 +49,9 @@ namespace Hospital.Service.Services
 
             existPatient.Update(patient);
             _patientRepository.Update(existPatient);
+
+            patient.User.Id = existPatient.User.Id;
+
             if (patient.User != null)
                 await _userService.UpdateAsync(patient.User);
             await _unitOfWork.CompleteAsync();
@@ -60,6 +63,9 @@ namespace Hospital.Service.Services
             var patient = await _patientRepository.FindById(id);
             if (patient == null) return;
             _patientRepository.Remove(patient);
+
+            await _userService.DeleteAsync(patient.UserId);
+
             await _unitOfWork.CompleteAsync();
         }
     }

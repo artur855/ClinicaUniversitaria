@@ -39,7 +39,9 @@ namespace Hospital.Application.Controllers
             if(id<=0)
                 return NotFound();
 
-            return Ok(await _patientService.FindById(id));
+            Patient patient = await _patientService.FindById(id);
+
+            return Ok(_mapper.Map<Patient, PatientDTO>(patient));
         }
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PatientCommand patientCommand)
@@ -53,12 +55,14 @@ namespace Hospital.Application.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<Patient>> Put([FromBody] Patient patient)
+        public async Task<ActionResult<Patient>> Put([FromBody] PatientCommand patientCommand)
         {
+            Patient patient = _mapper.Map<PatientCommand, Patient>(patientCommand);
+
             if (patient == null)
                 return BadRequest();
             var newPatient = await _patientService.Update(patient);
-            return Ok(newPatient);
+            return Ok(_mapper.Map<Patient, PatientDTO>(newPatient));
         }
 
         [HttpDelete("{id}")]
