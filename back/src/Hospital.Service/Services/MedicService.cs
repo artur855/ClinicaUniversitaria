@@ -31,12 +31,13 @@ namespace Hospital.Service.Services
             try
             {
                 _medicRepository.Remove(existingMedic);
+                await _userService.DeleteAsync(existingMedic.User.Id);
                 await _unitOfWork.CompleteAsync();
                 return existingMedic;
             }
             catch (Exception e)
             {
-                return null;
+                throw e;
             }
         
         }
@@ -70,18 +71,31 @@ namespace Hospital.Service.Services
                 return null;
 
             existingMedic.CRM = medic.CRM;
-            //existingMedic.Titulation = medic.Titulation;
-            //existingMedic.InitialDate = medic.InitialDate;
+
+            if (medic is Docent)
+            {
+                (existingMedic as Docent).Titulation = (medic as Docent).Titulation;
+            }
+            else if (medic is Resident)
+            {
+                (existingMedic as Resident).InitialDate = (medic as Resident).InitialDate;
+            }
 
             try
             {
                 _medicRepository.Update(existingMedic);
+
+                medic.User.Id = existingMedic.User.Id;
+
+                if (medic.User != null)
+                    await _userService.UpdateAsync(medic.User);
+
                 await _unitOfWork.CompleteAsync();
-                return medic;
+                return existingMedic;
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
 
         }

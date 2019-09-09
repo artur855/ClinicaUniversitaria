@@ -6,6 +6,9 @@ using Hospital.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
+using AutoMapper;
+using Hospital.Domain.DTO;
+
 namespace Hospital.Application.Controllers
 {
     
@@ -15,27 +18,32 @@ namespace Hospital.Application.Controllers
     public class MedicsController : ControllerBase
     {
         private readonly IMedicService _medicService;
+        private readonly IMapper _mapper;
 
-        public MedicsController(IMedicService medicService)
+        public MedicsController(IMedicService medicService, IMapper mapper)
         {
             _medicService = medicService;
+            _mapper = mapper;
         }
 
         [EnableCors("MyPolicy")] 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Medic>>> Get()
         {
-            return Ok(await _medicService.ListAsync());
+            var medics = await _medicService.ListAsync();
+            return Ok(_mapper.Map<IEnumerable<Medic>, IEnumerable<MedicDTO>>(medics));
         }
 
         [EnableCors("MyPolicy")] 
         [HttpGet("{crm}")]
-        public async Task<ActionResult<Medic>> Get(string crm)
+        public async Task<ActionResult<MedicDTO>> Get(string crm)
         {
             if (string.IsNullOrWhiteSpace(crm))
                 return NotFound();
 
-            return await _medicService.FindByCrm(crm);
+            Medic medic = await _medicService.FindByCrm(crm);
+
+            return Ok(_mapper.Map<Medic, MedicDTO>(medic));
         }
 
         [EnableCors("MyPolicy")] 
@@ -47,7 +55,9 @@ namespace Hospital.Application.Controllers
             if (_medic == null)
                 return BadRequest();
 
-            return CreatedAtAction(nameof(Post), new { CRM = _medic.CRM }, medic);
+            var mappedMedic = _mapper.Map(medic, medic.GetType(), typeof(MedicDTO));
+
+            return CreatedAtAction(nameof(Post), new { CRM = _medic.CRM }, _mapper.Map(medic, medic.GetType(), typeof(MedicDTO)));
         }
         
         [EnableCors("MyPolicy")]
@@ -62,7 +72,7 @@ namespace Hospital.Application.Controllers
             if (updatedMedic == null)
                 return NoContent();
 
-            return Ok(medic);
+            return Ok(_mapper.Map<Medic, MedicDTO>(updatedMedic));
             
         }
 
@@ -74,9 +84,9 @@ namespace Hospital.Application.Controllers
             if (string.IsNullOrEmpty(crm))
                 return NotFound();
 
-            await _medicService.DeleteAsync(crm);
+            var medicDeleted = await _medicService.DeleteAsync(crm);
 
-            return NoContent();
+            return Ok(_mapper.Map<Medic, MedicDTO>(medicDeleted));
         }
     }
 }

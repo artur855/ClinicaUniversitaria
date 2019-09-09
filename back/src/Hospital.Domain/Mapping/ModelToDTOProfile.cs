@@ -16,6 +16,18 @@ namespace Hospital.Domain.Mapping
             CreateMap<Medic, MedicDTO>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+                .IncludeAllDerived()
+                .ReverseMap();
+
+            CreateMap<Resident, ResidentDTO>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dest => dest.InitialDate, opt => opt.ConvertUsing(new DateConverter(), src => src.InitialDate))
+                .ReverseMap();
+
+            CreateMap<Docent, DocentDTO>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
                 .ReverseMap();
 
             CreateMap<ExamRequest, ExamRequestDTO>()
