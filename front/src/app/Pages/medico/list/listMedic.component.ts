@@ -33,7 +33,6 @@ export class ListMedicComponent implements OnInit {
   }
 
   Delete(medico:Medico){
-  
     this.service.deleteMedico(medico)
     .subscribe(data => {
       this.medicos=this.medicos.filter(m=>m!==medico);

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MedicService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -17,6 +18,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     this.Editar();
   }
 
+  private editMedForm = new FormGroup({
+    name: new FormControl(''),
+    crm : new FormControl(''),
+    email : new FormControl(''),
+    password : new FormControl(''),
+    titulation : new FormControl('')
+  })
+
   Editar() {
     let crm = localStorage.getItem("crm");
     this.medico.crm = crm
@@ -27,6 +36,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
         console.log(this.medico)
       })
 
+  }
+
+  Voltar(){
+    this.router.navigate(["dashboard"]);
   }
 
   Atualizar(medico: Medico) {
