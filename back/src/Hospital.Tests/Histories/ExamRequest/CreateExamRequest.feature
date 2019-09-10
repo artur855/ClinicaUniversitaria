@@ -3,7 +3,7 @@ Feature: CreateExamRequest
 
   Scenario: Criar pedido de exame: 
     Given Eu abra a tela para fazer pedidos de exames
-    And Eu adicionar o identificador do paciente 2
+    And Eu adicionar o identificador do paciente 1
     And Escolha o exame ecocardiograma
     And Escolha a data 2019-08-08 para realizar o exame
     And Informe o hípotese A001

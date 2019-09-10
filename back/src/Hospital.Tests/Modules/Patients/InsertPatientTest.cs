@@ -60,7 +60,7 @@ namespace Hospital.Tests.Modules.Patients
         {
             Assert.NotNull(_patient, "Objeto nulo");
             Assert.Greater(_patient.Id, 0, "Id menor do que zero");
-            Assert.AreEqual(_patient.Age, 19);
+            Assert.AreEqual(_patient.Age, 20);
         }
     }
 }

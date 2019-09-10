@@ -26,6 +26,7 @@ namespace Hospital.Application.Extensions
         {
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IPatientService, PatientService>();
+            services.AddScoped<IExamRequestService, ExamRequestService>();
             return services;
         }
 
@@ -53,6 +54,7 @@ namespace Hospital.Application.Extensions
             services.AddScoped<IJwtService, JwtService>();
             return services;
         }
+
         public static IServiceCollection AddDbContextService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<HospitalContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PostgresqlString")));
