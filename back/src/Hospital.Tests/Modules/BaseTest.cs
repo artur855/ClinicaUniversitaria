@@ -31,7 +31,7 @@ namespace Hospital.Tests.Modules
             _services.AddJwtService();
 
             _services.AddSwaggerConfiguration();
-
+            _services.AddExamRequestService();
             _services.AddAuthenticationService();
             _services.AddMedicServices();
             _services.AddPatientService();

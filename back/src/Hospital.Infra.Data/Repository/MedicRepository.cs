@@ -11,36 +11,19 @@ using Hospital.Infra.Data.Context;
 
 namespace Hospital.Infra.Data.Repository
 {
-    public class MedicRepository : BaseRepository, IMedicRepository
+    public class MedicRepository : Repository<Medic>, IMedicRepository
     {
-        public MedicRepository(HospitalContext context) : base(context)
-        {
-        }
-
-        public async Task AddAsync(Medic medic)
-        {
-            await _context.Medics.AddAsync(medic);
-        }
+        public MedicRepository(HospitalContext context) : base(context) { }
         
         public async Task<Medic> FindByCrmAsync(string crm)
         {
-            var x = await _context.Set<Medic>().FindAsync(crm);
-            return x;
+            var medic = await DbSet.Include(m => m.User).SingleAsync(m => m.CRM == crm);
+            return medic;
         }
 
-        public async Task<IEnumerable<Medic>> ListAsync()
+        public override async Task<IEnumerable<Medic>> FindAllAsync()
         {
-            return await _context.Set<Medic>().Include(m => m.User).AsNoTracking().ToListAsync();
-        }
-
-        public void Remove(Medic medic)
-        {
-            _context.Medics.Remove(medic);
-        }
-
-        public void Update(Medic medic)
-        {
-            _context.Medics.Update(medic);
+            return await DbSet.Include(m => m.User).AsNoTracking().ToListAsync();
         }
 
     }

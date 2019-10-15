@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -21,7 +22,7 @@ namespace Hospital.Tests.Modules.Patients
         
         [Given("Eu abra a tela de listar pacientes")]
         public async void TelaListarPaciente(){
-            await _patientService.Save(new Patient()
+            await _patientService.SaveAsync<PatientValidator>(new Patient()
             {
                 User = new User()
                 {
@@ -38,7 +39,7 @@ namespace Hospital.Tests.Modules.Patients
         [Then("Todos os pacientes devem ser listados")]
         public async void ValidarListagem()
         {
-            var patients = await _patientService.List();
+            var patients = await _patientService.ListAsync();
             Assert.IsNotEmpty(patients, "Pacientes não foram listados");
             Assert.AreEqual(patients.Count(), 1, "Número incorreto de pacientes");
             

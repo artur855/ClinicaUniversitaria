@@ -28,6 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
     "hammerjs": "^2.0.8",
+    "http-module": "0.0.5",
     "install": "^0.13.0",
     "moment": "^2.24.0",
     "ngx-cookie-service": "^2.2.0",

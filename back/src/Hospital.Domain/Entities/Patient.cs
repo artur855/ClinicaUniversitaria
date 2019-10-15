@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Hospital.Domain.Entities
 {
-    public class Patient
+    public class Patient : Entity
     {
         public void Update(Patient newPatient)
         {
@@ -13,12 +14,12 @@ namespace Hospital.Domain.Entities
             this.Birthdate = newPatient.Birthdate;
         }
 
-        public int Id { get; set; }
         public char Sex { get; set; }
         public PatientColors Color { get; set; }
         public DateTime Birthdate { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
+        public ICollection<ExamRequest> ExamRequests { get; set; }
 
 
 

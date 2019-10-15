@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hospital.Domain.Interfaces.Repositories;
+using FluentValidation;
 
 namespace Hospital.Service.Services
 {
@@ -21,7 +22,12 @@ namespace Hospital.Service.Services
             _userService = userService;
         }
 
-        public async Task<Medic> DeleteAsync(string crm)
+        public async Task<Medic> DeleteAsync(int id)
+        {
+            return await _medicRepository.RemoveAsync(id);
+        }
+
+        public async Task<Medic> DeleteByCrmAsync(string crm)
         {
             Medic existingMedic = await _medicRepository.FindByCrmAsync(crm);
 
@@ -30,13 +36,14 @@ namespace Hospital.Service.Services
 
             try
             {
-                _medicRepository.Remove(existingMedic);
+                await _medicRepository.RemoveAsync(existingMedic.Id);
+                await _userService.DeleteAsync(existingMedic.User.Id);
                 await _unitOfWork.CompleteAsync();
                 return existingMedic;
             }
             catch (Exception e)
             {
-                return null;
+                throw e;
             }
         
         }
@@ -46,23 +53,28 @@ namespace Hospital.Service.Services
             return await _medicRepository.FindByCrmAsync(crm);
         }
 
-        public async Task<IEnumerable<Medic>> ListAsync()
+        public async Task<Medic> FindByIdAsync(int id)
         {
-            return await _medicRepository.ListAsync();
+            return await _medicRepository.FindByIdAsync(id);
         }
 
-        public async Task<Medic> SaveAsync(Medic medic)
+        public async Task<IEnumerable<Medic>> ListAsync()
         {
-            Activator.CreateInstance<MedicValidator>().Validate(medic);
-            await _medicRepository.AddAsync(medic);
+            return await _medicRepository.FindAllAsync();
+        }
+
+        public async Task<Medic> SaveAsync<V>(Medic medic) where V : AbstractValidator<Medic>
+        {
+            Activator.CreateInstance<V>().Validate(medic);
+            await _medicRepository.InsertAsync(medic);
             await _unitOfWork.CompleteAsync();
 
             return medic;
         }
 
-        public async Task<Medic> UpdateAsync(Medic medic)
+        public async Task<Medic> UpdateAsync<V>(Medic medic) where V : AbstractValidator<Medic>
         {
-            Activator.CreateInstance<MedicValidator>().Validate(medic);
+            Activator.CreateInstance<V>().Validate(medic);
 
             Medic existingMedic = await _medicRepository.FindByCrmAsync(medic.CRM);
 
@@ -70,18 +82,31 @@ namespace Hospital.Service.Services
                 return null;
 
             existingMedic.CRM = medic.CRM;
-            //existingMedic.Titulation = medic.Titulation;
-            //existingMedic.InitialDate = medic.InitialDate;
+
+            if (medic is Docent)
+            {
+                (existingMedic as Docent).Titulation = (medic as Docent).Titulation;
+            }
+            else if (medic is Resident)
+            {
+                (existingMedic as Resident).InitialDate = (medic as Resident).InitialDate;
+            }
 
             try
             {
                 _medicRepository.Update(existingMedic);
+
+                medic.User.Id = existingMedic.User.Id;
+
+                if (medic.User != null)
+                    await _userService.UpdateAsync<UserValidator>(medic.User);
+
                 await _unitOfWork.CompleteAsync();
-                return medic;
+                return existingMedic;
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
 
         }

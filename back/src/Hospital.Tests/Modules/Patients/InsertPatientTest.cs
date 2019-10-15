@@ -1,6 +1,7 @@
 using System;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -52,7 +53,7 @@ namespace Hospital.Tests.Modules.Patients
         [When("Eu clicar em cadastrar")]
         public async void Cadastrar()
         {
-            _patient = await _patientService.Save(_patient);
+            _patient = await _patientService.SaveAsync<PatientValidator>(_patient);
         }
 
         [Then("Meu paciente deve ser listado com id maior que 0")]
@@ -60,7 +61,7 @@ namespace Hospital.Tests.Modules.Patients
         {
             Assert.NotNull(_patient, "Objeto nulo");
             Assert.Greater(_patient.Id, 0, "Id menor do que zero");
-            Assert.AreEqual(_patient.Age, 19);
+            Assert.AreEqual(_patient.Age, 20);
         }
     }
 }

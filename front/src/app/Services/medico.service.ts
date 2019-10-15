@@ -4,19 +4,14 @@ import { Medico } from '../Models/Medico';
 //import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService {
-
+export class MedicService {
 
   constructor(private http: HttpClient) { }
 
   Url = environment.url+"medics/";
-
-
 
   getMedicos() {
     return this.http.get<Medico[]>(this.Url);

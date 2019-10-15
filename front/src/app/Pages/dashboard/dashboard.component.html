@@ -9,6 +9,9 @@
       <a (click)="toogleMedic('pat')" mat-list-item>
         <fa-icon [icon]="faUserInjured" class="mr-2"></fa-icon>Pacientes
       </a>
+      <a (click)="toogleMedic('exam')" mat-list-item>
+        <fa-icon [icon]="faClipboard" class="mr-2"></fa-icon>Exames
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -21,13 +24,11 @@
       <span>Clínica Universitária</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <app-listar *ngIf="visiMed"></app-listar>
+    <app-listar *ngIf="visiMed">
+    </app-listar>
+    <app-listpat *ngIf="visiPat"></app-listpat>
+    <app-listexame *ngIf="visiExam"></app-listexame>
 
-    <app-listpat *ngIf="visiPat">
-      <app-addpat *ngIf="visiPat">
-
-      </app-addpat>
-    </app-listpat>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

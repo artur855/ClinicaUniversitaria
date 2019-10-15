@@ -4,6 +4,7 @@ using Hospital.Domain.Interfaces.Services;
 using TechTalk.SpecFlow;
 using System.Linq;
 using NUnit.Framework;
+using Hospital.Service.Validators;
 
 namespace Hospital.Tests.Modules.Medics
 {
@@ -21,7 +22,7 @@ namespace Hospital.Tests.Modules.Medics
         [Given("I'm opening the medic delete screen")]
         public async void MedicDeleteScreen()
         {
-            await m_medicService.SaveAsync(new Medic()
+            await m_medicService.SaveAsync<MedicValidator>(new Medic()
             {
                 CRM = "123456",
                 User = new User()
@@ -40,7 +41,7 @@ namespace Hospital.Tests.Modules.Medics
         [When("I'm clicking at delete")]
         public async void ChoosingToDeleteMedic()
         {
-            await m_medicService.DeleteAsync(m_medic.CRM);
+            await m_medicService.DeleteByCrmAsync(m_medic.CRM);
         }
 
         [Then("The medic should be deleted with sucess")]

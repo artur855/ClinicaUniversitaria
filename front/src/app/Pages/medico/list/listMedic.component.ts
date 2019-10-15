@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import{ServiceService} from '../../../Services/medico.service'
+import{MedicService} from '../../../Services/medico.service'
 import { Medico } from 'src/app/Models/Medico';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 @Component({
@@ -14,10 +14,12 @@ export class ListMedicComponent implements OnInit {
   @Input() toggle: Boolean;
 
   medicos:Medico[];
-  constructor(private service:ServiceService, private router:Router) { }
+
+  constructor(private service:MedicService, private router:Router) { }
 
   ngOnInit() {
     this.service.getMedicos().subscribe(data =>{
+      console.log(data)
       this.medicos = data;
     })
   }
@@ -31,7 +33,6 @@ export class ListMedicComponent implements OnInit {
   }
 
   Delete(medico:Medico){
-  
     this.service.deleteMedico(medico)
     .subscribe(data => {
       this.medicos=this.medicos.filter(m=>m!==medico);

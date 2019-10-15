@@ -4,6 +4,7 @@ using Hospital.Domain.Interfaces.Services;
 using TechTalk.SpecFlow;
 using System.Linq;
 using NUnit.Framework;
+using Hospital.Service.Validators;
 
 namespace Hospital.Tests.Modules.Medics
 {
@@ -39,7 +40,7 @@ namespace Hospital.Tests.Modules.Medics
         [When("I'm clicking in register screen")]
         public async void Cadastrar()
         {
-            m_medic = await m_medicService.SaveAsync(m_medic);
+            m_medic = await m_medicService.SaveAsync<MedicValidator>(m_medic);
         }
 
         [Then("My medic should be listed with CRM and UserID 123")]

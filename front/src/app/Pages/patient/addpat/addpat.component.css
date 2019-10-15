@@ -1,1 +1,16 @@
+.mat-form-field {
+    width: 100%;
+}
 
+.textarea {
+    width: 163px;
+    height: 453px;
+}
+
+.mat-datepicker-toggle {
+    color:blue;
+}
+
+.material-icons,button{
+    vertical-align: middle;
+}
