@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace Hospital.Domain.Entities
 {
     [JsonConverter(typeof(PersonJsonConverter))]
-    public class Medic
+    public class Medic : Entity
     {
         public string CRM { get; set; }
         public int UserId { get; set; }

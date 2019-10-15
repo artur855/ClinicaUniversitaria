@@ -6,6 +6,7 @@ create table tb_usuarios (
 );
 
 create table tb_medicos(
+  id serial,
   crm  varchar(13),
   titulacao varchar(45) null,
   ano_inicio date null,
@@ -15,7 +16,7 @@ create table tb_medicos(
 
 create table tb_resultado_exame (
   id serial,
-  crm_medico varchar(13),
+  id_medico int,
   id_pedido_exame serial,
   link_pdf varchar(350),
   data_hora date
@@ -23,7 +24,7 @@ create table tb_resultado_exame (
 
 create table tb_pedidos_exames(
   id serial,
-  crm_medico varchar(13),
+  id_medico int,
   exame smallint,
   data_prevista date,
   recomendacao varchar(650),
@@ -33,7 +34,7 @@ create table tb_pedidos_exames(
 
 create table tb_laudos(
   id_pedido_exame serial,
-  crm_medico varchar(13),
+  id_medico int,
   descricao varchar(250),
   conclusao varchar(150)
 );
@@ -41,7 +42,7 @@ create table tb_laudos(
 create table tb_laudos_status(
   id_laudo_exame serial,
   status boolean,
-  crm_medico varchar(13)
+  id_medico int
 );
 
 create table tb_pacientes(
@@ -53,7 +54,7 @@ create table tb_pacientes(
 );
 
 -- primary keys
-alter table tb_medicos add constraint tb_medicos_pk primary key (crm);
+alter table tb_medicos add constraint tb_medicos_pk primary key (id);
 
 alter table tb_resultado_exame add constraint tb_resultado_exame_pk primary key (id);
 
@@ -76,23 +77,23 @@ alter table tb_medicos add constraint tb_medicos_usuarios_fk foreign key (id_usu
 alter table tb_pacientes add constraint tb_pacientes_usuarios_fk foreign key (id_usuario) references tb_usuarios (id);
 
 
-alter table tb_resultado_exame add constraint tb_resultado_exame_medicos_fk foreign key (crm_medico) references tb_medicos (crm);
+alter table tb_resultado_exame add constraint tb_resultado_exame_medicos_fk foreign key (id_medico) references tb_medicos (id);
 
 alter table tb_resultado_exame add constraint tb_resultado_exame_pedidos_exames_fk foreign key (id_pedido_exame) references tb_pedidos_exames(id);
 
 
-alter table tb_pedidos_exames add constraint tb_pedidos_exames_medico_fk foreign key (crm_medico) references tb_medicos (crm);
+alter table tb_pedidos_exames add constraint tb_pedidos_exames_medico_fk foreign key (id_medico) references tb_medicos (id);
 
 alter table tb_pedidos_exames add constraint tb_pedidos_exames_paciente_fk foreign key (id_paciente) references tb_pacientes(id);
 
 alter table tb_laudos add constraint tb_laudos_exame_fk foreign key (id_pedido_exame) references tb_resultado_exame (id);
 
-alter table tb_laudos add constraint tb_laudos_medicos_fk foreign key (crm_medico) references tb_medicos(crm);
+alter table tb_laudos add constraint tb_laudos_medicos_fk foreign key (id_medico) references tb_medicos(id);
 
 
 alter table tb_laudos_status add constraint tb_laudos_status_laudo_fk foreign key (id_laudo_exame) references tb_laudos (id_pedido_exame);
 
-alter table tb_laudos_status add constraint tb_laudos_status_medicos_fk foreign key (crm_medico) references tb_medicos (crm);
+alter table tb_laudos_status add constraint tb_laudos_status_medicos_fk foreign key (id_medico) references tb_medicos (id);
 
 
 -- constraints
@@ -101,6 +102,7 @@ alter table tb_pacientes add constraint tb_pacientes_cor check (cor between 0 an
 alter table tb_pacientes add constraint tb_pacientes_sexo check (sexo in ('M', 'F'));
 
 
+alter table tb_medicos add constraint tb_medicos_unique_crm UNIQUE (crm);
 alter table tb_medicos add constraint tb_medicos_tipo check (tipo_medico in (0, 1, 2));
 
 -- comentarios
