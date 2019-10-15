@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -23,7 +24,7 @@ namespace Hospital.Tests.Modules.Medics
         [Given("I'm opening the medic list screen")]
         public async void ScreenListMedic()
         {
-            await m_medicService.SaveAsync(new Medic()
+            await m_medicService.SaveAsync<MedicValidator>(new Medic()
             {
                 User = new User()
                 {
@@ -32,7 +33,7 @@ namespace Hospital.Tests.Modules.Medics
                 CRM = "123",
             });
 
-            await m_medicService.SaveAsync(new Medic()
+            await m_medicService.SaveAsync<MedicValidator>(new Medic()
             {
                 User = new User()
                 {

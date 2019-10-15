@@ -1,5 +1,6 @@
 ﻿using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -19,7 +20,7 @@ namespace Hospital.Tests.Modules.Medics
         [Given("I'm opening the update medic screen")]
         public void UpdateMedicScreen()
         {
-            m_medicService.SaveAsync(new Medic()
+            m_medicService.SaveAsync<MedicValidator>(new Medic()
             {
                 User = new User()
                 {
@@ -56,7 +57,7 @@ namespace Hospital.Tests.Modules.Medics
         [When("I'm clicking in the update button")]
         public async void UpdateButtonClick()
         {
-            await m_medicService.UpdateAsync(m_medic);
+            await m_medicService.UpdateAsync<MedicValidator>(m_medic);
         }
 
         [Then("The medic should be updated with sucess")]

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using AutoMapper;
 using Hospital.Domain.DTO;
+using Hospital.Service.Validators;
 
 namespace Hospital.Application.Controllers
 {
@@ -50,7 +51,7 @@ namespace Hospital.Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Medic medic)
         {
-            var _medic = await _medicService.SaveAsync(medic);
+            var _medic = await _medicService.SaveAsync<MedicValidator>(medic);
 
             if (_medic == null)
                 return BadRequest();
@@ -67,7 +68,7 @@ namespace Hospital.Application.Controllers
             if (medic == null)
                 return BadRequest();
 
-            Medic updatedMedic = await _medicService.UpdateAsync(medic);
+            Medic updatedMedic = await _medicService.UpdateAsync<MedicValidator>(medic);
 
             if (updatedMedic == null)
                 return NoContent();
@@ -84,7 +85,7 @@ namespace Hospital.Application.Controllers
             if (string.IsNullOrEmpty(crm))
                 return NotFound();
 
-            var medicDeleted = await _medicService.DeleteAsync(crm);
+            var medicDeleted = await _medicService.DeleteByCrmAsync(crm);
 
             return Ok(_mapper.Map<Medic, MedicDTO>(medicDeleted));
         }
