@@ -11,39 +11,19 @@ using System.Threading.Tasks;
 
 namespace Hospital.Infra.Data.Repository
 {
-    public class UserRepository : BaseRepository, IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
         public UserRepository(HospitalContext context) : base(context) { }
 
-        public async Task<User> Create(User user)
-        {
-            EntityEntry<User> entityEntry = await _context.Users.AddAsync(user);
-            return entityEntry.Entity;
-        }
-
-        public async Task<User> FindById(int id)
-        {
-            return await _context.Users.Include(u => u.Medic).Include(u => u.Patient).SingleOrDefaultAsync(user => user.Id == id);
-        }
-
-        public async Task<IEnumerable<User>> List()
-        {
-            return await _context.Users.ToListAsync();
-        }
-
-        public void Remove(User user)
-        {
-            _context.Users.Remove(user);
-        }
-
         public async Task<User> Authenticate(string email, string password)
         {
-           return await _context.Users.SingleOrDefaultAsync(x => x.Email == email && x.Password == password);
+           return await DbSet.SingleOrDefaultAsync(x => x.Email == email && x.Password == password);
         }
 
-        public void Update(User user)
+        public override async Task<User> FindByIdAsync(int id)
         {
-            _context.Users.Update(user);
+            return await DbSet.Include(u => u.Medic).Include(u => u.Patient).SingleOrDefaultAsync(user => user.Id == id);
         }
+
     }
 }
