@@ -7,12 +7,7 @@ using Hospital.Domain.DTO;
 
 namespace Hospital.Domain.Interfaces.Services
 {
-    public interface IUserService
+    public interface IUserService : IService<User>
     {
-        Task<User> FindByIdAsync(int id);
-        Task<IEnumerable<User>> ListAsync();
-        Task<User> SaveAsync(User user);
-        Task<User> UpdateAsync(User user);
-        Task DeleteAsync(int id);
     }
 }

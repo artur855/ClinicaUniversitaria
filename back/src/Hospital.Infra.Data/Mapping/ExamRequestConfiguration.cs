@@ -16,7 +16,7 @@ namespace Hospital.Infra.Data.Mapping
             builder.Property(er => er.Hypothesis).HasColumnName("hipotese_cid");
             builder.Property(er => er.ExamName).HasColumnName("exame");
             builder.Property(er => er.ExpectedDate).HasColumnName("data_prevista");
-            builder.Property(er => er.MedicCrm).HasColumnName("crm_medico");
+            builder.Property(er => er.MedicId).HasColumnName("id_medico");
             builder.Property(er => er.PatientId).HasColumnName("id_paciente");
 
             builder.HasOne(er => er.Patient)
@@ -25,7 +25,7 @@ namespace Hospital.Infra.Data.Mapping
 
             builder.HasOne(er => er.Medic)
                 .WithMany(m => m.ExamRequests)
-                .HasForeignKey(er => er.MedicCrm);
+                .HasForeignKey(er => er.MedicId);
             
             
         } 

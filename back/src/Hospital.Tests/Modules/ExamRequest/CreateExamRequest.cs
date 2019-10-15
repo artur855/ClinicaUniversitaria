@@ -1,6 +1,7 @@
 using System;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -37,8 +38,8 @@ namespace Hospital.Tests.Modules.ExamRequest
                     Password = "123"
                 }
             };
-            _medicService.SaveAsync(_medic);
-            _patientService.SaveAsync(new Patient
+            _medicService.SaveAsync<MedicValidator>(_medic);
+            _patientService.SaveAsync<PatientValidator>(new Patient
             {
                 Birthdate = DateTime.Now.Subtract(TimeSpan.FromDays(365*10)),
                 Color = PatientColors.Branco,
@@ -60,7 +61,7 @@ namespace Hospital.Tests.Modules.ExamRequest
         [Given("Eu adicionar o identificador do paciente (.*)")]
         public async void EscolherPaciente(int idPaciente)
         {
-            _patient = await _patientService.FindById(idPaciente);
+            _patient = await _patientService.FindByIdAsync(idPaciente);
             _examRequest.Patient = _patient;
         }
 
@@ -86,7 +87,7 @@ namespace Hospital.Tests.Modules.ExamRequest
         [When("Eu clicar em emitir pedido")]
         public async void ClicarEmitirPedido()
         {
-            await _examRequestService.SaveAsync(_medic.UserId,_examRequest);
+            await _examRequestService.SaveAsync<ExamRequestValidator>(_medic.UserId,_examRequest);
         }
 
         [Then("O sistema salvar e imprimir o pedido de exame")]

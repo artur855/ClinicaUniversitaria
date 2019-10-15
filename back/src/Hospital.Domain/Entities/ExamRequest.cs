@@ -2,15 +2,14 @@ using System;
 
 namespace Hospital.Domain.Entities
 {
-    public class ExamRequest
+    public class ExamRequest : Entity
     {
-        public int Id { get; set; }
         public string Hypothesis { get; set; }
         public string Recomendation { get; set; }
         public DateTime ExpectedDate { get; set; }
         public ExamType ExamName { get; set; }
         
-        public string MedicCrm { get; set; }
+        public int MedicId { get; set; }
         public Medic Medic { get; set; }
         
         public int PatientId { get; set; }

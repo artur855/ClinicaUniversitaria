@@ -13,7 +13,11 @@ namespace Hospital.Infra.Data.Mapping
         {
             builder.ToTable("tb_medicos");
 
-            builder.HasKey(m => m.CRM);
+            builder.HasKey(m => m.Id);
+
+            builder.Property(m => m.Id)
+                .IsRequired()
+                .HasColumnName("id");
 
             builder.Property(m => m.CRM)
                 .IsRequired()

@@ -8,37 +8,19 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Hospital.Infra.Data.Repository
 {
-    public class PatientRepository :BaseRepository, IPatientRepository
+    public class PatientRepository : Repository<Patient>, IPatientRepository
     {
-        public PatientRepository(HospitalContext context) : base(context)
+        public PatientRepository(HospitalContext context) : base(context) { }
+
+        public override async Task<IEnumerable<Patient>> FindAllAsync()
         {
+            return await DbSet.AsNoTracking().Include(m => m.User).ToListAsync();
         }
 
-        public async Task<IEnumerable<Patient>> List()
+        public override async Task<Patient> FindByIdAsync(int id)
         {
-            return await _context.Patients.AsNoTracking().Include(p => p.User).ToListAsync();
+            return await DbSet.Include(p => p.User).SingleAsync(patient => patient.Id == id);
         }
 
-        public async Task<Patient> Create(Patient patient)
-        {
-            var entityEntry = await _context.Patients.AddAsync(patient);
-            return entityEntry.Entity;
-        }
-
-        public async Task<Patient> FindById(int id)
-        {
-            return await _context.Patients.Include(p => p.User).SingleAsync(patient => patient.Id == id);
-        }
-
-        
-        public void Update(Patient patient)
-        {
-            _context.Patients.Update(patient);
-        }
-
-        public void Remove(Patient patient)
-        {
-            _context.Patients.Remove(patient);
-        }
     }
 }

@@ -1,6 +1,7 @@
 using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -25,7 +26,7 @@ namespace Hospital.Tests.Modules.Authentication
         public async void AbrirTelaLogin()
         {
             _loginDto = new LoginDTO();
-            await _userService.SaveAsync(new User
+            await _userService.SaveAsync<UserValidator>(new User
             {
                 Name = "Arthur",
                 Email = "email@email.com",

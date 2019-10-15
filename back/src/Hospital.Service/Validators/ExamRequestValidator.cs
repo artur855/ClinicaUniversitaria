@@ -12,7 +12,7 @@ namespace Hospital.Service.Validators
                 .NotEmpty()
                 .WithMessage("ExamRequest Id nulo");
             
-            RuleFor(er => er.MedicCrm)
+            RuleFor(er => er.MedicId)
                 .NotEmpty()
                 .WithMessage("ExamRequest medico invalido");
             

@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hospital.Domain.Interfaces.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        Task<IEnumerable<User>> List();
-        Task<User> Create(User user);
-        Task<User> FindById(int id);
-        void Update(User user);
-        void Remove(User user);
         Task<User> Authenticate(string email, string password);
     }
 }

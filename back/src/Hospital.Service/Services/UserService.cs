@@ -1,4 +1,5 @@
-﻿using Hospital.Domain.Entities;
+﻿using FluentValidation;
+using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Validators;
@@ -18,33 +19,33 @@ namespace Hospital.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<User> DeleteAsync(int id)
         {
             User user = await FindByIdAsync(id);
-            _userRepository.Remove(user);
+            return await _userRepository.RemoveAsync(user.Id);
         }
 
         public async Task<User> FindByIdAsync(int id)
         {
-            return await _userRepository.FindById(id);
+            return await _userRepository.FindByIdAsync(id);
         }
 
         public async Task<IEnumerable<User>> ListAsync()
         {
-            return await _userRepository.List();
+            return await _userRepository.FindAllAsync();
         }
 
-        public async Task<User> SaveAsync(User user)
+        public async Task<User> SaveAsync<V>(User user) where V : AbstractValidator<User>
         {
             Activator.CreateInstance<UserValidator>().Validate(user);
-            User newUser = await _userRepository.Create(user);
+            await _userRepository.InsertAsync(user);
                 
             await _unitOfWork.CompleteAsync();
 
-            return newUser;
+            return user;
         }
 
-        public async Task<User> UpdateAsync(User user)
+        public async Task<User> UpdateAsync<V>(User user) where V : AbstractValidator<User>
         {
             Activator.CreateInstance<UserValidator>().Validate(user);
             User existingUser = await FindByIdAsync(user.Id);

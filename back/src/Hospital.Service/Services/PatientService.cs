@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FluentValidation;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
@@ -22,29 +23,29 @@ namespace Hospital.Service.Services
             _userService = userService;
         }
         
-        public async  Task<Patient> FindById(int id)
+        public async Task<Patient> FindByIdAsync(int id)
         {
-            return await _patientRepository.FindById(id);
+            return await _patientRepository.FindByIdAsync(id);
         }
 
         public async Task<IEnumerable<Patient>> ListAsync()
         {
-            return await _patientRepository.List();
+            return await _patientRepository.FindAllAsync();
         }
 
-        public async Task<Patient> SaveAsync(Patient patient)
+        public async Task<Patient> SaveAsync<V>(Patient patient) where V : AbstractValidator<Patient>
         {
             Activator.CreateInstance<PatientValidator>().Validate(patient);
-            await _patientRepository.Create(patient);
+            await _patientRepository.InsertAsync(patient);
             if (patient.User != null)
-                await _userService.SaveAsync(patient.User);
+                await _userService.SaveAsync<UserValidator>(patient.User);
             await _unitOfWork.CompleteAsync();
             return patient;
         }
 
-        public async Task<Patient> Update(Patient patient)
+        public async Task<Patient> UpdateAsync<V>(Patient patient) where V : AbstractValidator<Patient>
         {
-            var existPatient = await _patientRepository.FindById(patient.Id);
+            var existPatient = await _patientRepository.FindByIdAsync(patient.Id);
             Activator.CreateInstance<PatientValidator>().Validate(patient);
 
             existPatient.Update(patient);
@@ -53,20 +54,23 @@ namespace Hospital.Service.Services
             patient.User.Id = existPatient.User.Id;
 
             if (patient.User != null)
-                await _userService.UpdateAsync(patient.User);
+                await _userService.UpdateAsync<UserValidator>(patient.User);
             await _unitOfWork.CompleteAsync();
             return existPatient;
         }
 
-        public async Task Delete(int id)
+        public async Task<Patient> DeleteAsync(int id)
         {
-            var patient = await _patientRepository.FindById(id);
-            if (patient == null) return;
-            _patientRepository.Remove(patient);
+            var patient = await _patientRepository.FindByIdAsync(id);
+            if (patient == null) return null;
+            await _patientRepository.RemoveAsync(patient.Id);
 
             await _userService.DeleteAsync(patient.UserId);
 
             await _unitOfWork.CompleteAsync();
+
+            return patient;
         }
+
     }
 }
