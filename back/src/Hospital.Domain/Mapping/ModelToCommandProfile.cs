@@ -12,6 +12,7 @@ namespace Hospital.Domain.Mapping
         public ModelToCommandProfile()
         {
             CreateMap<ExamRequest, ExamRequestCommand>()
+                .ForMember(dest => dest.PatientId, opt => opt.MapFrom(src => src.Patient.Id))
                 .ReverseMap();
 
             CreateMap<User, UserCommand>()

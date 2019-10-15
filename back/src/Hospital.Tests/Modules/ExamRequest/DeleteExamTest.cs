@@ -1,6 +1,7 @@
 ﻿using System;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -27,7 +28,7 @@ namespace Hospital.Tests.Modules.ExamRequest
 
         public async System.Threading.Tasks.Task OpenExamInsertScreenAsync()
         {
-            await _medicService.SaveAsync(_medic = new Medic
+            await _medicService.SaveAsync<MedicValidator>(_medic = new Medic
             {
                 CRM = "123",
                 User = new User
@@ -37,7 +38,7 @@ namespace Hospital.Tests.Modules.ExamRequest
                     Password = "123"
                 }
             });
-            await _patientService.SaveAsync(new Patient
+            await _patientService.SaveAsync<PatientValidator>(new Patient
             {
                 Birthdate = DateTime.Now.Subtract(TimeSpan.FromDays(365 * 10)),
                 Color = PatientColors.Branco,
@@ -54,7 +55,7 @@ namespace Hospital.Tests.Modules.ExamRequest
                 Medic = _medic
             };
 
-            _patient = await _patientService.FindById(1);
+            _patient = await _patientService.FindByIdAsync(1);
             _examRequest.Patient = _patient;
         }
 
@@ -66,7 +67,7 @@ namespace Hospital.Tests.Modules.ExamRequest
             Enum.TryParse(exame, out ExamType exameType);
             _examRequest.ExamName = exameType;
 
-            await _examRequestService.SaveAsync(_medic.UserId, _examRequest);
+            await _examRequestService.SaveAsync<ExamRequestValidator>(_medic.UserId, _examRequest);
         }
 
         [When("Eu clicar em deletar exame")]

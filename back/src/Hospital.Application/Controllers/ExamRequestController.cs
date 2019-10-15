@@ -8,6 +8,7 @@ using Hospital.Domain.Command;
 using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ namespace Hospital.Application.Controllers
         {
             var examRequest = _mapper.Map<ExamRequestCommand, ExamRequest>(examRequestCommand);
             var userId = HttpContext.User.Claims.First()?.Value;
-            var newExamRequest =  await _examRequestService.SaveAsync(int.Parse(userId), examRequest);
+            var newExamRequest = await _examRequestService.SaveAsync<ExamRequestValidator>(int.Parse(userId), examRequest);
             if (newExamRequest == null)
                 return Unauthorized();
             return CreatedAtAction(nameof(Post), new {id = newExamRequest.Id}, _mapper.Map<ExamRequest, ExamRequestDTO>(newExamRequest));

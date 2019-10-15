@@ -9,40 +9,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hospital.Infra.Data.Repository
 {
-    public class ExamRequestRepository : BaseRepository, IExamRequestRepository
+    public class ExamRequestRepository : Repository<ExamRequest>, IExamRequestRepository
     {
-        public ExamRequestRepository(HospitalContext context) : base(context)
-        {
-        }
+        public ExamRequestRepository(HospitalContext context) : base(context) { }
 
         public IEnumerable<ExamRequest> ListAsync(User user)
         {
             if (user.Patient != null)
-                return _context.ExamRequests.AsNoTracking()
+                return DbSet.AsNoTracking()
                     .Include(er => er.Medic).ThenInclude(m => m.User)
                     .Include(er => er.Patient).ThenInclude(p => p.User)
                     .Where(er => er.PatientId == user.Patient.Id);
             if (user.Medic != null)
-                return _context.ExamRequests.AsNoTracking()
+                return DbSet.AsNoTracking()
                     .Include(er => er.Medic).ThenInclude(m => m.User)
                     .Include(er => er.Patient).ThenInclude(p => p.User)
-                    .Where(er => er.MedicCrm == user.Medic.CRM);
+                    .Where(er => er.MedicId == user.Medic.Id);
             return null;
         }
 
-        public async Task SaveAsync(ExamRequest examRequest)
-        {
-            await _context.ExamRequests.AddAsync(examRequest);
-        }
-
-        public void Remove(ExamRequest examRequest)
-        {
-            _context.ExamRequests.Remove(examRequest);
-        }
-
-        public async Task<ExamRequest> FindByIdAsync(int id)
-        {
-            return await _context.ExamRequests.FindAsync(id);
-        }
     }
 }
