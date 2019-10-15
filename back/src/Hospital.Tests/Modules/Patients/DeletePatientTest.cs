@@ -4,6 +4,7 @@ using Hospital.Domain.Interfaces.Services;
 using TechTalk.SpecFlow;
 using System.Linq;
 using NUnit.Framework;
+using Hospital.Service.Validators;
 
 namespace Hospital.Tests.Modules.Patients
 {
@@ -20,7 +21,7 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Eu abra a tela de deletar paciente")]
         public async void TelaDeletarPaciente()
         {
-            await _patientService.SaveAsync(new Patient()
+            await _patientService.SaveAsync<PatientValidator>(new Patient()
             {
                 Birthdate = DateTime.ParseExact("09-10-1999", "dd-MM-yyyy",  System.Globalization.CultureInfo.InvariantCulture),
                 User = new User()
@@ -35,13 +36,13 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Escolha o cliente com Id (.*)")]
         public async void EscolherPaciente(int id)
         {
-            _patient = await _patientService.FindById(id);
+            _patient = await _patientService.FindByIdAsync(id);
         }
 
         [When("Eu clicar em deletar")]
         public async void DeletarPaciente()
         {
-            await _patientService.Delete(_patient.Id);
+            await _patientService.DeleteAsync(_patient.Id);
         }
 
         [Then("O paciente deve ser deletado com sucesso")]

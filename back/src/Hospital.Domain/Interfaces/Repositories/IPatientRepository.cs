@@ -4,12 +4,9 @@ using Hospital.Domain.Entities;
 
 namespace Hospital.Domain.Interfaces.Repositories
 {
-    public interface IPatientRepository
+    public interface IPatientRepository : IRepository<Patient>
     {
-        Task<IEnumerable<Patient>> List();
-        Task<Patient> Create(Patient patient);
-        Task<Patient> FindById(int id);
-        void Update(Patient patient);
-        void Remove(Patient patient);
+
+
     }
 }

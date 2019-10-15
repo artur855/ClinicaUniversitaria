@@ -5,6 +5,7 @@ using Hospital.Domain.Command;
 using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +40,7 @@ namespace Hospital.Application.Controllers
             if(id<=0)
                 return NotFound();
 
-            Patient patient = await _patientService.FindById(id);
+            Patient patient = await _patientService.FindByIdAsync(id);
 
             return Ok(_mapper.Map<Patient, PatientDTO>(patient));
         }
@@ -50,7 +51,7 @@ namespace Hospital.Application.Controllers
 
             if (patient == null)
                 return BadRequest();
-            var newPatient = await _patientService.SaveAsync(patient);
+            var newPatient = await _patientService.SaveAsync<PatientValidator>(patient);
             return CreatedAtAction(nameof(Post), new {id = newPatient.Id}, _mapper.Map<Patient, PatientDTO>(newPatient));
         }
 
@@ -61,7 +62,7 @@ namespace Hospital.Application.Controllers
 
             if (patient == null)
                 return BadRequest();
-            var newPatient = await _patientService.Update(patient);
+            var newPatient = await _patientService.UpdateAsync<PatientValidator>(patient);
             return Ok(_mapper.Map<Patient, PatientDTO>(newPatient));
         }
 
@@ -73,7 +74,7 @@ namespace Hospital.Application.Controllers
                 return BadRequest();
             }
 
-            await _patientService.Delete(id);
+            await _patientService.DeleteAsync(id);
             return Ok();
         }
     }

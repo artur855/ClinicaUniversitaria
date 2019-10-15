@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
+using Hospital.Service.Validators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -21,7 +22,7 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Eu abra a tela de atualizar pacientes")]
         public void TelaAtualizarPaciente()
         {
-            _patientService.SaveAsync(new Patient()
+            _patientService.SaveAsync<PatientValidator>(new Patient()
             {
                 User = new User()
                 {
@@ -36,7 +37,7 @@ namespace Hospital.Tests.Modules.Patients
         [Given("Eu escolha o cliente com Id (.*)")]
         public async void EscolherPaciente(int id)
         {
-            _patient = await _patientService.FindById(id);
+            _patient = await _patientService.FindByIdAsync(id);
         }
 
         [Given("Eu insira o nome (.*)")]
@@ -60,13 +61,13 @@ namespace Hospital.Tests.Modules.Patients
         [When("Eu clicar no botao atualizar")]
         public async void ClicarAtualizar()
         {
-            await _patientService.Update(_patient);
+            await _patientService.UpdateAsync<PatientValidator>(_patient);
         }
 
         [Then("O paciente deve ser atualizado com sucesso")]
         public async void ValidarAtualizacao()
         {
-            var patient = await _patientService.FindById(_patient.Id);
+            var patient = await _patientService.FindByIdAsync(_patient.Id);
             Assert.AreEqual(patient.Birthdate.Year, 1999);
             Assert.AreEqual(patient.Birthdate.Month, 10);
             Assert.AreEqual(patient.Birthdate.Day, 9);
