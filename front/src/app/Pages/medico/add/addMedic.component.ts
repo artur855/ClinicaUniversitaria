@@ -41,6 +41,9 @@ export class AddMedicComponent implements OnInit {
     console.log(this.tValues)
   }
 
+  Voltar(){
+    this.router.navigate(["dashboard"]);
+  }
 
   onSubmit() {
     //console.log(this.addMedForm.value);

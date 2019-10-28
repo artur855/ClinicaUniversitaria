@@ -3,35 +3,69 @@
         <div class="card-header">
             <h2>Adicionar Médicos</h2>
         </div>
-        <div class="card-body">
-            <form [formGroup]="addMedForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input type="text" formControlName="name" placeholder="Digite o nome">
-
+        <form [formGroup]="addMedForm" (ngSubmit)="onSubmit()">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                    <mat-label for="name">Nome</mat-label>
+                                    <input type="text" matInput formControlName="name" placeholder="Digite o nome">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                    <mat-label for="crm">CRM</mat-label>
+                                    <input type="text" matInput formControlName="crm" placeholder="Digite o CRM">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                    <mat-label for="email">Email</mat-label>
+                                    <input type="email" matInput formControlName="email" placeholder="Digite o email">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                    <mat-label for="senha">Senha</mat-label>
+                                    <input type="password" matInput formControlName="senha"
+                                        placeholder="Digite a senha">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-form-field>
+                        <mat-label>Titulação</mat-label>
+                        <mat-select formControlName="titulation">
+                            <mat-option *ngFor="let tit of tValues" [value]="tit">
+                                {{tit}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
-                <div class="form-group">
-                    <label for="CRM">CRM</label>
-                    <input type="text" formControlName="crm" placeholder="Digite o crm">
+            </div>
+            <div class="card-footer text-right">
+                <div class="row justify-content-between">
+                    <div class="col-4 text-left">
+                        <button (click)="Voltar()" class="btn btn-outline-primary">Voltar<i
+                                class="material-icons pt-1"></i>
+                        </button>
+                    </div>
+                    <div class="col-4 text-right">
+                        <button class="btn btn-outline-dark" type="submit">Salvar<i class="material-icons pt-1">save</i>
+                        </button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="CRM">Email</label>
-                    <input type="text" formControlName="email" placeholder="Digite o email">
-                </div>
-                <div class="form-group">
-                    <label for="CRM">Senha</label>
-                    <input type="password" formControlName="password" placeholder="Digite o password">
-                </div>
-                <mat-form-field>
-                    <mat-label>Titulação</mat-label>
-                    <mat-select formControlName="titulation">
-                        <mat-option *ngFor="let tit of tValues" [value]="tit">
-                            {{tit}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
