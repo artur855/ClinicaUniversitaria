@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AddMedicComponent } from './addMedic.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ServiceService } from 'src/app/Services/medico.service';
+import { MedicService } from 'src/app/Services/medico.service';
 import { Medico } from 'src/app/Models/Medico';
 
 
@@ -14,7 +14,7 @@ describe('AddMedicComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AddMedicComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [ServiceService, Medico]
+      providers: [MedicService, Medico]
     })
       .compileComponents();
   }));
