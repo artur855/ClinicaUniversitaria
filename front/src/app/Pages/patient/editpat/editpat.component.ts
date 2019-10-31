@@ -12,6 +12,7 @@ import { MedicService } from 'src/app/Services/medico.service';
 import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'app-editpat',
   templateUrl: './editpat.component.html',
@@ -30,11 +31,10 @@ export class EditpatComponent implements OnInit {
   colorsPat = []
   private patient: Patient = new Patient();
 
-  private editMedForm = new FormGroup({
+  private editPatForm = new FormGroup({
     name: new FormControl(''),
     sex: new FormControl(''),
     color: new FormControl(''),
-    expectedDate: new FormControl({ value: '', updateOn: 'submit' }),
     email: new FormControl(''),
     password: new FormControl(''),
   });
@@ -57,41 +57,42 @@ export class EditpatComponent implements OnInit {
   EditPat() {
     this.patient.user = new Usuario();
     let id = parseInt(localStorage.getItem("idpat"))
+    this.patient.id = id;
     this.service.getPatientId(id)
       .subscribe(data => {
         this.patient = data;
+        
         var sexSlc: string;
         if (this.patient.sex == "F") { sexSlc = "Feminino" } else { sexSlc = "Masculino" }
-        this.editMedForm.controls.color.setValue(this.tColor[data.color]);
-        this.editMedForm.controls.sex.setValue(sexSlc);
-        this.editMedForm.controls.name.setValue(data.user.name);
-        this.editMedForm.controls.email.setValue(data.user.email);
-        this.editMedForm.controls.password.setValue(data.user.password);
-
-      })
+        this.editPatForm.controls.color.setValue(data.color);
+        this.editPatForm.controls.sex.setValue(sexSlc);
+        this.editPatForm.controls.name.setValue(data.name);
+        this.editPatForm.controls.email.setValue(data.email);
+      });
   }
 
   onSubmit(patient: Patient) {
-    var date = this.editMedForm.controls.expectedDate
+    /*
+    var date = this.editPatForm.controls.expectedDate
     date.setValue(moment(date.value).format('L'));
-
+    */
     patient = new Patient();
     patient.user = new Usuario();
+    patient.id = this.patient.id;
+    patient.sex = this.tSex[this.editPatForm.controls.sex.value]
+    patient.color = this.tColor[this.editPatForm.controls.color.value]
+    patient.birthdate = this.patient.birthdate;
 
-    patient.sex = this.tSex[this.editMedForm.controls.sex.value]
-    patient.color = this.tColor[this.editMedForm.controls.color.value]
-    patient.birthdate = date.value
-
-    patient.user.name = this.editMedForm.controls.name.value
-    patient.user.password = this.editMedForm.controls.password.value
-    patient.user.email = this.editMedForm.controls.email.value
-    console.log(patient)
+    patient.user.name = this.editPatForm.controls.name.value
+    patient.user.password = this.editPatForm.controls.password.value
+    patient.user.email = this.editPatForm.controls.email.value
+    console.log(patient.id)
     this.service.updatePatient(patient).subscribe(data => {
       this.patient = data;
       this.router.navigate(["dashboard"]);
       this.openSnackBarPat();
     });
-    this.editMedForm.reset('')
+    this.editPatForm.reset('')
 
   }
 

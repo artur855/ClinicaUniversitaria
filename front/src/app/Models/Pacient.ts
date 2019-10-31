@@ -6,6 +6,9 @@ export class Patient {
     color: string;
     birthdate: Date;
     user: Usuario;
+    //armengo tem q fazer um command xD
+    name: string;
+    email: string;
 }
 
 export enum PatientColor {
