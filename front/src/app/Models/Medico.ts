@@ -3,8 +3,9 @@ import { Usuario } from './Usuario';
 export class Medico {
     user: Usuario;
     titulation: Titulacao;
-    name: string;
     crm: string;
+    name: string;
+    email:string;
 }
 
 export enum Titulacao{
@@ -12,3 +13,4 @@ export enum Titulacao{
     docente = 1 ,
     efetivo = 2,
 }
+

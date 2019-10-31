@@ -29,41 +29,41 @@ export class AddpatComponent implements OnInit {
 
   private addMedForm = new FormGroup({
     sex: new FormControl(''),
-    color : new FormControl(''),
+    color: new FormControl(''),
     expectedDate: new FormControl(''),
-    name : new FormControl(''),
-    password : new FormControl(''),
-    email : new FormControl(''),
+    name: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl(''),
   });
 
   constructor(private service: PatientService,
-    private router: Router,
-    private _snackBar: MatSnackBar) { }
+              private router: Router,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.sexPat = Object.keys(this.tSex)
     this.colorsPat = Object.keys(this.tColor)
-    this.colorsPat = this.colorsPat.splice(5,5);
+    this.colorsPat = this.colorsPat.splice(5, 5);
   }
 
-  Voltar(){
+  Voltar() {
     this.router.navigate(["dashboard"]);
   }
 
   onSubmit() {
-    var date =this.addMedForm.controls.expectedDate 
+    var date = this.addMedForm.controls.expectedDate
     date.setValue(moment(date.value).format('L'));
-    
+
     var patient = new Patient();
     patient.user = new Usuario();
 
-    patient.sex =this.tSex[this.addMedForm.controls.sex.value]
+    patient.sex = this.tSex[this.addMedForm.controls.sex.value]
     patient.color = this.tColor[this.addMedForm.controls.color.value]
     patient.birthdate = date.value
-    patient.user.name= this.addMedForm.controls.name.value
+    patient.user.name = this.addMedForm.controls.name.value
     patient.user.password = this.addMedForm.controls.password.value
     patient.user.email = this.addMedForm.controls.email.value
-
+    console.log(patient);
     this.service.createPatient(patient).subscribe(data => {
       patient = data;
       this.router.navigate(["dashboard"]);

@@ -24,8 +24,7 @@ const routes: Routes = [
 
   { path: 'list-exam-request', component: ListexameComponent,canActivate: [AuthGuard] },
   { path: 'add-exam-request', component: PedidoexameComponent,canActivate: [AuthGuard] },
-  
-  
+
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   

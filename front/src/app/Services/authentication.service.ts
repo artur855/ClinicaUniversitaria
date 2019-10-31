@@ -12,7 +12,7 @@ export class AuthenticationService {
 
   private Token: string;
 
-  Url = environment.url + "Authentication/login";
+  Url = environment.url + 'Authentication/login';
 
   getToken() {
     if (!this.Token && this.cookieService.check('JwtToken')) {
@@ -25,6 +25,7 @@ export class AuthenticationService {
   postAuthentication(email: string, password: string) {
     var observable = this.http.post(this.Url, { email, password });
     observable.subscribe((tokenDto) => {
+      console.log(tokenDto);
       this.Token = tokenDto['token'];
       this.cookieService.set('JwtToken', this.Token);
     });

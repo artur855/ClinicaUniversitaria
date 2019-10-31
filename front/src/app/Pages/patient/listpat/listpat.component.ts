@@ -33,7 +33,7 @@ export class ListpatComponent implements OnInit {
 
   EditarPat(id): void {
     localStorage.setItem("idpat", id)
-    this.router.navigate(["edit-patient"]);
+    this.router.navigate(['edit-patient']);
   }
 
   DeletePat(patient: Patient) {
