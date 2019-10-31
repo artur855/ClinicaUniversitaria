@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MedicService } from 'src/app/Services/medico.service';
+import { PatientService } from 'src/app/Services/pacient.service';
 
 // export const CUSTOM_DATE_FORMAT = {
 //   parse: {
@@ -33,61 +34,70 @@ import { MedicService } from 'src/app/Services/medico.service';
   ],
 })
 export class PedidoexameComponent implements OnInit {
-  
+
   tpExam = TypeExam;
   exams = []
-  values= []
-  crms = []
-  
-  ngOnInit() {
-    this.exams = Object.keys(this.tpExam)
-    for(let i =0;i<4;i++){
-     this.values[i] = this.exams[i+4]
-    }
-    this.serviceMed.getMedicos().subscribe(data => {
-      for(let i = 0;i < data.length;i++){
-        this.crms[i] = data[i].crm
-      }
-    });
-    
-  }
+  values = []
+
+  crms = [];
+  patientsId = [];
   constructor(
-    private router:Router,
-    private service:ExamrequestService, 
-    private _snackBar:MatSnackBar,
-    private serviceMed: MedicService) { }
+    private router: Router,
+    private service: ExamrequestService,
+    private _snackBar: MatSnackBar,
+    private serviceMed: MedicService,
+    private servicePat: PatientService) { }
 
   private addExamForm = new FormGroup({
     hypothesis: new FormControl(''),
-    expectedDate: new FormControl({value:'',  updateOn: 'submit'}),
+    expectedDate: new FormControl({ value: '', updateOn: 'submit' }),
     examName: new FormControl(''),
     recomendation: new FormControl(''),
-    medicCrm:new FormControl(''),
+    medicCrm: new FormControl(''),
     patientId: new FormControl(''),
   });
 
+  ngOnInit() {
+    this.exams = Object.keys(this.tpExam)
+    for (let i = 0; i < 4; i++) {
+      this.values[i] = this.exams[i + 4]
+    }
+    this.serviceMed.getMedicos().subscribe(data => {
+      for (let i = 0; i < data.length; i++) {
+        this.crms[i] = data[i].crm
+      }
+    });
+    this.servicePat.getPatients().subscribe(data => {
+      for (let i = 0; i < data.length; i++) {
+        this.patientsId[i] = data[i].id;
+      }
+    });
+
+  }
+
   onSubmit() {
-    var date =this.addExamForm.controls.expectedDate 
+    var date = this.addExamForm.controls.expectedDate
     date.setValue(moment(date.value).format('L'));
     console.log(date.value)
     //Caso não queira usar resetando o form deve-se extrair a data pois o control aceita apenas Moment
     //e quando retorna apenas a data ele mostra o control como invalid
     //var dateTrated = moment(date.value).format('L');
     var examRequest = new ExamRequest();
+    examRequest.patientId = this.addExamForm.controls.patientId.value;
     examRequest = this.addExamForm.value;
-     this.service.createExam(examRequest).subscribe(data =>{
+    this.service.createExam(examRequest).subscribe(data => {
       this.router.navigate(['dashboard']);
-      this.openSnackBarPat
+      this.openSnackBarPat();
     });
     this.addExamForm.reset('')
   }
 
-  Voltar(){
+  Voltar() {
     this.router.navigate(["dashboard"]);
   }
-  
+
   openSnackBarPat() {
-    var message = "Exame adicionado!"
+    var message = "Exame adicionado com sucesso!"
     var action = "Fechar"
     this._snackBar.open(message, action, {
       duration: 2000,

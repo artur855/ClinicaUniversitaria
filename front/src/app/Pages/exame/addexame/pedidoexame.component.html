@@ -24,9 +24,10 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
-                                        <mat-label>Id do paciente</mat-label>
-                                        <input matInput placeholder="Digite o id do paciente"
-                                            formControlName="patientId">
+                                        <mat-label>Paciente</mat-label>
+                                        <mat-select placeholder="selecionar" formControlName="patientId">
+                                            <mat-option *ngFor="let patient of patientsId" value="{{patient}}">{{patient}}</mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
                             </div>
