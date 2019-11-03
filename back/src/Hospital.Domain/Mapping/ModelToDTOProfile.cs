@@ -30,12 +30,6 @@ namespace Hospital.Domain.Mapping
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
                 .ReverseMap();
 
-            CreateMap<ExamRequest, ExamRequestDTO>()
-                .ForMember(dest => dest.MedicName, opt => opt.MapFrom(src => src.Medic.User.Name))
-                .ForMember(dest => dest.PatientName, opt => opt.MapFrom(src => src.Patient.User.Name))
-                .ForMember(dest => dest.ExpectedDate, opt => opt.ConvertUsing(new DateConverter(), src => src.ExpectedDate))
-                .ReverseMap();
-
             CreateMap<Patient, PatientDTO>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))

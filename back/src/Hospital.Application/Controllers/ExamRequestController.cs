@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using Hospital.Domain.Command;
@@ -12,12 +14,12 @@ using Hospital.Service.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Hospital.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     [EnableCors("MyPolicy")] 
     public class ExamRequestController : ControllerBase
     {
@@ -48,7 +50,13 @@ namespace Hospital.Application.Controllers
             var newExamRequest = await _examRequestService.SaveAsync<ExamRequestValidator>(int.Parse(userId), examRequest);
             if (newExamRequest == null)
                 return Unauthorized();
-            return CreatedAtAction(nameof(Post), new {id = newExamRequest.Id}, _mapper.Map<ExamRequest, ExamRequestDTO>(newExamRequest));
+            var path = Path.Join(Directory.GetCurrentDirectory(), "templates/examRequestReport.html");
+            var stream = new FileStream(path, FileMode.Open);
+            var response = File(stream, MediaTypeNames.Text.Html);
+            return Ok(new ExamRequestDTO
+            {
+                examRequestReport = response
+            });
         }
 
         [HttpDelete("{examRequestId}")]
