@@ -11,7 +11,10 @@ namespace Hospital.Domain.Mapping
     {
         public ModelToDTOProfile()
         {
-            CreateMap<ExamRequest, ExamRequestDTO>();
+            CreateMap<ExamRequest, ExamRequestDTO>()
+                .ForMember(dest => dest.MedicName, opt => opt.MapFrom(src => src.Medic.User.Name))
+                .ForMember(dest => dest.PatientName, opt => opt.MapFrom(src => src.Patient.User.Name))
+                .ReverseMap();
 
             CreateMap<Medic, MedicDTO>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name))
