@@ -53,10 +53,7 @@ namespace Hospital.Application.Controllers
             var path = Path.Join(Directory.GetCurrentDirectory(), "templates/examRequestReport.html");
             var stream = new FileStream(path, FileMode.Open);
             var response = File(stream, MediaTypeNames.Text.Html);
-            return Ok(new ExamRequestDTO
-            {
-                examRequestReport = response
-            });
+            return File(stream, "application/octet-stream", "exam.html");
         }
 
         [HttpDelete("{examRequestId}")]
