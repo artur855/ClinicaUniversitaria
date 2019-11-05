@@ -63,7 +63,7 @@ namespace Hospital.Tests.Modules.Medics
         [Then("The medic should be updated with sucess")]
         public async void ValidateUpdating()
         {
-            Medic medic = await m_medicService.FindByCrm(m_medic.CRM);
+            //Medic medic = await m_medicService.FindByCrm(m_medic.CRM);
 
             Assert.AreEqual(m_medic.User.Name, "Faluno");
             Assert.AreEqual(m_medic.CRM, "123");
