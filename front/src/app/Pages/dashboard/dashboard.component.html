@@ -24,11 +24,61 @@
       <span>Clínica Universitária</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <app-listar *ngIf="visiMed">
-    </app-listar>
+
+    
+<router-outlet>
+  <div class="row">
+    <!-- card medico -->
+    
+    <mat-card class="cards text-center">
+      <mat-card-header>
+        <fa-icon [icon]="faUserMd" class="pt-1"></fa-icon>
+        <mat-card-title>Médicos</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+        <a (click)="toogleMedic('med')" mat-list-item>
+        <button mat-button>Mostrar médicos</button>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+    
+
+  <!-- card pacientes -->
+ 
+    
+      <mat-card class="cards">
+        <mat-card-header>
+          <fa-icon [icon]="faUserInjured" class="pt-1"></fa-icon>
+          <mat-card-title>Pacientes</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <a (click)="toogleMedic('pat')" mat-list-item>
+          <button mat-button>Mostrar pacientes</button>
+          </a>
+        </mat-card-actions>
+      </mat-card> 
+  
+
+  <!-- card exames-->
+    
+      <mat-card class="cards">
+        <mat-card-header>
+          <fa-icon [icon]="faClipboard" class="pt-1"></fa-icon>
+          <mat-card-title>Exames</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <a (click)="toogleMedic('exam')" mat-list-item>
+          <button mat-button>Mostrar exames</button>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    
+  </div>
+
+    <app-listar *ngIf="visiMed"></app-listar>
     <app-listpat *ngIf="visiPat"></app-listpat>
     <app-listexame *ngIf="visiExam"></app-listexame>
-
+</router-outlet>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -15,3 +15,11 @@
   top: 0;
   z-index: 1;
 }
+
+.cards {
+  margin-left: 30px;
+  margin-bottom: 30px;
+
+  max-width: 200px;
+}
+

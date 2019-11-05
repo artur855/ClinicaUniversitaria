@@ -78,29 +78,35 @@ export class PedidoexameComponent implements OnInit {
   onSubmit() {
     var date = this.addExamForm.controls.expectedDate
     date.setValue(moment(date.value).format('L'));
-    console.log(date.value)
+    //console.log(date.value)
     //Caso não queira usar resetando o form deve-se extrair a data pois o control aceita apenas Moment
     //e quando retorna apenas a data ele mostra o control como invalid
     //var dateTrated = moment(date.value).format('L');
     var examRequest = new ExamRequest();
-    examRequest.patientId = this.addExamForm.controls.patientId.value;
     examRequest = this.addExamForm.value;
-    this.service.createExam(examRequest).subscribe(data => {
-      this.router.navigate(['dashboard']);
-      this.openSnackBarPat();
+    //console.log(this.addExamForm.value);
+    this.service.createExam(examRequest).subscribe(() => {
+      var newWin = window.open();
+      //newWin.document.write(htmlPedido);
+      // newWin.document.write("htmlPedido");
+      // newWin.document.write("pedido.html");
+      // newWin.document.write(pedido.html);
+      // newWin.document.write(pedidohtml);
+
     });
+    this.router.navigate(["dashboard"]);
     this.addExamForm.reset('')
   }
 
-  Voltar() {
-    this.router.navigate(["dashboard"]);
-  }
+Voltar() {
+  this.router.navigate(["dashboard"]);
+}
 
-  openSnackBarPat() {
-    var message = "Exame adicionado com sucesso!"
-    var action = "Fechar"
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
+openSnackBarPat() {
+  var message = "Exame adicionado com sucesso!"
+  var action = "Fechar"
+  this._snackBar.open(message, action, {
+    duration: 2000,
+  });
+}
 }

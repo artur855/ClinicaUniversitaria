@@ -16,7 +16,7 @@ export class AuthenticationService {
   Url = environment.url + 'Authentication/login';
 
   getUser(){
-
+    //retornar id do médico se for médico
   }
 
   getToken() {
@@ -26,6 +26,7 @@ export class AuthenticationService {
     return this.Token;
   }
 
+  //deve checar email se é de médico para mostrar a tela certa de acordo com cada usuário
   postAuthentication(email: string, password: string) {
     var observable = this.http.post(this.Url, { email, password });
     observable.subscribe((tokenDto) => {
