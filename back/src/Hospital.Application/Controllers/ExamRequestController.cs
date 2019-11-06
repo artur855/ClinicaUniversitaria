@@ -20,7 +20,8 @@ namespace Hospital.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("MyPolicy")] 
+    [Authorize]
+    [EnableCors("MyPolicy")]
     public class ExamRequestController : ControllerBase
     {
 
@@ -41,7 +42,7 @@ namespace Hospital.Application.Controllers
 
             return Ok(_mapper.Map<IEnumerable<ExamRequest>, IEnumerable<ExamRequestDTO>>(examRequests));
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ExamRequestCommand examRequestCommand)
         {
@@ -51,9 +52,16 @@ namespace Hospital.Application.Controllers
             if (newExamRequest == null)
                 return Unauthorized();
             var path = Path.Join(Directory.GetCurrentDirectory(), "templates/examRequestReport.html");
-            var stream = new FileStream(path, FileMode.Open);
-            var response = File(stream, MediaTypeNames.Text.Html);
-            return File(stream, "application/octet-stream", "exam.html");
+
+            var examRequestDTO = _mapper.Map<ExamRequest, ExamRequestDTO>(newExamRequest);
+
+            string html = System.IO.File.ReadAllText(path);
+
+            html = ReplaceHtml(examRequestDTO, html);
+
+            return Ok(new Dictionary<string, string>() {
+                    {"html", html }
+                });
         }
 
         [HttpDelete("{examRequestId}")]
@@ -73,5 +81,15 @@ namespace Hospital.Application.Controllers
                 return Unauthorized(e.Message);
             }
         }
-    }
+
+        public string ReplaceHtml(ExamRequestDTO examRequest, string html)
+        {
+
+            html = html.Replace("NomePaciente", examRequest.MedicName);
+            html = html.Replace("NomeExame", examRequest.ExamName);
+            html = html.Replace("DataExame", examRequest.ExpectedDate);
+
+            return html;
+        }
+}
 }

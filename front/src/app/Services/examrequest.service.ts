@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ExamRequest } from '../Models/ExamRequest';
 
@@ -21,7 +21,7 @@ export class ExamrequestService {
   }
 
   createExam(exam: ExamRequest) {
-    return this.http.post<ExamRequest>(this.Url, exam)
+    return this.http.post(this.Url, exam).toPromise();
   }
 
   updateExam(exam: ExamRequest) {
