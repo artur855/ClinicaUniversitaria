@@ -85,24 +85,23 @@ export class PedidoexameComponent implements OnInit {
     var examRequest = new ExamRequest();
     examRequest = this.addExamForm.value;
     //console.log(this.addExamForm.value);
-    let text=  this.service.createExam(examRequest).then(response => {
+    let text = this.service.createExam(examRequest).then(response => {
       let newWindow = window.open();
       newWindow.document.write(response.html);
     });
-    console.log(text);
     this.router.navigate(["dashboard"]);
     this.addExamForm.reset('')
   }
 
-Voltar() {
-  this.router.navigate(["dashboard"]);
-}
+  Voltar() {
+    this.router.navigate(["dashboard"]);
+  }
 
-openSnackBarPat() {
-  var message = "Exame adicionado com sucesso!"
-  var action = "Fechar"
-  this._snackBar.open(message, action, {
-    duration: 2000,
-  });
-}
+  openSnackBarPat() {
+    var message = "Exame adicionado com sucesso!"
+    var action = "Fechar"
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }
