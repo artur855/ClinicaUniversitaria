@@ -9,65 +9,65 @@ namespace Hospital.Tests.Modules.Medics
     [Binding]
     public class UpdateMedicTest : BaseTest
     {
-        private IMedicService m_medicService;
-        private Medic m_medic;
+        private IMedicService _medicService;
+        private Medic _medic;
 
         public UpdateMedicTest()
         {
-            m_medicService = this.GetService<IMedicService>();
+            _medicService = this.GetService<IMedicService>();
         }
 
         [Given("I'm opening the update medic screen")]
         public void UpdateMedicScreen()
         {
-            m_medicService.SaveAsync<MedicValidator>(new Medic()
+            _medicService.SaveAsync<MedicValidator>(new Medic()
             {
                 User = new User()
                 {
-                    Name = "Faluno"
+                    Name = "Qualquer"
                 },
-                CRM = "123",
+                CRM = "456",
             });
         }
 
         [Given("I choose the medic by CRM (.*)")]
         public async void ChooseMedic(string crm)
         {
-            m_medic = await m_medicService.FindByCrm(crm);
+            _medic = await _medicService.FindByCrm(crm);
         }
 
         [Given("I'm updating the name (.*)")]
         public void UpdatingName(string name)
         {
-            m_medic.User.Name = name;
+            _medic.User.Name = name;
         }
 
-        [Given("I'm updating the CRM (.*)")]
-        public void UpdatingUserID(string crm)
-        {
-            m_medic.CRM = crm;
-        }
+        //[Given("I'm updating the CRM (.*)")]
+        //public void UpdatingUserID(string crm)
+        //{
+        //    _medic.CRM = crm;
+        //}
 
         [Given("I'm updating the UserID (.*)")]
         public void UpdatingUserID(int userID)
         {
-            m_medic.UserId = userID;
+            _medic.UserId = userID;
         }
 
         [When("I'm clicking in the update button")]
-        public void UpdateButtonClick()
+        public async void UpdateButtonClick()
         {
-            //await m_medicService.UpdateAsync<MedicValidator>(m_medic);
+            await _medicService.UpdateAsync<MedicValidator>(_medic);
         }
 
         [Then("The medic should be updated with sucess")]
         public async void ValidateUpdating()
         {
-            //Medic medic = await m_medicService.FindByCrm(m_medic.CRM);
+            Medic medic = await _medicService.FindByCrm(_medic.CRM);
 
-            Assert.AreEqual(m_medic.User.Name, "Faluno");
-            Assert.AreEqual(m_medic.CRM, "123");
-            Assert.AreEqual(m_medic.UserId, 123);
+            Assert.AreEqual(medic.User.Name, "Faluno");
+            Assert.AreEqual(medic.CRM, "123");
+            Assert.AreEqual(medic.UserId, 123);
         }
     }
 }

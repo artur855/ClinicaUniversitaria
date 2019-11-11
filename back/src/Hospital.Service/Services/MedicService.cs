@@ -81,8 +81,6 @@ namespace Hospital.Service.Services
             if (existingMedic == null)
                 return null;
 
-            existingMedic.CRM = medic.CRM;
-
             if (medic is Docent)
             {
                 (existingMedic as Docent).Titulation = (medic as Docent).Titulation;
