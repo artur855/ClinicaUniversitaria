@@ -30,6 +30,11 @@ namespace Hospital.Application
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.Configure<ApiBehaviorOptions>(opt => 
+            {
+                opt.SuppressModelStateInvalidFilter = true;
+            });
+
             services.AddDbContextService(Configuration);
 
             services.AddJwtTokenConfiguration(Configuration);
@@ -47,6 +52,8 @@ namespace Hospital.Application
             services.AddUserService();
             services.AddExamRequestService();
             services.AddOptions();
+            services.AddNotificationServices();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
