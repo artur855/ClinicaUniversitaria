@@ -1,4 +1,4 @@
-﻿using Hospital.Application.Extensions;
+using Hospital.Application.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -65,6 +65,7 @@ namespace Hospital.Application
             app.UseCors("MyPolicy");
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseGlobalExceptionHandler(env);
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
