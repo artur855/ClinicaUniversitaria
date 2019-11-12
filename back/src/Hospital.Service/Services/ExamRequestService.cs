@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
 using Hospital.Domain.Entities;
+using Hospital.Domain.Interfaces;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Validators;
 
 namespace Hospital.Service.Services
 {
-    public class ExamRequestService : IExamRequestService
+    public class ExamRequestService : BaseService, IExamRequestService
     {
         private readonly IExamRequestRepository _examRequestRepository;
         private readonly IUserService _userService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPatientService _patientService;
-        
-        public ExamRequestService(IExamRequestRepository examRequestRepository, IUserService userService, IUnitOfWork unitOfWork, IPatientService patientService)
+
+        public ExamRequestService(
+            IExamRequestRepository examRequestRepository,
+            IUserService userService,
+            IUnitOfWork unitOfWork,
+            IPatientService patientService,
+            INotificator notificator) : base(notificator)
         {
             _examRequestRepository = examRequestRepository;
             _userService = userService;
@@ -32,17 +38,27 @@ namespace Hospital.Service.Services
 
         public async Task<ExamRequest> SaveAsync<V>(int userId, ExamRequest examRequest) where V : AbstractValidator<ExamRequest>
         {
+
             var currentUser = await _userService.FindByIdAsync(userId);
             if (currentUser.Medic == null)
+            {
+                Notify("Current user doesn't have permission to peform a exam request");
                 return null;
+            }
 
             Patient patient = await _patientService.FindByIdAsync(examRequest.Patient.Id);
-            if (patient == null) return null;
+            if (patient == null)
+            {
+                Notify("Unable to find patient to peform a exam request");
+                return null;
+            }
 
             examRequest.Patient = patient;
             examRequest.MedicId = currentUser.Medic.Id;
 
-            Activator.CreateInstance<ExamRequestValidator>().Validate(examRequest);
+            if (!Validate(Activator.CreateInstance<ExamRequestValidator>(), examRequest))
+                return null;
+
             await _examRequestRepository.InsertAsync(examRequest);
             await _unitOfWork.CompleteAsync();
             return examRequest;
@@ -51,12 +67,17 @@ namespace Hospital.Service.Services
         public async Task<ExamRequest> DeleteAsync(int userId, int examRequestId)
         {
             var currentUser = await _userService.FindByIdAsync(userId);
+
             if (currentUser.Medic == null)
                 throw new UnauthorizedAccessException("Apenas médicos podem cancelar pedidos de exames");
 
             ExamRequest examRequest = await FindByIdAsync(examRequestId);
 
-            if (examRequest == null) return null;
+            if (examRequest == null) 
+            {
+                Notify($"Unable to locate Exam with current ID {examRequestId}");
+                return null;
+            }
 
             await _examRequestRepository.RemoveAsync(examRequest.Id);
 
