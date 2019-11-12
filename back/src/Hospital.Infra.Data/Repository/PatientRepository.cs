@@ -19,7 +19,7 @@ namespace Hospital.Infra.Data.Repository
 
         public override async Task<Patient> FindByIdAsync(int id)
         {
-            return await DbSet.Include(p => p.User).SingleAsync(patient => patient.Id == id);
+            return await DbSet.Include(p => p.User).SingleOrDefaultAsync(patient => patient.Id == id);
         }
 
     }
