@@ -18,14 +18,22 @@ namespace Hospital.Infra.Data.Mapping
             builder.Property(er => er.ExpectedDate).HasColumnName("data_prevista");
             builder.Property(er => er.MedicId).HasColumnName("id_medico");
             builder.Property(er => er.PatientId).HasColumnName("id_paciente");
+            builder.Property(er => er.ExamReportId).HasColumnName("id_exam_report");
 
-            builder.HasOne(er => er.Patient)
+            builder
+                .HasOne(er => er.Patient)
                 .WithMany(p => p.ExamRequests)
                 .HasForeignKey(er => er.PatientId);
 
-            builder.HasOne(er => er.Medic)
+            builder
+                .HasOne(er => er.Medic)
                 .WithMany(m => m.ExamRequests)
                 .HasForeignKey(er => er.MedicId);
+
+            builder
+                .HasOne(e => e.ExamReport)
+                .WithOne(er => er.ExamRequest)
+                .HasForeignKey<ExamReport>(e => e.ExamRequestId);
             
             
         } 
