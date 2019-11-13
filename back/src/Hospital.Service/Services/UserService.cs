@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Hospital.Domain.Entities;
+using Hospital.Domain.Interfaces;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Validators;
@@ -9,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace Hospital.Service.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseService, IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        private readonly INotificator _notificator;
+
+        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, INotificator notificator) : base(notificator) 
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
@@ -37,7 +40,9 @@ namespace Hospital.Service.Services
 
         public async Task<User> SaveAsync<V>(User user) where V : AbstractValidator<User>
         {
-            Activator.CreateInstance<UserValidator>().Validate(user);
+            if (!Validate(Activator.CreateInstance<V>(), user))
+                return null;
+
             await _userRepository.InsertAsync(user);
                 
             await _unitOfWork.CompleteAsync();
@@ -49,7 +54,7 @@ namespace Hospital.Service.Services
         {
             Activator.CreateInstance<UserValidator>().Validate(user);
             User existingUser = await FindByIdAsync(user.Id);
-
+            
             existingUser.Name = user.Name;
             existingUser.Email = user.Email;
             existingUser.Password = user.Password;
