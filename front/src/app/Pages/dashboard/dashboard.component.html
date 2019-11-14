@@ -23,9 +23,9 @@
         </i></button>
       <span>Clínica Universitária</span>
       <span class="example-spacer"></span>
-      <button type="button" class="text-right" aria-label="Toggle sidenav" mat-icon-button (click)="sair()">
+      <button appearance="outline" type="button" class="text-right mr-4" aria-label="Toggle sidenav" mat-icon-button (click)="sair()">
         <fa-icon [icon]="faSignOutAlt" class="mr-2"></fa-icon>
-          Sair
+         <span>Sair</span>
       </button>
     </mat-toolbar>
     
@@ -36,7 +36,7 @@
       <div class="row">
         <!-- card medico -->
         
-        <mat-card class="cards text-center">
+        <mat-card class="cards texst-center">
           <mat-card-header>
             <fa-icon [icon]="faUserMd" class="pt-1"></fa-icon>
             <mat-card-title>Médicos</mat-card-title>
@@ -50,34 +50,32 @@
         
 
       <!-- card pacientes -->
-    
-        
-          <mat-card class="cards">
-            <mat-card-header>
-              <fa-icon [icon]="faUserInjured" class="pt-1"></fa-icon>
-              <mat-card-title>Pacientes</mat-card-title>
-            </mat-card-header>
-            <mat-card-actions>
-              <a (click)="toogleMedic('pat')" mat-list-item>
-              <button  mat-raised-button color="primary" mat-button>Mostrar pacientes</button>
-              </a>
-            </mat-card-actions>
-          </mat-card> 
+        <mat-card class="cards">
+          <mat-card-header>
+            <fa-icon [icon]="faUserInjured" class="pt-1"></fa-icon>
+            <mat-card-title>Pacientes</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <a (click)="toogleMedic('pat')" mat-list-item>
+            <button  mat-raised-button color="primary" mat-button>Mostrar pacientes</button>
+            </a>
+          </mat-card-actions>
+        </mat-card> 
       
 
       <!-- card exames-->
         
-          <mat-card class="cards">
-            <mat-card-header>
-              <fa-icon [icon]="faClipboard" class="pt-1"></fa-icon>
-              <mat-card-title>Exames</mat-card-title>
-            </mat-card-header>
-            <mat-card-actions>
-              <a (click)="toogleMedic('exam')" (click)="toogleFile=!toogleFile" mat-list-item>
-              <button  mat-raised-button color="primary" mat-button>Mostrar exames</button>
-              </a>
-            </mat-card-actions>
-          </mat-card>
+        <mat-card class="cards">
+          <mat-card-header>
+            <fa-icon [icon]="faClipboard" class="pt-1"></fa-icon>
+            <mat-card-title>Exames</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <a (click)="toogleMedic('exam')" (click)="toogleFile=!toogleFile" mat-list-item>
+            <button  mat-raised-button color="primary" mat-button>Mostrar exames</button>
+            </a>
+          </mat-card-actions>
+        </mat-card>
      
       </div>
 

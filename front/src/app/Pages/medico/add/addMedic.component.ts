@@ -5,6 +5,7 @@ import { Medico, Titulacao } from 'src/app/Models/Medico';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Usuario } from 'src/app/Models/Usuario';
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-add',
@@ -17,7 +18,7 @@ export class AddMedicComponent implements OnInit {
   tmeds = []
   tValues = []
 
-
+  faSignOutAlt = faSignOutAlt;
   private addMedForm = new FormGroup({
     name: new FormControl(''),
     crm: new FormControl(''),
