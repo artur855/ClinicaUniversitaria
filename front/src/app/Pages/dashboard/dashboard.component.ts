@@ -2,9 +2,11 @@ import { Component, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
-import { faUserMd, faUserInjured, faBars, faClipboard , faFilePdf , faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import { faUserMd, faUserInjured, faBars, faClipboard, faFilePdf, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -28,16 +30,35 @@ export class DashboardComponent {
       share()
     );
 
+  //a sidenav era um form em que eu podia manipular e definir o tamanho da minha sidenav 
+  //por isso existe esse formgroup em que eu preenchia o tamanho e ele se adaptava automaticamente
+  //apenas deixei inicializando um padrão ali no construtor que pode ser mudado e definido o tamanho
+  //da sidenav.
+  options: FormGroup;
   constructor(private breakpointObserver: BreakpointObserver,
-              private router: Router,
-              private cookieService: CookieService
-              ) { }
+    private router: Router,
+    private cookieService: CookieService,
+    fb: FormBuilder,
+    private serviceAuth: AuthenticationService,
+  ) {
+  this.options = fb.group({
+    'fixed': true,
+    'top': 60,
+    'bottom': 0,
+  });
+  }
+
+  emailUser:string = this.serviceAuth.getEmailUser().split('@')[0];
+  
+
+
 
   visiPat = false;
   visiMed = false;
   visiExam = false;
-  toogleFile = false;
-//ARMENGADA SAFE
+  visiFile = false;
+
+  //ARMENGADA SAFE
 
   toogleMedic(value: string) {
 
@@ -46,6 +67,7 @@ export class DashboardComponent {
         this.visiMed = true
         this.visiExam = false;
         this.visiPat = false;
+        this.visiFile = false;
       } else {
         this.visiMed = false
       }
@@ -56,6 +78,7 @@ export class DashboardComponent {
         this.visiPat = true
         this.visiExam = false;
         this.visiMed = false;
+        this.visiFile = false;
       } else {
         this.visiPat = false
       }
@@ -66,13 +89,25 @@ export class DashboardComponent {
         this.visiExam = true
         this.visiPat = false;
         this.visiMed = false;
+        this.visiFile = false;
       } else {
         this.visiExam = false
       }
     }
+
+    if (value == "file") {
+      if (this.visiFile == false) {
+        this.visiFile = true;
+        this.visiExam = false;
+        this.visiPat = false;
+        this.visiMed = false;
+      } else {
+        this.visiFile = false;
+      }
+    }
   }
 
-  sair(){
+  sair() {
     this.cookieService.delete('JwtToken');
     this.cookieService.delete('token');
     this.router.navigate(['/'])

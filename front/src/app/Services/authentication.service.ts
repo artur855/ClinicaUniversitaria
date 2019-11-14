@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, private cookieService: CookieService,private router:Router) { }
 
   private Token: string;
   private emailLogin: string;
@@ -18,8 +19,13 @@ export class AuthenticationService {
   sair(){
     this.cookieService.delete('JwtToken');
     this.cookieService.delete('token');
-    //retornar id do médico se for médico
+    this.router.navigate(['/']);
   }
+
+  getEmailUser(){
+    return this.cookieService.get('emailUser');
+  }
+
 
   getToken() {
     if (!this.Token && this.cookieService.check('JwtToken')) {
@@ -32,10 +38,10 @@ export class AuthenticationService {
   postAuthentication(email: string, password: string) {
     var observable = this.http.post(this.Url, { email, password });
     observable.subscribe((tokenDto) => {
-      console.log(tokenDto);
       this.Token = tokenDto['token'];
       this.cookieService.set('JwtToken', this.Token);
-      this.cookieService.set('emailLogin', this.emailLogin);
+      this.cookieService.set('emailUser', email);
+      
     });
     return observable;
   }
