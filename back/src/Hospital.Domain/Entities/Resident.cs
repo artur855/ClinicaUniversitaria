@@ -8,7 +8,7 @@ namespace Hospital.Domain.Entities
     {
         public DateTime InitialDate { get; set; }
         
-        public IEnumerable<ExamReport> ExamReports { get; set; }
+        public ICollection<ExamReport> ExamReports { get; set; }
         
     }
 }

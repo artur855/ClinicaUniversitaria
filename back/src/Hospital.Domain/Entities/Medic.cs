@@ -10,7 +10,7 @@ namespace Hospital.Domain.Entities
         public string CRM { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-        public IEnumerable<ExamRequest> ExamRequests { get; set; }
+        public ICollection<ExamRequest> ExamRequests { get; set; }
     }
 
     public enum EMedicType {
