@@ -8,6 +8,7 @@ import { PatientService } from 'src/app/Services/pacient.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/Models/Usuario';
 //import { ExamRequest } from 'src/app/Models/ExamRequest';
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 @Component({
   selector: 'app-addpat',
@@ -26,6 +27,8 @@ export class AddpatComponent implements OnInit {
   sexPat = []
   tColor = PatientColor;
   colorsPat = []
+
+  faSignOutAlt= faSignOutAlt;
 
   private addMedForm = new FormGroup({
     sex: new FormControl(''),

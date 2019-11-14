@@ -11,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MedicService } from 'src/app/Services/medico.service';
 import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import * as moment from 'moment';
-
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-editpat',
@@ -29,6 +29,8 @@ export class EditpatComponent implements OnInit {
   sexPat = []
   tColor = PatientColor;
   colorsPat = []
+  faSignOutAlt = faSignOutAlt;
+
   private patient: Patient = new Patient();
 
   private editPatForm = new FormGroup({
