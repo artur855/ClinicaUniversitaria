@@ -10,6 +10,10 @@
   background: inherit;
 }
 
+.example-spacer {
+  flex: 1 1 auto;
+}
+
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
@@ -19,7 +23,6 @@
 .cards {
   margin-left: 30px;
   margin-bottom: 30px;
-
   max-width: 200px;
 }
 

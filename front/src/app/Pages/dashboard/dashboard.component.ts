@@ -2,7 +2,9 @@ import { Component, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
-import { faUserMd, faUserInjured, faBars, faClipboard } from '@fortawesome/free-solid-svg-icons'
+import { faUserMd, faUserInjured, faBars, faClipboard , faFilePdf , faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,6 +16,9 @@ export class DashboardComponent {
   faBars = faBars;
   faUserMd = faUserMd;
   faUserInjured = faUserInjured;
+  faFilePdf = faFilePdf;
+  faSignOutAlt = faSignOutAlt;
+
   //abre dashboard
   opened = false;
 
@@ -23,12 +28,17 @@ export class DashboardComponent {
       share()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver,
+              private router: Router,
+              private cookieService: CookieService
+              ) { }
 
   visiPat = false;
   visiMed = false;
   visiExam = false;
+  toogleFile = false;
 //ARMENGADA SAFE
+
   toogleMedic(value: string) {
 
     if (value == "med") {
@@ -60,6 +70,12 @@ export class DashboardComponent {
         this.visiExam = false
       }
     }
+  }
+
+  sair(){
+    this.cookieService.delete('JwtToken');
+    this.cookieService.delete('token');
+    this.router.navigate(['/'])
   }
 
 }
