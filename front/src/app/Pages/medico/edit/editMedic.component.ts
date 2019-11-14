@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Usuario } from 'src/app/Models/Usuario';
 import { faSignOutAlt } from  '@fortawesome/free-solid-svg-icons'
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { faSignOutAlt } from  '@fortawesome/free-solid-svg-icons'
   tValues = [];
 
   medico: Medico = new Medico();
-  constructor(private router: Router, private service: MedicService, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private service: MedicService, private _snackBar: MatSnackBar,private serviceAuth: AuthenticationService) { }
 
   ngOnInit() {
     this.Editar();
@@ -29,6 +30,10 @@ import { faSignOutAlt } from  '@fortawesome/free-solid-svg-icons'
     for (let i = 0; i < 3; i++) {
       this.tValues[i] = this.tmeds[i + 3]
     }
+  }
+
+  sair(){
+    this.serviceAuth.sair();
   }
 
   private editMedForm = new FormGroup({

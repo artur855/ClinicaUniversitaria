@@ -15,7 +15,9 @@ export class AuthenticationService {
 
   Url = environment.url + 'Authentication/login';
 
-  getUser(){
+  sair(){
+    this.cookieService.delete('JwtToken');
+    this.cookieService.delete('token');
     //retornar id do médico se for médico
   }
 

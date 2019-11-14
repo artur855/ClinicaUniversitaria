@@ -10,6 +10,7 @@ import { Usuario } from 'src/app/Models/Usuario';
 //import { ExamRequest } from 'src/app/Models/ExamRequest';
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 @Component({
   selector: 'app-addpat',
   templateUrl: './addpat.component.html',
@@ -41,12 +42,17 @@ export class AddpatComponent implements OnInit {
 
   constructor(private service: PatientService,
               private router: Router,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar,
+              private serviceAuth: AuthenticationService) { }
 
   ngOnInit() {
     this.sexPat = Object.keys(this.tSex)
     this.colorsPat = Object.keys(this.tColor)
     this.colorsPat = this.colorsPat.splice(5, 5);
+  }
+
+  sair(){
+    this.serviceAuth.sair();
   }
 
   Voltar() {
