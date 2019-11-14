@@ -9,7 +9,7 @@ import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MedicService } from 'src/app/Services/medico.service';
 import { PatientService } from 'src/app/Services/pacient.service';
-
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 // export const CUSTOM_DATE_FORMAT = {
 //   parse: {
 //     dateInput: 'DD/MM/YYYY',
@@ -34,6 +34,7 @@ import { PatientService } from 'src/app/Services/pacient.service';
   ],
 })
 export class PedidoexameComponent implements OnInit {
+  faSignOutAlt = faSignOutAlt;
 
   tpExam = TypeExam;
   exams = []

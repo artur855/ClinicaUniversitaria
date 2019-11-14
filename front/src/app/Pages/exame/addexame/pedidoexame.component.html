@@ -1,3 +1,12 @@
+
+<mat-toolbar class="mb-5" color="primary">
+    <span>Clínica Universitária</span>
+    <span class="example-spacer"></span>
+    <button appearance="outline" type="button" class="text-right mr-4" aria-label="Toggle sidenav" mat-icon-button (click)="sair()">
+    <fa-icon [icon]="faSignOutAlt" class="mr-2"></fa-icon>
+        <span>Sair</span>
+    </button>
+</mat-toolbar>
 <div class="container">
     <div class="col-lg-12">
         <form [formGroup]="addExamForm" (ngSubmit)="onSubmit()">
