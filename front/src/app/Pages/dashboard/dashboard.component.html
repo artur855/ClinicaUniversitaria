@@ -13,20 +13,21 @@
     <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav"
                  [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
                  [fixedBottomGap]="options.value.bottom">
-     <mat-nav-list>
-      <a (click)="toogleMedic('med')" mat-list-item>
+     <mat-nav-list class="text-white">
+      <mat-divider></mat-divider>
+      <a class="link-lateral" (click)="toogleMedic('med')" mat-list-item>
         <fa-icon [icon]="faUserMd" class="mr-2"></fa-icon>Médicos
       </a>
       <mat-divider></mat-divider>
-      <a (click)="toogleMedic('pat')" mat-list-item>
+      <a class="link-lateral" (click)="toogleMedic('pat')" mat-list-item>
         <fa-icon [icon]="faUserInjured" class="mr-2"></fa-icon>Pacientes
       </a>
       <mat-divider></mat-divider>
-      <a (click)="toogleMedic('exam')" mat-list-item>
+      <a class="link-lateral" (click)="toogleMedic('exam')" mat-list-item>
         <fa-icon [icon]="faClipboard" class="mr-2"></fa-icon>Exames
       </a>
       <mat-divider></mat-divider>
-      <a (click)="toogleMedic('file')" mat-list-item>
+      <a class="link-lateral" (click)="toogleMedic('file')" mat-list-item>
         <fa-icon [icon]="faFilePdf" class="mr-2"></fa-icon>Upload Exame
       </a>
       <mat-divider></mat-divider>
@@ -96,7 +97,6 @@
      
       </div>
       </div>
-
       <app-listar *ngIf="visiMed"></app-listar>
         <app-listpat *ngIf="visiPat"></app-listpat>
         <app-listexame *ngIf="visiExam"></app-listexame>

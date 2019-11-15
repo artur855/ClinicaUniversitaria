@@ -50,16 +50,12 @@ export class DashboardComponent {
 
   emailUser:string = this.serviceAuth.getEmailUser().split('@')[0];
   
-
-
-
   visiPat = false;
   visiMed = false;
   visiExam = false;
   visiFile = false;
 
   //ARMENGADA SAFE
-
   toogleMedic(value: string) {
 
     if (value == "med") {
