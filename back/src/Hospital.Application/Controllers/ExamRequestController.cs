@@ -9,10 +9,12 @@ using AutoMapper;
 using Hospital.Domain.Command;
 using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
+using Hospital.Domain.Interfaces;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
@@ -22,13 +24,16 @@ namespace Hospital.Application.Controllers
     [ApiController]
     [Authorize]
     [EnableCors("MyPolicy")]
-    public class ExamRequestController : ControllerBase
+    public class ExamRequestController : MainController
     {
 
         private IExamRequestService _examRequestService;
         private readonly IMapper _mapper;
 
-        public ExamRequestController(IExamRequestService examRequestService, IMapper mapper)
+        public ExamRequestController(
+            IExamRequestService examRequestService,
+            IMapper mapper,
+            INotificator notificator) : base (notificator)
         {
             _examRequestService = examRequestService;
             _mapper = mapper;
@@ -46,11 +51,16 @@ namespace Hospital.Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ExamRequestCommand examRequestCommand)
         {
+            if (!ModelState.IsValid)
+                return CustomResponse(ModelState);
+
             var examRequest = _mapper.Map<ExamRequestCommand, ExamRequest>(examRequestCommand);
             var userId = HttpContext.User.Claims.First()?.Value;
             var newExamRequest = await _examRequestService.SaveAsync<ExamRequestValidator>(int.Parse(userId), examRequest);
-            if (newExamRequest == null)
-                return Unauthorized();
+            
+            if (newExamRequest == null) 
+                return CustomResponse();
+
             var path = Path.Join(Directory.GetCurrentDirectory(), "templates/examRequestReport.html");
 
             var examRequestDTO = _mapper.Map<ExamRequest, ExamRequestDTO>(newExamRequest);
@@ -72,7 +82,7 @@ namespace Hospital.Application.Controllers
             {
                 ExamRequest examRequest = await _examRequestService.DeleteAsync(int.Parse(userId), examRequestId);
                 if (examRequest == null)
-                    return NotFound();
+                    return CustomResponse(statusCode: StatusCodes.Status404NotFound);
 
                 return Ok();
             }

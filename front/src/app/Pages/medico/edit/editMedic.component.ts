@@ -5,6 +5,8 @@ import { Medico,Titulacao } from 'src/app/Models/Medico';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Usuario } from 'src/app/Models/Usuario';
+import { faSignOutAlt } from  '@fortawesome/free-solid-svg-icons'
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 
 @Component({
@@ -12,13 +14,15 @@ import { Usuario } from 'src/app/Models/Usuario';
   templateUrl: './editMedic.component.html',
   styleUrls: ['./editMedic.component.css']
 }) export class EditMedicComponent implements OnInit {
+  
+  faSignOutAlt = faSignOutAlt;
 
   tMed = Titulacao;
   tmeds = [];
   tValues = [];
 
   medico: Medico = new Medico();
-  constructor(private router: Router, private service: MedicService, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private service: MedicService, private _snackBar: MatSnackBar,private serviceAuth: AuthenticationService) { }
 
   ngOnInit() {
     this.Editar();
@@ -26,6 +30,10 @@ import { Usuario } from 'src/app/Models/Usuario';
     for (let i = 0; i < 3; i++) {
       this.tValues[i] = this.tmeds[i + 3]
     }
+  }
+
+  sair(){
+    this.serviceAuth.sair();
   }
 
   private editMedForm = new FormGroup({
@@ -40,8 +48,9 @@ import { Usuario } from 'src/app/Models/Usuario';
   Editar() {
     let crm = localStorage.getItem("crm");
     this.medico.crm = crm
-    this.service.getMedicoCrm(parseInt(crm))
+    this.service.getMedicoCrm(crm)
       .subscribe(data => {
+        console.log(data);
         this.editMedForm.controls.name.setValue(data.name);
         this.editMedForm.controls.crm.setValue(data.crm);
         this.editMedForm.controls.email.setValue(data.email);

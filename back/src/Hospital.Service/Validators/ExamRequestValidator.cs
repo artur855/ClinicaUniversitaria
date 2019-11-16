@@ -8,9 +8,6 @@ namespace Hospital.Service.Validators
     {
         public ExamRequestValidator()
         {
-            RuleFor(er => er.Id)
-                .NotEmpty()
-                .WithMessage("ExamRequest Id nulo");
             
             RuleFor(er => er.MedicId)
                 .NotEmpty()

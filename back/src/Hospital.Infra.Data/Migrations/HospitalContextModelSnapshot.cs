@@ -20,6 +20,30 @@ namespace Hospital.Infra.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("Hospital.Domain.Entities.ExamReport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Cid")
+                        .HasColumnName("cid");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("ExamRequestId");
+
+                    b.Property<int>("ResidentId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExamRequestId")
+                        .IsUnique();
+
+                    b.HasIndex("ResidentId");
+
+                    b.ToTable("tb_pedidos_laudos");
+                });
+
             modelBuilder.Entity("Hospital.Domain.Entities.ExamRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -28,6 +52,9 @@ namespace Hospital.Infra.Data.Migrations
 
                     b.Property<int>("ExamName")
                         .HasColumnName("exame");
+
+                    b.Property<int>("ExamReportId")
+                        .HasColumnName("id_exam_report");
 
                     b.Property<DateTime>("ExpectedDate")
                         .HasColumnName("data_prevista");
@@ -151,6 +178,19 @@ namespace Hospital.Infra.Data.Migrations
                     b.ToTable("tb_medicos");
 
                     b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("Hospital.Domain.Entities.ExamReport", b =>
+                {
+                    b.HasOne("Hospital.Domain.Entities.ExamRequest", "ExamRequest")
+                        .WithOne("ExamReport")
+                        .HasForeignKey("Hospital.Domain.Entities.ExamReport", "ExamRequestId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Hospital.Domain.Entities.Resident", "Resident")
+                        .WithMany("ExamReports")
+                        .HasForeignKey("ResidentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Hospital.Domain.Entities.ExamRequest", b =>

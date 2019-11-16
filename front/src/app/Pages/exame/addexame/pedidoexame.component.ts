@@ -9,7 +9,8 @@ import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MedicService } from 'src/app/Services/medico.service';
 import { PatientService } from 'src/app/Services/pacient.service';
-
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 // export const CUSTOM_DATE_FORMAT = {
 //   parse: {
 //     dateInput: 'DD/MM/YYYY',
@@ -34,6 +35,7 @@ import { PatientService } from 'src/app/Services/pacient.service';
   ],
 })
 export class PedidoexameComponent implements OnInit {
+  faSignOutAlt = faSignOutAlt;
 
   tpExam = TypeExam;
   exams = []
@@ -46,7 +48,8 @@ export class PedidoexameComponent implements OnInit {
     private service: ExamrequestService,
     private _snackBar: MatSnackBar,
     private serviceMed: MedicService,
-    private servicePat: PatientService) { }
+    private servicePat: PatientService,
+    private serviceAuth: AuthenticationService) { }
 
   private addExamForm = new FormGroup({
     hypothesis: new FormControl(''),
@@ -56,6 +59,7 @@ export class PedidoexameComponent implements OnInit {
     medicCrm: new FormControl(''),
     patientId: new FormControl(''),
   });
+
 
   ngOnInit() {
     this.exams = Object.keys(this.tpExam)
@@ -72,7 +76,10 @@ export class PedidoexameComponent implements OnInit {
         this.patientsId[i] = data[i].id;
       }
     });
+  }
 
+  sair(){
+    this.serviceAuth.sair();
   }
 
   onSubmit() {

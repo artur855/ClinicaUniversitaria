@@ -11,7 +11,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MedicService } from 'src/app/Services/medico.service';
 import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import * as moment from 'moment';
-
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-editpat',
@@ -29,6 +30,8 @@ export class EditpatComponent implements OnInit {
   sexPat = []
   tColor = PatientColor;
   colorsPat = []
+  faSignOutAlt = faSignOutAlt;
+
   private patient: Patient = new Patient();
 
   private editPatForm = new FormGroup({
@@ -41,13 +44,18 @@ export class EditpatComponent implements OnInit {
 
   constructor(private service: PatientService,
     private router: Router,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,
+    private serviceAuth: AuthenticationService) { }
 
   ngOnInit() {
     this.EditPat();
     this.sexPat = Object.keys(this.tSex)
     this.colorsPat = Object.keys(this.tColor)
     this.colorsPat = this.colorsPat.splice(5, 5);
+  }
+
+  sair(){
+    this.serviceAuth.sair();
   }
 
   Voltar(){

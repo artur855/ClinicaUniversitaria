@@ -5,6 +5,8 @@ import { Medico, Titulacao } from 'src/app/Models/Medico';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Usuario } from 'src/app/Models/Usuario';
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-add',
@@ -17,7 +19,7 @@ export class AddMedicComponent implements OnInit {
   tmeds = []
   tValues = []
 
-
+  faSignOutAlt = faSignOutAlt;
   private addMedForm = new FormGroup({
     name: new FormControl(''),
     crm: new FormControl(''),
@@ -30,7 +32,8 @@ export class AddMedicComponent implements OnInit {
   constructor(
     private router: Router,
     private service: MedicService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private serviceAuth: AuthenticationService
   ) {}
 
   ngOnInit() {
@@ -39,6 +42,10 @@ export class AddMedicComponent implements OnInit {
       this.tValues[i] = this.tmeds[i + 3]
     }
     console.log(this.tValues)
+  }
+
+  sair(){
+    this.serviceAuth.sair();
   }
 
   Voltar(){

@@ -48,6 +48,7 @@ import { AuthenticationService } from './Services/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { PatientService } from './Services/pacient.service';
 import { MedicService } from './Services/medico.service';
+import { UploadfileComponent } from './Pages/uploadFile/uploadfile.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MedicService } from './Services/medico.service';
     DashboardComponent,
     PedidoexameComponent,
     ListexameComponent,
+    UploadfileComponent,
   ],
   imports: [
     NgbModule,
