@@ -32,8 +32,8 @@ export class AddpatComponent implements OnInit {
     color: new FormControl(''),
     expectedDate: new FormControl(''),
     name: new FormControl(''),
-    password: new FormControl(''),
-    email: new FormControl(''),
+    //password: new FormControl(''),
+    //email: new FormControl(''),
   });
 
   constructor(private service: PatientService,
