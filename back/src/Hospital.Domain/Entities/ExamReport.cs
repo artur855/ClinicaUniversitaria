@@ -11,5 +11,8 @@ namespace Hospital.Domain.Entities
         public string Description { get; set; }
 
         public int Cid { get; set; }
+
+        public Exam Exam { get; set; }
+        public int ExamId { get; set; }
     }
 }

@@ -53,6 +53,8 @@ namespace Hospital.Application
             services.AddExamRequestService();
             services.AddOptions();
             services.AddNotificationServices();
+            services.AddExamServices();
+
 
         }
 

@@ -416,3 +416,5 @@ MigrationBackup/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+back/src/Hospital.Application/wwwroot/assets/

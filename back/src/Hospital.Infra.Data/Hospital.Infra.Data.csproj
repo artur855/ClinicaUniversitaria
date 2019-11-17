@@ -5,6 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191114035538_laudo.cs" />
+    <Compile Remove="Migrations\20191114035538_laudo.Designer.cs" />
+    <Compile Remove="Migrations\20191117045324_AddExam.cs" />
+    <Compile Remove="Migrations\20191117045324_AddExam.Designer.cs" />
+    <Compile Remove="Migrations\20191117045825_AddExam.cs" />
+    <Compile Remove="Migrations\20191117045825_AddExam.Designer.cs" />
+    <Compile Remove="Migrations\20191117045955_AddExam.cs" />
+    <Compile Remove="Migrations\20191117045955_AddExam.Designer.cs" />
+    <Compile Remove="Migrations\20191117052906_AddExam.cs" />
+    <Compile Remove="Migrations\20191117052906_AddExam.Designer.cs" />
+    <Compile Remove="Migrations\20191117053032_AddExam.cs" />
+    <Compile Remove="Migrations\20191117053032_AddExam.Designer.cs" />
+    <Compile Remove="Migrations\20191117053738_AddExam.cs" />
+    <Compile Remove="Migrations\20191117053738_AddExam.Designer.cs" />
+    <Compile Remove="Migrations\20191117172221_AddExam.cs" />
+    <Compile Remove="Migrations\20191117172221_AddExam.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />

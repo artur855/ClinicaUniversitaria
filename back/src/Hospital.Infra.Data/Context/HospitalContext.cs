@@ -16,6 +16,7 @@ namespace Hospital.Infra.Data.Context
         public DbSet<User> Users { get; set; }
         public DbSet<ExamRequest> ExamRequests { get; set; }
         public DbSet<ExamReport> ExamReports { get; set; }
+        public DbSet<ExamReport> Exams { get; set; }
 
         public HospitalContext(DbContextOptions<HospitalContext> options) : base(options)
         {
@@ -34,6 +35,7 @@ namespace Hospital.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new DocentEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ExamRequestConfiguration());
             modelBuilder.ApplyConfiguration(new ExamReportConfiguration());
+            modelBuilder.ApplyConfiguration(new ExamEntityConfiguration());
         }
     }
 }
