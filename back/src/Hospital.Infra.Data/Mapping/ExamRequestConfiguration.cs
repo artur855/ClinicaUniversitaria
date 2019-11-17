@@ -34,6 +34,11 @@ namespace Hospital.Infra.Data.Mapping
                 .HasOne(e => e.ExamReport)
                 .WithOne(er => er.ExamRequest)
                 .HasForeignKey<ExamReport>(e => e.ExamRequestId);
+
+            builder
+                .HasOne(e => e.Exam)
+                .WithOne(ex => ex.ExamRequest)
+                .HasForeignKey<Exam>(ex => ex.Id);
             
             
         } 
