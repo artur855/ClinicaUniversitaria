@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Hospital.Application.DTO;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Hospital.Application.Controllers
 {
@@ -33,6 +36,49 @@ namespace Hospital.Application.Controllers
             _userService = userService;
             _examService = examService;
             _mapper = mapper;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id <= 0)
+            {
+                NotifyError("id inexistente");
+                return CustomResponse(statusCode: StatusCodes.Status400BadRequest);
+            }
+
+            Exam exam = await _examService.FindByIdAsync(id);
+
+            if (exam == null)
+                return CustomResponse(statusCode: StatusCodes.Status400BadRequest);
+
+            return Ok(_mapper.Map<Exam, ExamDTO>(exam));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var exams = await _examService.ListAsync();
+
+            return Ok(_mapper.Map<IEnumerable<Exam>, IEnumerable<ExamDTO>>(exams));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0)
+            {
+                NotifyError("id inexistente");
+                return CustomResponse(statusCode: StatusCodes.Status400BadRequest);
+            }
+
+            Exam exam = await _examService.DeleteAsync(id);
+
+            if (exam == null)
+                return CustomResponse(statusCode: StatusCodes.Status400BadRequest);
+
+            return NoContent();
+
         }
 
         [HttpPost]

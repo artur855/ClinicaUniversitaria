@@ -32,6 +32,12 @@ namespace Hospital.Service.Services
             if (examRemoved == null)
                 Notify($"Exam {id} não foi encontrado");
 
+            bool fileDeleted = DeleteFile(examRemoved.ExamPath);
+
+            if (!fileDeleted)
+                return null;
+
+            await _unitOfWork.CompleteAsync();
             return examRemoved;
 
         }
