@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Hospital.Service.Services
@@ -15,7 +14,6 @@ namespace Hospital.Service.Services
     public class ExamService : BaseService, IExamService
     {
 
-        private INotificator _notificator;
         private IExamRepository _examRepository;
         private IUnitOfWork _unitOfWork;
 
@@ -56,19 +54,41 @@ namespace Hospital.Service.Services
 
         public async Task<Exam> SaveAsync<V>(IFormFile file, Exam exam) where V : AbstractValidator<Exam>
         {
+
             var imagePrefix = Guid.NewGuid().ToString();
 
             string filePath = await UploadFile(file, imagePrefix);
 
             if (filePath == null)
-            {
                 return null;
-            }
 
             exam.ExamPath = filePath;
 
-            return await SaveAsync<V>(exam);
+            try
+            {
+                return await SaveAsync<V>(exam);
+            } catch (Exception e)
+            {
+                DeleteFile(filePath);
+
+                Notify(e.Message);
+
+                return null;
+            }
             
+        }
+
+        private bool DeleteFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                Notify("Caminho do arquivo não existe");
+                return false;
+            }
+
+            File.Delete(filePath);
+
+            return true;
         }
 
         private async Task<string> UploadFile(IFormFile file, string imagePrefix)
@@ -76,6 +96,12 @@ namespace Hospital.Service.Services
             if (file == null || file.Length == 0)
             {
                 Notify("Forneça um arquivo");
+                return null;
+            }
+
+            if (!file.FileName.EndsWith(".pdf"))
+            {
+                Notify("O arquivo tem que ser do tipo pdf");
                 return null;
             }
 
