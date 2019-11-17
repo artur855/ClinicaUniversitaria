@@ -19,7 +19,6 @@ namespace Hospital.Domain.Entities
         public int ExamReportId { get; set; }
 
         public Exam Exam { get; set; }
-        public int ExamId { get; set; }
 
     }
 

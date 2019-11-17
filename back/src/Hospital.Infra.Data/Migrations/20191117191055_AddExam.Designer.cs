@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hospital.Infra.Data.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20191117053738_AddExam")]
+    [Migration("20191117191055_AddExam")]
     partial class AddExam
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,8 @@ namespace Hospital.Infra.Data.Migrations
 
             modelBuilder.Entity("Hospital.Domain.Entities.Exam", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Date")
                         .HasColumnName("data")
@@ -37,6 +38,8 @@ namespace Hospital.Infra.Data.Migrations
                     b.Property<int>("ExamRequestId");
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("ExamRequestId");
 
                     b.ToTable("tb_exames");
                 });
@@ -75,8 +78,6 @@ namespace Hospital.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
-
-                    b.Property<int>("ExamId");
 
                     b.Property<int>("ExamName")
                         .HasColumnName("exame");
@@ -212,7 +213,7 @@ namespace Hospital.Infra.Data.Migrations
                 {
                     b.HasOne("Hospital.Domain.Entities.ExamRequest", "ExamRequest")
                         .WithOne("Exam")
-                        .HasForeignKey("Hospital.Domain.Entities.Exam", "Id")
+                        .HasForeignKey("Hospital.Domain.Entities.Exam", "ExamRequestId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

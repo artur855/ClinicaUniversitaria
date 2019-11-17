@@ -9,12 +9,6 @@ namespace Hospital.Infra.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "ExamId",
-                table: "tb_pedidos_exames",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<int>(
                 name: "id_exam_report",
                 table: "tb_pedidos_exames",
                 nullable: false,
@@ -24,7 +18,8 @@ namespace Hospital.Infra.Data.Migrations
                 name: "tb_exames",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     caminho_exame = table.Column<string>(type: "varchar(300)", nullable: true),
                     data = table.Column<DateTime>(type: "date", nullable: false),
                     ExamRequestId = table.Column<int>(nullable: false)
@@ -32,9 +27,10 @@ namespace Hospital.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tb_exames", x => x.Id);
+                    table.UniqueConstraint("AK_tb_exames_ExamRequestId", x => x.ExamRequestId);
                     table.ForeignKey(
-                        name: "FK_tb_exames_tb_pedidos_exames_Id",
-                        column: x => x.Id,
+                        name: "FK_tb_exames_tb_pedidos_exames_ExamRequestId",
+                        column: x => x.ExamRequestId,
                         principalTable: "tb_pedidos_exames",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -100,10 +96,6 @@ namespace Hospital.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "tb_exames");
-
-            migrationBuilder.DropColumn(
-                name: "ExamId",
-                table: "tb_pedidos_exames");
 
             migrationBuilder.DropColumn(
                 name: "id_exam_report",

@@ -15,6 +15,8 @@ namespace Hospital.Infra.Data.Mapping
 
             builder.HasKey(e => e.Id);
 
+            builder.HasAlternateKey(e => e.ExamRequestId);
+
             builder.Property(e => e.Date)
                 .HasColumnName("data")
                 .HasColumnType("date");
@@ -26,7 +28,7 @@ namespace Hospital.Infra.Data.Mapping
             builder
                 .HasOne(e => e.ExamRequest)
                 .WithOne(er => er.Exam)
-                .HasForeignKey<Exam>(e => e.Id);
+                .HasForeignKey<Exam>(e => e.ExamRequestId);
 
             builder
                 .HasOne(e => e.ExamReport)
