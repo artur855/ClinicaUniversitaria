@@ -1,4 +1,3 @@
-using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Validators;
@@ -11,10 +10,10 @@ namespace Hospital.Tests.Modules.Authentication
     public class LoginPatientTest : BaseTest
     {
 
-        private LoginDTO _loginDto;
+        private User _user;
         private IAuthenticationService _authenticationService;
         private IUserService _userService;
-        private JwtTokenDTO _jwtTokenDto;
+        private string _jwtToken;
         
         public LoginPatientTest()
         {
@@ -25,7 +24,7 @@ namespace Hospital.Tests.Modules.Authentication
         [Given("Eu abra a tela de login")]
         public async void AbrirTelaLogin()
         {
-            _loginDto = new LoginDTO();
+            _user = new User();
             await _userService.SaveAsync<UserValidator>(new User
             {
                 Name = "Arthur",
@@ -37,26 +36,26 @@ namespace Hospital.Tests.Modules.Authentication
         [Given("Eu insira o email (.*)")]
         public void InserirLogin(string email)
         {
-            _loginDto.Email = email;
+            _user.Email = email;
         }
 
         [Given("Eu insira a senha (.*)")]
         public void InserirSenha(string senha)
         {
-            _loginDto.Password = senha;
+            _user.Password = senha;
         }
 
         [When("Eu clicar em login")]
         public async void ClicarLogin()
         {
-            _jwtTokenDto = await _authenticationService.Authenticate(_loginDto);
+            _jwtToken = await _authenticationService.Authenticate(_user);
         }
 
         [Then("O usuario dese ser logado com sucesso")]
         public void ValidarLogin()
         {
-            Assert.IsNotNull(_jwtTokenDto, "Token é nulo");
-            Assert.IsNotEmpty(_jwtTokenDto.Token, "Token vazio");
+            Assert.IsNotNull(_jwtToken, "Token é nulo");
+            Assert.IsNotEmpty(_jwtToken, "Token vazio");
         }
         
 

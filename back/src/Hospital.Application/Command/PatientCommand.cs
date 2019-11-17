@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hospital.Domain.Command
+namespace Hospital.Application.Command
 {
     public class PatientCommand
     {

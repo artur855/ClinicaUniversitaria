@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Hospital.Domain.Command;
+using Hospital.Application.Command;
 using Hospital.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,6 +22,13 @@ namespace Hospital.Domain.Mapping
                 .ForMember(dest => dest.Birthdate, opt => opt.ConvertUsing(new DateConverter(), src => src.Birthdate))
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
                 .ReverseMap();
+
+            CreateMap<Exam, PerformExamCommand>()
+                .ForMember(dest => dest.Date, opt => opt.ConvertUsing(new DateConverter(), src => src.Date))
+                .ReverseMap();
+
+            CreateMap<LoginCommand, User>();
+
         }
     }
 }

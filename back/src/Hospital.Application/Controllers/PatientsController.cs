@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Hospital.Domain.Command;
-using Hospital.Domain.DTO;
+using Hospital.Application.Command;
+using Hospital.Application.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces;
 using Hospital.Domain.Interfaces.Services;

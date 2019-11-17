@@ -1,10 +1,10 @@
+using Hospital.Domain.Entities;
 using System.Threading.Tasks;
-using Hospital.Domain.DTO;
 
 namespace Hospital.Domain.Interfaces.Services
 {
     public interface IAuthenticationService
     {
-        Task<JwtTokenDTO> Authenticate(LoginDTO loginDto);
+        Task<string> Authenticate(User user);
     }
 }

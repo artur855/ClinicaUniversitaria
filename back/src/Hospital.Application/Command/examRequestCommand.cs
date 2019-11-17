@@ -2,20 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.AspNetCore.Mvc;
 
-namespace Hospital.Domain.DTO
+namespace Hospital.Application.Command
 {
-    public class ExamRequestDTO
+    public class ExamRequestCommand
     {
         public int Id { get; set; }
         public string Hypothesis { get; set; }
         public string ExpectedDate { get; set; }
-        public string ExamName { get; set; }
+        public String ExamName { get; set; }
         public string Recomendation { get; set; }
         public string MedicCrm { get; set; }
-        public string MedicName { get; set; }
         public int PatientId { get; set; }
-        public string PatientName { get; set; }
     }
 }

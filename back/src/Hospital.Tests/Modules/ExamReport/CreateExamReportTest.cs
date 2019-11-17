@@ -1,5 +1,5 @@
 using System;
-using Hospital.Domain.Command;
+using Hospital.Application.Command;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Validators;
@@ -13,7 +13,7 @@ namespace Hospital.Tests.Modules.ExamReport
         
         private Resident _resident;
         private Domain.Entities.ExamReport _examReport;
-        private ExamReportCommand _examReportCommand;
+        private Domain.Entities.ExamReport _newExamReport;
         private Domain.Entities.ExamRequest _examRequest;
 
         private IMedicService _medicService;
@@ -26,7 +26,7 @@ namespace Hospital.Tests.Modules.ExamReport
             _medicService = GetService<IMedicService>();
             _examRequestService = GetService<IExamRequestService>();
             
-            _examReportCommand = new ExamReportCommand();
+            _newExamReport = new Domain.Entities.ExamReport();
             
             _resident = new Resident()
             {
@@ -61,25 +61,27 @@ namespace Hospital.Tests.Modules.ExamReport
         [Given("Eu escolha o exame de id (.*)")]
         public void EuEscolhaOExame(int ExamId)
         {
-            _examReportCommand.ExamRequestId = ExamId;
+            _newExamReport.ExamRequestId = ExamId;
         }
 
         [Given("Eu irei adicionar a descrição (.*)")]
         public void EuIreiAdicionarADescricao(string Description)
         {
-            _examReportCommand.Description = Description;
+            _newExamReport.Description = Description;
         }
 
         [Given(" E a minha hipótese do CID da doença seja (.*)")]
         public void EuAdicioneAHiposeteComo(int Cid)
         {
-            _examReportCommand.Cid = Cid;
+            _newExamReport.Cid = Cid;
         }
 
         [When("Eu clicar em emitir laudo")]
         public async void EuClicarEmEmitirLaudo()
         {
-            _examReport = await _examReportService.SaveAsync<ExamReportValidator>(_resident.User.Id, _examReportCommand);
+
+
+            _examReport = await _examReportService.SaveAsync<ExamReportValidator>(_resident.User.Id, _newExamReport);
         }
 
         [Then("O sistema devera emitir o laudo em meu nome")]

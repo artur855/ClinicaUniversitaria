@@ -2,7 +2,6 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
-using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Service.Config;
@@ -18,7 +17,7 @@ namespace Hospital.Service.Services
         {
             _jwtTokenConfiguration = jwtTokenConfiguration;
         }
-        public JwtTokenDTO CreateJwtToken(User user)
+        public string CreateJwtToken(User user)
         {
             var identity = GetClaimsIdentity(user);
             var handler = new JwtSecurityTokenHandler();
@@ -34,10 +33,7 @@ namespace Hospital.Service.Services
             });
 
             var jwtToken = handler.WriteToken(securityToken);
-            return new JwtTokenDTO()
-            {
-                Token = jwtToken
-            };
+            return jwtToken;
         }
 
         public ClaimsIdentity GetClaimsIdentity(User user)
