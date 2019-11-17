@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
-using Hospital.Domain.Command;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
@@ -36,7 +35,7 @@ namespace Hospital.Service.Services
             return await _examReportRepository.ListAsync();
         }
 
-        public async Task<ExamReport> SaveAsync<V>(int userId, ExamReportCommand examReportCommand) where V : AbstractValidator<ExamReport>
+        public async Task<ExamReport> SaveAsync<V>(int userId, ExamReport examReport) where V : AbstractValidator<ExamReport>
         {
             var resident = (Resident) await _medicService.FindByIdAsync(userId);
             if (resident == null)
@@ -44,21 +43,21 @@ namespace Hospital.Service.Services
                 throw new Exception("Usuario não é um residente");
             }
             
-            var examRequest = await _examRequestService.FindByIdAsync(examReportCommand.ExamRequestId);
+            var examRequest = await _examRequestService.FindByIdAsync(examReport.ExamRequestId);
             if (examRequest == null)
             {
                 throw new Exception("Pedido de exame não existe");
             }
             
-            var examReport = new ExamReport
+            var newExamReport = new ExamReport
             {
                 Resident = resident,
                 ExamRequest = examRequest,
-                Description = examReportCommand.Description,
-                Cid = examReportCommand.Cid
+                Description = examReport.Description,
+                Cid = examReport.Cid
             };
             
-            return await _examReportRepository.SaveAsync(examReport);
+            return await _examReportRepository.SaveAsync(newExamReport);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Hospital.Domain.DTO;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
@@ -17,13 +16,13 @@ namespace Hospital.Service.Services
             _jwtService = jwtService;
         }
         
-        public async Task<JwtTokenDTO> Authenticate(LoginDTO loginDto)
+        public async Task<string> Authenticate(User user)
         {
-            var user = await _userRepository.Authenticate(loginDto.Email, loginDto.Password);
-            if (user == null)
+            var loggedUser = await _userRepository.Authenticate(user.Email, user.Password);
+            if (loggedUser == null)
                 return null;
                
-            var token = _jwtService.CreateJwtToken(user);
+            var token = _jwtService.CreateJwtToken(loggedUser);
             
             return token;
         }

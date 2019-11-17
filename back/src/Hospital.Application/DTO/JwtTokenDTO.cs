@@ -1,4 +1,4 @@
-namespace Hospital.Domain.DTO
+namespace Hospital.Application.DTO
 {
     public class JwtTokenDTO
     {

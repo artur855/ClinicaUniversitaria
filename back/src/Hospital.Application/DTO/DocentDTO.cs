@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hospital.Domain.DTO
+namespace Hospital.Application.DTO
 {
     public class DocentDTO : MedicDTO
     {

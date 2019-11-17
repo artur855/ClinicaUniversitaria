@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hospital.Domain.DTO
+namespace Hospital.Application.Command
 {
-    public class MedicDTO
+    public class UserCommand
     {
-        public string CRM { get; set; }
-        public int UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

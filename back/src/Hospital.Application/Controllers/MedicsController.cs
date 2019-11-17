@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using AutoMapper;
-using Hospital.Domain.DTO;
+using Hospital.Application.DTO;
 using Hospital.Service.Validators;
 using System;
 using Hospital.Domain.Interfaces;
