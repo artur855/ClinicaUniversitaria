@@ -36,8 +36,8 @@ export class AddpatComponent implements OnInit {
     color: new FormControl(''),
     expectedDate: new FormControl(''),
     name: new FormControl(''),
-    //password: new FormControl(''),
-    //email: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl(''),
   });
 
   constructor(private service: PatientService,
@@ -70,8 +70,8 @@ export class AddpatComponent implements OnInit {
     patient.color = this.tColor[this.addMedForm.controls.color.value]
     patient.birthdate = date.value
     patient.user.name = this.addMedForm.controls.name.value
-    //patient.user.password = this.addMedForm.controls.password.value
-    //patient.user.email = this.addMedForm.controls.email.value
+    patient.user.password = this.addMedForm.controls.password.value
+    patient.user.email = this.addMedForm.controls.email.value
     console.log(patient);
     this.service.createPatient(patient).subscribe(data => {
       patient = data;

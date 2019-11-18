@@ -5,7 +5,6 @@ import { faHospital } from '@fortawesome/free-solid-svg-icons';
 import { Usuario } from 'src/app/Models/Usuario';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
