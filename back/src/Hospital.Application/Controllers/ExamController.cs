@@ -106,7 +106,7 @@ namespace Hospital.Application.Controllers
 
             Exam exam = _mapper.Map<PerformExamCommand, Exam>(performExamCommand);
 
-            var examAdded = await _examService.SaveAsync<ExamValidator>(performExamCommand.Exam, exam);
+            var examAdded = await _examService.SaveAsync<ExamValidator>(performExamCommand.ExamFile, exam);
 
             if (examAdded == null)
                 return CustomResponse();
