@@ -7,11 +7,11 @@ using System.Text;
 
 namespace Hospital.Application.Command
 {
-    [ModelBinder(typeof(JsonWithFilesFormDataModelBinder), Name = "date")]
+    [ModelBinder(typeof(JsonWithFilesFormDataModelBinder), Name = "Exam")]
     public class PerformExamCommand
     {
         public int ExamRequestId { get; set; }
-        public IFormFile Exam { get; set; }
+        public IFormFile ExamFile { get; set; }
         public string Date { get; set; }
     }
 }
