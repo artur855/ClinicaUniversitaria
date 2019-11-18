@@ -5,14 +5,21 @@ namespace Hospital.Domain.Entities
         public ExamRequest ExamRequest { get; set; }
         public int ExamRequestId { get; set; }
 
-        public Resident Resident { get; set; }
-        public int ResidentId { get; set; }
+        public Medic Medic { get; set; }
+        public int MedicId { get; set; }
 
         public string Description { get; set; }
-
+        public ExamReportStatus Status { get; set; }
         public int Cid { get; set; }
 
         public Exam Exam { get; set; }
         public int ExamId { get; set; }
+    }
+
+    public enum ExamReportStatus
+    {
+        ANDAMENTO = 0,
+        APROVADO = 1,
+        NEGADO = 2
     }
 }

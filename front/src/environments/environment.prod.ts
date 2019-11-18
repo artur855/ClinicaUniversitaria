@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://clinicauniversitaria.azurewebsites.net/api/medics/'
+  url: 'https://clinicauniversitaria.azurewebsites.net/api/'
 };

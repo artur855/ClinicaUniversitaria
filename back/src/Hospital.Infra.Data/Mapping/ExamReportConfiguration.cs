@@ -17,14 +17,16 @@ namespace Hospital.Infra.Data.Mapping
                 .IsRequired();
             
             builder
-                .HasOne(er => er.Resident)
+                .HasOne(er => er.Medic)
                 .WithMany(r => r.ExamReports)
-                .HasForeignKey(er => er.ResidentId);
+                .HasForeignKey(er => er.MedicId);
 
             builder
                 .HasOne(er => er.ExamRequest)
                 .WithOne(er => er.ExamReport)
                 .HasForeignKey<ExamReport>(e => e.ExamRequestId);
+
+            builder.Property(er => er.Status).HasColumnName("status").IsRequired();
 
             builder
                 .HasOne(e => e.Exam)

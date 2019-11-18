@@ -4,43 +4,23 @@ using Hospital.Domain.Entities;
 using Hospital.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Hospital.Infra.Data.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20191117232042_ChangeMedicTypeExamReport")]
+    partial class ChangeMedicTypeExamReport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            modelBuilder.Entity("Hospital.Domain.Entities.Exam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnName("data")
-                        .HasColumnType("date");
-
-                    b.Property<string>("ExamPath")
-                        .HasColumnName("caminho_exame")
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<int>("ExamRequestId");
-
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("ExamRequestId");
-
-                    b.ToTable("tb_exames");
-                });
 
             modelBuilder.Entity("Hospital.Domain.Entities.ExamReport", b =>
                 {
@@ -52,24 +32,16 @@ namespace Hospital.Infra.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("ExamId");
-
                     b.Property<int>("ExamRequestId");
 
-                    b.Property<int>("MedicId");
-
-                    b.Property<int>("Status")
-                        .HasColumnName("status");
+                    b.Property<int>("ResidentId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ExamId")
-                        .IsUnique();
 
                     b.HasIndex("ExamRequestId")
                         .IsUnique();
 
-                    b.HasIndex("MedicId");
+                    b.HasIndex("ResidentId");
 
                     b.ToTable("tb_pedidos_laudos");
                 });
@@ -210,21 +182,8 @@ namespace Hospital.Infra.Data.Migrations
                     b.HasDiscriminator().HasValue(2);
                 });
 
-            modelBuilder.Entity("Hospital.Domain.Entities.Exam", b =>
-                {
-                    b.HasOne("Hospital.Domain.Entities.ExamRequest", "ExamRequest")
-                        .WithOne("Exam")
-                        .HasForeignKey("Hospital.Domain.Entities.Exam", "ExamRequestId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Hospital.Domain.Entities.ExamReport", b =>
                 {
-                    b.HasOne("Hospital.Domain.Entities.Exam", "Exam")
-                        .WithOne("ExamReport")
-                        .HasForeignKey("Hospital.Domain.Entities.ExamReport", "ExamId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Hospital.Domain.Entities.ExamRequest", "ExamRequest")
                         .WithOne("ExamReport")
                         .HasForeignKey("Hospital.Domain.Entities.ExamReport", "ExamRequestId")
@@ -232,7 +191,7 @@ namespace Hospital.Infra.Data.Migrations
 
                     b.HasOne("Hospital.Domain.Entities.Medic", "Medic")
                         .WithMany("ExamReports")
-                        .HasForeignKey("MedicId")
+                        .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

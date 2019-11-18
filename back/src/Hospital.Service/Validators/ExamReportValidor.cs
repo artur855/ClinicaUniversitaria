@@ -8,7 +8,7 @@ namespace Hospital.Service.Validators
     {
         public ExamReportValidator()
         {
-            RuleFor(er => er.ResidentId)
+            RuleFor(er => er.MedicId)
                 .NotEmpty()
                 .WithMessage("ExamReport residente invalido");
             

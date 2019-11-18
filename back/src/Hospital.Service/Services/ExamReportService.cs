@@ -5,6 +5,7 @@ using FluentValidation;
 using Hospital.Domain.Entities;
 using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
+using Newtonsoft.Json;
 
 namespace Hospital.Service.Services
 {
@@ -24,23 +25,22 @@ namespace Hospital.Service.Services
             _examRequestService = examRequestService;
         }
         
-        public async Task<IEnumerable<ExamReport>> ListAsync(int userId)
+        public async Task<IEnumerable<ExamReport>> ListApprovedAsync(int userId)
         {
-            var resident = (Resident) await _medicService.FindByIdAsync(userId);
-            if (resident == null)
-            {
-                
-            }
+            return await _examReportRepository.ListApprovedAsync();
+        }
 
-            return await _examReportRepository.ListAsync();
+        public async Task<IEnumerable<ExamReport>> ListWaitingAsync(int userId)
+        {
+            return await _examReportRepository.ListWaitingAsync();
         }
 
         public async Task<ExamReport> SaveAsync<V>(int userId, ExamReport examReport) where V : AbstractValidator<ExamReport>
         {
-            var resident = (Resident) await _medicService.FindByIdAsync(userId);
-            if (resident == null)
+            var medic = await _medicService.FindByIdAsync(userId);
+            if (!(medic is Medic))
             {
-                throw new Exception("Usuario não é um residente");
+                throw new Exception("Usuario não é um médico");
             }
             
             var examRequest = await _examRequestService.FindByIdAsync(examReport.ExamRequestId);
@@ -51,13 +51,37 @@ namespace Hospital.Service.Services
             
             var newExamReport = new ExamReport
             {
-                Resident = resident,
+                Medic = medic,
                 ExamRequest = examRequest,
                 Description = examReport.Description,
-                Cid = examReport.Cid
+                Cid = examReport.Cid,
+                Status = ExamReportStatus.ANDAMENTO
             };
-            
-            return await _examReportRepository.SaveAsync(newExamReport);
+            var report = await _examReportRepository.SaveAsync(newExamReport);
+            await _unitOfWork.CompleteAsync();
+            return report;
+        }
+
+        public async void UpdateStatus(int userId, ExamReport examReport)
+        {
+            var medic = await _medicService.FindByIdAsync(userId);
+
+            if (medic == null)
+            {
+                throw new Exception("Médico inválido");
+            }
+
+            if (examReport.Status == ExamReportStatus.APROVADO || examReport.Status == ExamReportStatus.NEGADO)
+            {
+                _examReportRepository.UpdateStatus(examReport);
+                return;
+            }
+            else
+            {
+                throw new Exception("Status inválido");
+            }
+
+
         }
     }
 }

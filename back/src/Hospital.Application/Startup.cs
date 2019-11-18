@@ -51,6 +51,7 @@ namespace Hospital.Application
             services.AddUnitOfWorkService();
             services.AddUserService();
             services.AddExamRequestService();
+            services.AddExamReportService();
             services.AddOptions();
             services.AddNotificationServices();
             services.AddExamServices();
