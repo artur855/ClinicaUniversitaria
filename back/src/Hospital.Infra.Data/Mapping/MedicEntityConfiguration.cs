@@ -35,6 +35,11 @@ namespace Hospital.Infra.Data.Mapping
                 .WithOne(u => u.Medic)
                 .HasForeignKey<Medic>(m => m.UserId);
             
+            builder
+                .HasMany(r => r.ExamReports)
+                .WithOne(er => er.Medic)
+                .HasForeignKey(er => er.MedicId);
+            
         }
     }
 }

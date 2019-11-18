@@ -7,8 +7,9 @@ namespace Hospital.Domain.Interfaces.Services
 {
     public interface IExamReportService
     {
-        Task<IEnumerable<ExamReport>> ListAsync(int userId);
+        Task<IEnumerable<ExamReport>> ListApprovedAsync(int userId);
+        Task<IEnumerable<ExamReport>> ListWaitingAsync(int userId);
         Task<ExamReport> SaveAsync<V>(int userId, ExamReport examReport) where V : AbstractValidator<ExamReport>;
-
+        void UpdateStatus(int userId, ExamReport examReport);
     }
 }

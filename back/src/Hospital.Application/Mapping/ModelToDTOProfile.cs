@@ -41,7 +41,15 @@ namespace Hospital.Domain.Mapping
                 .ForMember(dest => dest.Sex, opt => opt.ConvertUsing(new SexConverter(), src => src.Sex))
                 .ReverseMap();
 
-
+            CreateMap<ExamReport, ExamReportDTO>()
+                .ForMember(dest => dest.Cid, opt => opt.MapFrom(src => src.Cid))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.ExamRequestName, opt => opt.MapFrom(src => src.ExamRequest.ExamName))
+                .ForMember(dest => dest.ExamRequestId, opt => opt.MapFrom(src => src.ExamRequest.Id))
+                .ForMember(dest => dest.MedicId, opt => opt.MapFrom(src => src.Medic.Id))
+                .ForMember(dest => dest.MedicName, opt => opt.MapFrom(src => src.Medic.User.Name))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+                .ReverseMap();
 
         }
     }

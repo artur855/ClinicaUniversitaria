@@ -6,7 +6,9 @@ namespace Hospital.Domain.Interfaces.Repositories
 {
     public interface IExamReportRepository : IRepository<ExamReport>
     {
-        Task<IEnumerable<ExamReport>> ListAsync();
+        Task<IEnumerable<ExamReport>> ListWaitingAsync();
+        Task<IEnumerable<ExamReport>> ListApprovedAsync();
         Task<ExamReport> SaveAsync(ExamReport examReport);
+        void UpdateStatus(ExamReport examReport);
     }
 }

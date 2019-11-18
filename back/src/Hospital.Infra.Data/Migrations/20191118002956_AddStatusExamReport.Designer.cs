@@ -4,15 +4,17 @@ using Hospital.Domain.Entities;
 using Hospital.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Hospital.Infra.Data.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20191118002956_AddStatusExamReport")]
+    partial class AddStatusExamReport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,7 @@ namespace Hospital.Infra.Data.Migrations
 
                     b.Property<int>("ExamRequestId");
 
-                    b.Property<int>("MedicId");
+                    b.Property<int>("ResidentId");
 
                     b.Property<int>("Status")
                         .HasColumnName("status");
@@ -42,7 +44,7 @@ namespace Hospital.Infra.Data.Migrations
                     b.HasIndex("ExamRequestId")
                         .IsUnique();
 
-                    b.HasIndex("MedicId");
+                    b.HasIndex("ResidentId");
 
                     b.ToTable("tb_pedidos_laudos");
                 });
@@ -192,7 +194,7 @@ namespace Hospital.Infra.Data.Migrations
 
                     b.HasOne("Hospital.Domain.Entities.Medic", "Medic")
                         .WithMany("ExamReports")
-                        .HasForeignKey("MedicId")
+                        .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

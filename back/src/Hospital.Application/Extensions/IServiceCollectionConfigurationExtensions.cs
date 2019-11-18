@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
+using Hospital.Application.Mapping;
 using Hospital.Domain.Mapping;
 
 namespace Hospital.Application.Extensions

@@ -18,10 +18,7 @@ namespace Hospital.Infra.Data.Mapping
                 .HasColumnName("ano_inicio")
                 .HasColumnType("DATE");
 
-            builder
-                .HasMany(r => r.ExamReports)
-                .WithOne(er => er.Resident)
-                .HasForeignKey(er => er.ResidentId);
+            
 
         }
     }

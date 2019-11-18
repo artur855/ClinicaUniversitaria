@@ -11,6 +11,8 @@ namespace Hospital.Domain.Entities
         public int UserId { get; set; }
         public User User { get; set; }
         public ICollection<ExamRequest> ExamRequests { get; set; }
+        
+        public ICollection<ExamReport> ExamReports { get; set; }
     }
 
     public enum EMedicType {
