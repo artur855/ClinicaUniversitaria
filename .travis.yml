@@ -2,7 +2,7 @@ matrix:
   include:
     - language: csharp
       solution: ./back/src/Hospital.sln
-      mono: none
+      dotnet: 2.2
       
       addons:
         snaps:

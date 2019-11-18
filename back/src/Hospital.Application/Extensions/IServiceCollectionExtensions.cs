@@ -1,7 +1,9 @@
-﻿using Hospital.Domain.Interfaces.Repositories;
+﻿using Hospital.Domain.Interfaces;
+using Hospital.Domain.Interfaces.Repositories;
 using Hospital.Domain.Interfaces.Services;
 using Hospital.Infra.Data.Context;
 using Hospital.Infra.Data.Repository;
+using Hospital.Service.Notifications;
 using Hospital.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -67,5 +69,20 @@ namespace Hospital.Application.Extensions
             services.AddScoped<IExamRequestService, ExamRequestService>();
             return services;
         }
+
+        public static IServiceCollection AddExamReportService(this IServiceCollection services)
+        {
+            services.AddScoped<IExamReportRepository, ExamReportRepository>();
+            services.AddScoped<IExamReportService, ExamReportService>();
+            return services;
+        }
+
+        public static IServiceCollection AddNotificationServices(this IServiceCollection services)
+        {
+            services.AddScoped<INotificator, Notificator>();
+
+            return services;
+        }
+
     }
 }

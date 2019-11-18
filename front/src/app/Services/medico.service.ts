@@ -17,7 +17,7 @@ export class MedicService {
     return this.http.get<Medico[]>(this.Url);
   }
 
-  getMedicoCrm(crm: number) {
+  getMedicoCrm(crm: string) {
     return this.http.get<Medico>(this.Url + crm);
   }
 

@@ -1,34 +1,107 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="opened">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a (click)="toogleMedic('med')" mat-list-item>
+<mat-toolbar class="mb-5" color="primary">
+  <i class="material-icons mr-2">local_hospital</i>
+      <span>Clínica Universitária</span>
+      <span class="example-spacer"></span>
+      <span class="text-right text-uppercase mr-5">Bem vindo {{emailUser}} </span>
+  <button appearance="outline" type="button" mat-raised-button class="btn btn-outline-dark text-right" aria-label="Toggle sidenav"  (click)="sair()">
+    <fa-icon [icon]="faSignOutAlt" class="mr-2"></fa-icon>
+      <span class="text-uppercase">Sair</span>
+  </button>
+</mat-toolbar>
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav"
+                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
+                 [fixedBottomGap]="options.value.bottom">
+     <mat-nav-list class="text-white">
+      <mat-divider></mat-divider>
+      <a class="link-lateral" (click)="toogleMedic('med')" mat-list-item>
         <fa-icon [icon]="faUserMd" class="mr-2"></fa-icon>Médicos
       </a>
-      <a (click)="toogleMedic('pat')" mat-list-item>
+      <mat-divider></mat-divider>
+      <a class="link-lateral" (click)="toogleMedic('pat')" mat-list-item>
         <fa-icon [icon]="faUserInjured" class="mr-2"></fa-icon>Pacientes
       </a>
-      <a (click)="toogleMedic('exam')" mat-list-item>
+      <mat-divider></mat-divider>
+      <a class="link-lateral" (click)="toogleMedic('exam')" mat-list-item>
         <fa-icon [icon]="faClipboard" class="mr-2"></fa-icon>Exames
       </a>
+      <mat-divider></mat-divider>
+      <a class="link-lateral" (click)="toogleMedic('file')" mat-list-item>
+        <fa-icon [icon]="faFilePdf" class="mr-2"></fa-icon>Upload Exame
+      </a>
+      <mat-divider></mat-divider>
     </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar class="mb-5" color="primary">
+    </mat-sidenav>
 
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="opened=!opened"><i
-          class="material-icons">
-          menu
-        </i></button>
-      <span>Clínica Universitária</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <app-listar *ngIf="visiMed">
-    </app-listar>
-    <app-listpat *ngIf="visiPat"></app-listpat>
-    <app-listexame *ngIf="visiExam"></app-listexame>
+    <mat-sidenav-content [formGroup]="options">
+    <div class="container">
+    <div class="row m-5">
+        <!-- card medico -->
+        <div class="col-sm-3">
+        <mat-card class="cards text-center">
+          <mat-card-header>
+            <fa-icon [icon]="faUserMd" class="pt-1"></fa-icon>
+            <mat-card-title>Médicos</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <p>
+               <span matBadge="3" matBadgeColor="warn" matBadgeOverlap="false">Total de médicos</span>
+            </p>  
+          </mat-card-actions>
+        </mat-card>
+        </div>
+        
+      <!-- card pacientes -->
+        <div class="col-sm-3">
+        <mat-card class="cards text-center">
+          <mat-card-header>
+            <fa-icon [icon]="faUserInjured" class="pt-1"></fa-icon>
+            <mat-card-title>Pacientes</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <p>
+               <span matBadge="4" matBadgeOverlap="false">Total de Pacientes</span>
+            </p>  
+          </mat-card-actions>
+        </mat-card> 
+        </div>
+      <!-- card exames-->
+        <div class="col-sm-3 text-center">
+        <mat-card class="cards">
+          <mat-card-header>
+            <fa-icon [icon]="faClipboard" class="pt-1"></fa-icon>
+            <mat-card-title >Exames</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <p>
+               <span matBadge="6" matBadgeColor="accent" matBadgeOverlap="false">Total de Exames</span>
+            </p>  
+          </mat-card-actions>
+        </mat-card>
+        </div>
+      
+      <div class="col-sm-3">
+        <mat-card class="cards">
+          <mat-card-header>
+            <fa-icon [icon]="faFilePdf" class="pt-1"></fa-icon>
+            <mat-card-title>Arquivos de Exame</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions class="text-center">
+            <p>
+               <span matBadge="4" matBadgeOverlap="false">Exames Enviados</span>
+            </p>  
+          </mat-card-actions>
+        </mat-card>
+        </div>
+     
+      </div>
+      </div>
+      <app-listar *ngIf="visiMed"></app-listar>
+        <app-listpat *ngIf="visiPat"></app-listpat>
+        <app-listexame *ngIf="visiExam"></app-listexame>
+        <app-uploadfile *ngIf="visiFile"></app-uploadfile>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
-
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <mat-toolbar class="example-footer text-muted">© Simple Piece 2019</mat-toolbar>

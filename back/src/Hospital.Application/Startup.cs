@@ -1,4 +1,4 @@
-﻿using Hospital.Application.Extensions;
+using Hospital.Application.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +30,11 @@ namespace Hospital.Application
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.Configure<ApiBehaviorOptions>(opt => 
+            {
+                opt.SuppressModelStateInvalidFilter = true;
+            });
+
             services.AddDbContextService(Configuration);
 
             services.AddJwtTokenConfiguration(Configuration);
@@ -46,7 +51,10 @@ namespace Hospital.Application
             services.AddUnitOfWorkService();
             services.AddUserService();
             services.AddExamRequestService();
+            services.AddExamReportService();
             services.AddOptions();
+            services.AddNotificationServices();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,10 +69,11 @@ namespace Hospital.Application
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseExceptionHandler("/Error");
             app.UseCors("MyPolicy");
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseGlobalExceptionHandler(env);
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

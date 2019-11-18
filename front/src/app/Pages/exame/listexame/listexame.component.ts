@@ -22,6 +22,7 @@ export class ListexameComponent implements OnInit {
   ngOnInit() {
     this.service.getExams().subscribe(data => {
       this.exams = data;
+      console.log(data);
     })
   }
   

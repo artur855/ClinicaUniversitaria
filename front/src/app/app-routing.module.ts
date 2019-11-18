@@ -11,6 +11,7 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { PedidoexameComponent } from './Pages/exame/addexame/pedidoexame.component';
 import { ListexameComponent } from './Pages/exame/listexame/listexame.component';
+import { UploadfileComponent } from './Pages/uploadFile/uploadfile.component';
 
 
 const routes: Routes = [
@@ -24,8 +25,10 @@ const routes: Routes = [
 
   { path: 'list-exam-request', component: ListexameComponent,canActivate: [AuthGuard] },
   { path: 'add-exam-request', component: PedidoexameComponent,canActivate: [AuthGuard] },
-  
-  
+
+
+  {path:'upload-file', component:UploadfileComponent},
+
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   

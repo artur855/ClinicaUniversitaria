@@ -14,10 +14,8 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class HomeComponent implements OnInit {
   faHospital = faHospital;
-  public error: String;
-  
 
- private profileForm = new FormGroup({
+  private profileForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
@@ -32,9 +30,9 @@ export class HomeComponent implements OnInit {
     var user = new Usuario();
     user.email = this.profileForm.controls.email.value;
     user.password = this.profileForm.controls.password.value;
-    this.service.postAuthentication(user.email,user.password).subscribe(data => {
+    this.service.postAuthentication(user.email, user.password).subscribe(data => {
       if (data) {
-        this.router.navigate(["dashboard"])
+        this.router.navigate(['dashboard']);
       }
     });
   }

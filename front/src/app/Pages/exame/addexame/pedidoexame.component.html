@@ -1,3 +1,12 @@
+
+<mat-toolbar class="mb-5" color="primary">
+    <span>Clínica Universitária</span>
+    <span class="example-spacer"></span>
+    <button appearance="outline" type="button" class="text-right mr-4" aria-label="Toggle sidenav" mat-icon-button (click)="sair()">
+    <fa-icon [icon]="faSignOutAlt" class="mr-2"></fa-icon>
+        <span>Sair</span>
+    </button>
+</mat-toolbar>
 <div class="container">
     <div class="col-lg-12">
         <form [formGroup]="addExamForm" (ngSubmit)="onSubmit()">
@@ -24,9 +33,10 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <mat-form-field appearance="outline">
-                                        <mat-label>Id do paciente</mat-label>
-                                        <input matInput placeholder="Digite o id do paciente"
-                                            formControlName="patientId">
+                                        <mat-label>Paciente</mat-label>
+                                        <mat-select placeholder="selecionar" formControlName="patientId">
+                                            <mat-option *ngFor="let patient of patientsId" value="{{patient}}">{{patient}}</mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
                             </div>

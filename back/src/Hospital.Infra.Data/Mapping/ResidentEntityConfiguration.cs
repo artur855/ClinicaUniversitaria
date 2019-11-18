@@ -18,6 +18,8 @@ namespace Hospital.Infra.Data.Mapping
                 .HasColumnName("ano_inicio")
                 .HasColumnType("DATE");
 
+            
+
         }
     }
 }
