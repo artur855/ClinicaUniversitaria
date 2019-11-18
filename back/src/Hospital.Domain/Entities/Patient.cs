@@ -15,7 +15,7 @@ namespace Hospital.Domain.Entities
         }
 
         public char Sex { get; set; }
-        public PatientColors Color { get; set; }
+        public PatientColors? Color { get; set; }
         public DateTime Birthdate { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
