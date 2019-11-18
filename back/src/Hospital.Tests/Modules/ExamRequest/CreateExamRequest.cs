@@ -35,7 +35,7 @@ namespace Hospital.Tests.Modules.ExamRequest
                 {
                     Name = "Medico",
                     Email = "medico@email.com",
-                    Password = "123"
+                    Password = "1234567890"
                 }
             };
             _medicService.SaveAsync<MedicValidator>(_medic);
@@ -48,7 +48,7 @@ namespace Hospital.Tests.Modules.ExamRequest
                 {
                     Email = "paciente@email.com",
                     Name = "Paciente",
-                    Password = "123"
+                    Password = "1234567890"
                 }
             });
             _examRequest = new Domain.Entities.ExamRequest()

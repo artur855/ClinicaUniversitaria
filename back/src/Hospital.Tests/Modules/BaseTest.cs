@@ -38,6 +38,7 @@ namespace Hospital.Tests.Modules
             _services.AddUnitOfWorkService();
             _services.AddUserService();
             _services.AddNotificationServices();
+            _services.AddExamServices();
             
             ServiceProvider = _services.BuildServiceProvider();
         }

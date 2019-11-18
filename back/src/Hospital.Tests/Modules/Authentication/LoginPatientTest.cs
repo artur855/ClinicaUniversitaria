@@ -29,7 +29,7 @@ namespace Hospital.Tests.Modules.Authentication
             {
                 Name = "Arthur",
                 Email = "email@email.com",
-                Password = "123"
+                Password = "1234567890"
             });
         }
 

@@ -55,6 +55,8 @@ namespace Hospital.Service.Services
 
             examRequest.Patient = patient;
             examRequest.MedicId = currentUser.Medic.Id;
+            examRequest.PatientId = patient.Id;
+            examRequest.Medic = currentUser.Medic;
 
             if (!Validate(Activator.CreateInstance<ExamRequestValidator>(), examRequest))
                 return null;

@@ -27,6 +27,11 @@ namespace Hospital.Infra.Data.Mapping
                 .HasForeignKey<ExamReport>(e => e.ExamRequestId);
 
             builder.Property(er => er.Status).HasColumnName("status").IsRequired();
+
+            builder
+                .HasOne(e => e.Exam)
+                .WithOne(ex => ex.ExamReport)
+                .HasForeignKey<ExamReport>(e => e.ExamId);
         }
     }
 }

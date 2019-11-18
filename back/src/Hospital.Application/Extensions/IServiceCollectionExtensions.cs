@@ -77,6 +77,13 @@ namespace Hospital.Application.Extensions
             return services;
         }
 
+        public static IServiceCollection AddExamServices(this IServiceCollection services)
+        {
+            services.AddScoped<IExamRepository, ExamRepository>();
+            services.AddScoped<IExamService, ExamService>();
+            return services;
+        }
+
         public static IServiceCollection AddNotificationServices(this IServiceCollection services)
         {
             services.AddScoped<INotificator, Notificator>();

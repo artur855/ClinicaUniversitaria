@@ -17,6 +17,9 @@ namespace Hospital.Domain.Entities
 
         public ExamReport ExamReport { get; set; }
         public int ExamReportId { get; set; }
+
+        public Exam Exam { get; set; }
+
     }
 
     public enum ExamType

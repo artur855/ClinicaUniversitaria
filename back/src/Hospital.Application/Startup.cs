@@ -54,6 +54,8 @@ namespace Hospital.Application
             services.AddExamReportService();
             services.AddOptions();
             services.AddNotificationServices();
+            services.AddExamServices();
+
 
         }
 
