@@ -70,7 +70,7 @@ namespace Hospital.Tests.Modules.ExamReport
             _newExamReport.Description = Description;
         }
 
-        [Given(" E a minha hipótese do CID da doença seja (.*)")]
+        [Given("Eu adicione a hipótese como (.*)")]
         public void EuAdicioneAHiposeteComo(int Cid)
         {
             _newExamReport.Cid = Cid;
@@ -79,8 +79,6 @@ namespace Hospital.Tests.Modules.ExamReport
         [When("Eu clicar em emitir laudo")]
         public async void EuClicarEmEmitirLaudo()
         {
-
-
             _examReport = await _examReportService.SaveAsync<ExamReportValidator>(_resident.User.Id, _newExamReport);
         }
 
