@@ -49,6 +49,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PatientService } from './Services/pacient.service';
 import { MedicService } from './Services/medico.service';
 import { UploadfileComponent } from './Pages/uploadFile/uploadfile.component';
+import { Upload } from './Models/Upload';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { UploadfileComponent } from './Pages/uploadFile/uploadfile.component';
     Medico,
     Patient,
     Usuario,
+    Upload,
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },PatientService
   ],
   bootstrap: [AppComponent]
