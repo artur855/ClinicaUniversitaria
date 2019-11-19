@@ -24,7 +24,7 @@ namespace Hospital.Application
             services.AddCors(opt => opt.AddPolicy("MyPolicy", builder =>
             {
                 builder.WithOrigins("http://localhost:4200",
-                        "http://clinicauniversitaria-front.s3-website-us-east-1.amazonaws.com")
+                        "http://clinicauniversitaria.s3-website-us-east-1.amazonaws.com/")
                     .AllowAnyMethod().AllowAnyHeader();
             }));
 
