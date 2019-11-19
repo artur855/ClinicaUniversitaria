@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MedicService } from 'src/app/Services/medico.service';
-import { Medico,Titulacao } from 'src/app/Models/Medico';
+import { Medico, Titulacao } from 'src/app/Models/Medico';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Usuario } from 'src/app/Models/Usuario';
-import { faSignOutAlt } from  '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 
@@ -14,7 +14,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
   templateUrl: './editMedic.component.html',
   styleUrls: ['./editMedic.component.css']
 }) export class EditMedicComponent implements OnInit {
-  
+
   faSignOutAlt = faSignOutAlt;
 
   tMed = Titulacao;
@@ -22,7 +22,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
   tValues = [];
 
   medico: Medico = new Medico();
-  constructor(private router: Router, private service: MedicService, private _snackBar: MatSnackBar,private serviceAuth: AuthenticationService) { }
+  constructor(public router: Router, public service: MedicService, public _snackBar: MatSnackBar, public serviceAuth: AuthenticationService) { }
 
   ngOnInit() {
     this.Editar();
@@ -32,18 +32,18 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
     }
   }
 
-  sair(){
+  sair() {
     this.serviceAuth.sair();
   }
 
-  private editMedForm = new FormGroup({
+  public editMedForm = new FormGroup({
     name: new FormControl(''),
     crm: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
     titulation: new FormControl('')
   });
-  
+
 
   Editar() {
     let crm = localStorage.getItem("crm");
@@ -63,15 +63,15 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
   }
 
   onSubmit(medico: Medico) {
-    var ctrl=  this.editMedForm.controls;
+    var ctrl = this.editMedForm.controls;
     medico = new Medico();
     medico.user = new Usuario();
-    
+
     medico.user.name = ctrl.name.value;
-    medico.user.password = ctrl.password.value; 
-    medico.user.email = ctrl.email.value; 
+    medico.user.password = ctrl.password.value;
+    medico.user.email = ctrl.email.value;
     medico.crm = ctrl.crm.value;
-    medico.titulation = ctrl.titulation.value; 
+    medico.titulation = ctrl.titulation.value;
 
     this.service.updateMedico(medico)
       .subscribe(data => {

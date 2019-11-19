@@ -14,13 +14,13 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 export class HomeComponent implements OnInit {
   faHospital = faHospital;
 
-  private profileForm = new FormGroup({
+  public profileForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private router: Router
-    , private service: AuthenticationService
+  constructor(public router: Router
+    , public service: AuthenticationService
   ) { }
 
   ngOnInit() { }

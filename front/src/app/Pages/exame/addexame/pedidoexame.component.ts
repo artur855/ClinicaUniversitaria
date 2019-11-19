@@ -9,7 +9,7 @@ import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MedicService } from 'src/app/Services/medico.service';
 import { PatientService } from 'src/app/Services/pacient.service';
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 // export const CUSTOM_DATE_FORMAT = {
 //   parse: {
@@ -44,14 +44,14 @@ export class PedidoexameComponent implements OnInit {
   crms = [];
   patientsId = [];
   constructor(
-    private router: Router,
-    private service: ExamrequestService,
-    private _snackBar: MatSnackBar,
-    private serviceMed: MedicService,
-    private servicePat: PatientService,
-    private serviceAuth: AuthenticationService) { }
+    public router: Router,
+    public service: ExamrequestService,
+    public _snackBar: MatSnackBar,
+    public serviceMed: MedicService,
+    public servicePat: PatientService,
+    public serviceAuth: AuthenticationService) { }
 
-  private addExamForm = new FormGroup({
+  public addExamForm = new FormGroup({
     hypothesis: new FormControl(''),
     expectedDate: new FormControl({ value: '', updateOn: 'submit' }),
     examName: new FormControl(''),
@@ -78,7 +78,7 @@ export class PedidoexameComponent implements OnInit {
     });
   }
 
-  sair(){
+  sair() {
     this.serviceAuth.sair();
   }
 

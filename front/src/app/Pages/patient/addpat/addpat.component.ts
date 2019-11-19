@@ -8,7 +8,7 @@ import { PatientService } from 'src/app/Services/pacient.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/Models/Usuario';
 //import { ExamRequest } from 'src/app/Models/ExamRequest';
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 @Component({
@@ -29,9 +29,9 @@ export class AddpatComponent implements OnInit {
   tColor = PatientColor;
   colorsPat = []
 
-  faSignOutAlt= faSignOutAlt;
+  faSignOutAlt = faSignOutAlt;
 
-  private addMedForm = new FormGroup({
+  public addMedForm = new FormGroup({
     sex: new FormControl(''),
     color: new FormControl(''),
     expectedDate: new FormControl(''),
@@ -40,10 +40,10 @@ export class AddpatComponent implements OnInit {
     email: new FormControl(''),
   });
 
-  constructor(private service: PatientService,
-              private router: Router,
-              private _snackBar: MatSnackBar,
-              private serviceAuth: AuthenticationService) { }
+  constructor(public service: PatientService,
+    public router: Router,
+    public _snackBar: MatSnackBar,
+    public serviceAuth: AuthenticationService) { }
 
   ngOnInit() {
     this.sexPat = Object.keys(this.tSex)
@@ -51,7 +51,7 @@ export class AddpatComponent implements OnInit {
     this.colorsPat = this.colorsPat.splice(5, 5);
   }
 
-  sair(){
+  sair() {
     this.serviceAuth.sair();
   }
 
