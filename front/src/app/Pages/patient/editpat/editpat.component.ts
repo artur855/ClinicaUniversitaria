@@ -11,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MedicService } from 'src/app/Services/medico.service';
 import { ExamrequestService } from 'src/app/Services/examrequest.service';
 import * as moment from 'moment';
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
@@ -32,9 +32,9 @@ export class EditpatComponent implements OnInit {
   colorsPat = []
   faSignOutAlt = faSignOutAlt;
 
-  private patient: Patient = new Patient();
+  public patient: Patient = new Patient();
 
-  private editPatForm = new FormGroup({
+  public editPatForm = new FormGroup({
     name: new FormControl(''),
     sex: new FormControl(''),
     color: new FormControl(''),
@@ -42,10 +42,10 @@ export class EditpatComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private service: PatientService,
-    private router: Router,
-    private _snackBar: MatSnackBar,
-    private serviceAuth: AuthenticationService) { }
+  constructor(public service: PatientService,
+    public router: Router,
+    public _snackBar: MatSnackBar,
+    public serviceAuth: AuthenticationService) { }
 
   ngOnInit() {
     this.EditPat();
@@ -54,11 +54,11 @@ export class EditpatComponent implements OnInit {
     this.colorsPat = this.colorsPat.splice(5, 5);
   }
 
-  sair(){
+  sair() {
     this.serviceAuth.sair();
   }
 
-  Voltar(){
+  Voltar() {
     this.router.navigate(["dashboard"])
   }
 
@@ -69,7 +69,7 @@ export class EditpatComponent implements OnInit {
     this.service.getPatientId(id)
       .subscribe(data => {
         this.patient = data;
-        
+
         var sexSlc: string;
         if (this.patient.sex == "F") { sexSlc = "Feminino" } else { sexSlc = "Masculino" }
         this.editPatForm.controls.color.setValue(data.color);
